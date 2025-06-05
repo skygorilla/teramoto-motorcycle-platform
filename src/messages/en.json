@@ -1,0 +1,90 @@
+{
+  "Navigation": {
+    "home": "Home",
+    "appointments": "Appointments",
+    "marketplace": "Marketplace",
+    "ai_assistant": "AI Assistant",
+    "signin": "Sign In",
+    "signup": "Sign Up",
+    "signout": "Sign Out",
+    "my_account": "My Account"
+  },
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "en": "English",
+    "hr": "Croatian"
+  },
+  "Auth": {
+    "emailLabel": "Email",
+    "passwordLabel": "Password",
+    "signInTitle": "Sign In to TERAMOTO",
+    "signInButton": "Sign In",
+    "signUpTitle": "Create an Account",
+    "signUpButton": "Sign Up",
+    "signOutButton": "Sign Out",
+    "noAccount": "Don't have an account?",
+    "alreadyAccount": "Already have an account?"
+  },
+  "HomePage": {
+    "title": "Welcome to TERAMOTO",
+    "subtitle": "Your premium motorcycle service and marketplace.",
+    "servicesTitle": "Our Services",
+    "service1Title": "Expert Maintenance",
+    "service1Description": "Top-tier motorcycle care and repair.",
+    "service2Title": "Custom Builds",
+    "service2Description": "Unique modifications tailored to you.",
+    "service3Title": "Gear & Parts",
+    "service3Description": "Wide selection of quality equipment.",
+    "ctaAppointments": "Book Appointment",
+    "ctaMarketplace": "Explore Marketplace"
+  },
+  "AppointmentsPage": {
+    "title": "Book Your Appointment",
+    "description": "Schedule your motorcycle service with TERAMOTO. Our expert technicians are ready to provide top-quality maintenance and repair.",
+    "workshopInfoTitle": "Workshop Information",
+    "address": "Address: Moto Street 123, Zagreb, Croatia",
+    "phone": "Phone: +385 1 234 5678",
+    "email": "Email: appointments@teramoto.example",
+    "openingHours": "Opening Hours: Mon-Fri 9:00 AM - 6:00 PM"
+  },
+  "MarketplacePage": {
+    "title": "Marketplace",
+    "browseProducts": "Browse our selection of motorcycle gear and parts."
+  },
+  "ProductCard": {
+    "viewDetails": "View Details",
+    "price": "Price"
+  },
+  "AIAssistantPage": {
+    "title": "AI Gear Assistant",
+    "description": "Let our AI help you find the perfect motorcycle gear based on your needs.",
+    "ridingStyleLabel": "Riding Style",
+    "ridingStylePlaceholder": "Select your riding style",
+    "road": "Road",
+    "mountain": "Mountain",
+    "touring": "Touring",
+    "offroad": "Off-road",
+    "track": "Track",
+    "weatherConditionsLabel": "Weather Conditions",
+    "weatherConditionsPlaceholder": "Select typical weather",
+    "sunny": "Sunny",
+    "rainy": "Rainy",
+    "cold": "Cold",
+    "variable": "Variable",
+    "budgetLabel": "Budget",
+    "budgetPlaceholder": "Select your budget",
+    "low": "Low",
+    "medium": "Medium",
+    "high": "High",
+    "getRecommendationButton": "Get Recommendation",
+    "recommendationsTitle": "Recommended Gear",
+    "noRecommendations": "No recommendations yet. Fill out the form above.",
+    "generatingRecommendations": "Generating recommendations...",
+    "errorRecommendations": "Could not fetch recommendations. Please try again."
+  },
+  "Common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "submit": "Submit"
+  }
+}

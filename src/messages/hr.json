@@ -1,0 +1,90 @@
+{
+  "Navigation": {
+    "home": "Početna",
+    "appointments": "Termini",
+    "marketplace": "Trgovina",
+    "ai_assistant": "AI Asistent",
+    "signin": "Prijava",
+    "signup": "Registracija",
+    "signout": "Odjava",
+    "my_account": "Moj Račun"
+  },
+  "LocaleSwitcher": {
+    "label": "Promijeni jezik",
+    "en": "Engleski",
+    "hr": "Hrvatski"
+  },
+  "Auth": {
+    "emailLabel": "Email",
+    "passwordLabel": "Lozinka",
+    "signInTitle": "Prijavite se na TERAMOTO",
+    "signInButton": "Prijava",
+    "signUpTitle": "Kreirajte Račun",
+    "signUpButton": "Registracija",
+    "signOutButton": "Odjava",
+    "noAccount": "Nemate račun?",
+    "alreadyAccount": "Već imate račun?"
+  },
+  "HomePage": {
+    "title": "Dobrodošli u TERAMOTO",
+    "subtitle": "Vaš premium servis i trgovina za motocikle.",
+    "servicesTitle": "Naše Usluge",
+    "service1Title": "Stručno Održavanje",
+    "service1Description": "Vrhunska njega i popravak motocikala.",
+    "service2Title": "Prilagođene Izrade",
+    "service2Description": "Jedinstvene modifikacije prilagođene vama.",
+    "service3Title": "Oprema i Dijelovi",
+    "service3Description": "Širok izbor kvalitetne opreme.",
+    "ctaAppointments": "Rezerviraj Termin",
+    "ctaMarketplace": "Istraži Trgovinu"
+  },
+  "AppointmentsPage": {
+    "title": "Rezervirajte Svoj Termin",
+    "description": "Zakažite servis za svoj motocikl u TERAMOTO. Naši stručni tehničari spremni su pružiti vrhunsko održavanje i popravak.",
+    "workshopInfoTitle": "Informacije o Radionici",
+    "address": "Adresa: Moto Ulica 123, Zagreb, Hrvatska",
+    "phone": "Telefon: +385 1 234 5678",
+    "email": "Email: termini@teramoto.example",
+    "openingHours": "Radno Vrijeme: Pon-Pet 9:00 - 18:00"
+  },
+  "MarketplacePage": {
+    "title": "Trgovina",
+    "browseProducts": "Pregledajte našu ponudu moto opreme i dijelova."
+  },
+  "ProductCard": {
+    "viewDetails": "Pogledaj Detalje",
+    "price": "Cijena"
+  },
+  "AIAssistantPage": {
+    "title": "AI Asistent za Opremu",
+    "description": "Dopustite našem AI da vam pomogne pronaći savršenu moto opremu prema vašim potrebama.",
+    "ridingStyleLabel": "Stil Vožnje",
+    "ridingStylePlaceholder": "Odaberite svoj stil vožnje",
+    "road": "Cesta",
+    "mountain": "Planina",
+    "touring": "Putovanja",
+    "offroad": "Izvan Ceste",
+    "track": "Staza",
+    "weatherConditionsLabel": "Vremenski Uvjeti",
+    "weatherConditionsPlaceholder": "Odaberite tipične uvjete",
+    "sunny": "Sunčano",
+    "rainy": "Kišovito",
+    "cold": "Hladno",
+    "variable": "Promjenjivo",
+    "budgetLabel": "Budžet",
+    "budgetPlaceholder": "Odaberite svoj budžet",
+    "low": "Nizak",
+    "medium": "Srednji",
+    "high": "Visok",
+    "getRecommendationButton": "Dohvati Preporuku",
+    "recommendationsTitle": "Preporučena Oprema",
+    "noRecommendations": "Još nema preporuka. Ispunite obrazac iznad.",
+    "generatingRecommendations": "Generiram preporuke...",
+    "errorRecommendations": "Nije moguće dohvatiti preporuke. Molimo pokušajte ponovno."
+  },
+  "Common": {
+    "loading": "Učitavanje...",
+    "error": "Dogodila se greška",
+    "submit": "Pošalji"
+  }
+}
