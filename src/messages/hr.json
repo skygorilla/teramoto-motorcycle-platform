@@ -1,3 +1,4 @@
+
 {
   "Navigation": {
     "home": "Početna",
@@ -45,7 +46,30 @@
     "address": "Adresa: Moto Ulica 123, Zagreb, Hrvatska",
     "phone": "Telefon: +385 1 234 5678",
     "email": "Email: termini@teramoto.example",
-    "openingHours": "Radno Vrijeme: Pon-Pet 9:00 - 18:00"
+    "openingHours": "Radno Vrijeme: Pon-Pet 9:00 - 18:00",
+    "workshopImageAlt": "Unutrašnjost moto radionice",
+    "bookingFormTitle": "Zakažite Vaš Servis",
+    "serviceLabel": "Vrsta Usluge",
+    "servicePlaceholder": "Odaberite uslugu",
+    "serviceOther": "Ostalo (Navedite u napomenama)",
+    "dateLabel": "Željeni Datum",
+    "datePlaceholder": "Odaberite datum",
+    "timeLabel": "Željeno Vrijeme",
+    "timePlaceholder": "Odaberite termin",
+    "nameLabel": "Puno Ime i Prezime",
+    "namePlaceholder": "Npr. Ivan Horvat",
+    "emailLabel": "Email Adresa",
+    "emailPlaceholder": "vas.email@primjer.com",
+    "phoneLabel": "Broj Telefona (Opcionalno)",
+    "phonePlaceholder": "Npr. +385 91 234 5678",
+    "notesLabel": "Dodatne Napomene (Opcionalno)",
+    "notesPlaceholder": "Specifični zahtjevi, model motocikla, itd.",
+    "bookingSubmitButton": "Rezerviraj Termin",
+    "bookingSubmittingButton": "Rezerviram...",
+    "bookingSuccessTitle": "Zahtjev za Termin Poslan!",
+    "bookingSuccessDescription": "Primili smo vaš zahtjev za rezervaciju. Uskoro ćemo vas kontaktirati radi potvrde detalja.",
+    "bookingErrorTitle": "Rezervacija Neuspješna",
+    "bookingErrorDescription": "Došlo je do pogreške prilikom slanja zahtjeva. Molimo pokušajte ponovno ili nas izravno kontaktirajte."
   },
   "MarketplacePage": {
     "title": "Trgovina",

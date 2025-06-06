@@ -1,3 +1,4 @@
+
 {
   "Navigation": {
     "home": "Home",
@@ -45,7 +46,30 @@
     "address": "Address: Moto Street 123, Zagreb, Croatia",
     "phone": "Phone: +385 1 234 5678",
     "email": "Email: appointments@teramoto.example",
-    "openingHours": "Opening Hours: Mon-Fri 9:00 AM - 6:00 PM"
+    "openingHours": "Opening Hours: Mon-Fri 9:00 AM - 6:00 PM",
+    "workshopImageAlt": "Motorcycle workshop interior",
+    "bookingFormTitle": "Schedule Your Service",
+    "serviceLabel": "Service Type",
+    "servicePlaceholder": "Select a service",
+    "serviceOther": "Other (Specify in notes)",
+    "dateLabel": "Preferred Date",
+    "datePlaceholder": "Pick a date",
+    "timeLabel": "Preferred Time",
+    "timePlaceholder": "Select a time slot",
+    "nameLabel": "Full Name",
+    "namePlaceholder": "E.g., John Doe",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "your.email@example.com",
+    "phoneLabel": "Phone Number (Optional)",
+    "phonePlaceholder": "E.g., +1 234 567 8900",
+    "notesLabel": "Additional Notes (Optional)",
+    "notesPlaceholder": "Any specific requests, model of your bike, etc.",
+    "bookingSubmitButton": "Book Appointment",
+    "bookingSubmittingButton": "Booking...",
+    "bookingSuccessTitle": "Appointment Request Sent!",
+    "bookingSuccessDescription": "We've received your booking request. We will contact you shortly to confirm the details.",
+    "bookingErrorTitle": "Booking Failed",
+    "bookingErrorDescription": "Something went wrong while submitting your request. Please try again or contact us directly."
   },
   "MarketplacePage": {
     "title": "Marketplace",

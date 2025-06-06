@@ -1,7 +1,9 @@
+
 import { useTranslations } from "next-intl";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import Image from "next/image";
+import { BookingForm } from "@/components/appointments/BookingForm";
 
 export default function AppointmentsPage() {
   const t = useTranslations("AppointmentsPage");
@@ -15,7 +17,7 @@ export default function AppointmentsPage() {
         {t("description")}
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start mb-16">
         <Card className="animate-in fade-in-0 slide-in-from-left-10 duration-500 delay-300">
           <CardHeader>
             <CardTitle className="font-headline text-2xl">{t("workshopInfoTitle")}</CardTitle>
@@ -43,7 +45,7 @@ export default function AppointmentsPage() {
         <div className="animate-in fade-in-0 slide-in-from-right-10 duration-500 delay-400">
           <Image 
             src="https://placehold.co/600x400.png" 
-            alt="Motorcycle workshop" 
+            alt={t("workshopImageAlt")} 
             width={600} 
             height={400} 
             className="rounded-lg shadow-xl object-cover w-full"
@@ -52,13 +54,8 @@ export default function AppointmentsPage() {
         </div>
       </div>
       
-      {/* Placeholder for a booking form or calendar integration */}
-      <div className="mt-16 text-center p-8 border border-dashed border-border rounded-lg animate-in fade-in-0 duration-500 delay-500">
-        <h2 className="text-2xl font-headline mb-4">Online Booking Coming Soon!</h2>
-        <p className="text-muted-foreground">
-          For now, please call or email us to schedule your appointment.
-        </p>
-      </div>
+      <BookingForm />
+
     </div>
   );
 }
