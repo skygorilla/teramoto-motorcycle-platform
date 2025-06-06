@@ -6,11 +6,12 @@ import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "@/navigation";
-import { Loader2 } from "lucide-react";
+import { Loader2, LogIn } from "lucide-react"; // Added LogIn
 
 export default function AccountPage() {
   const t = useTranslations("AccountPage");
   const { user, loading } = useAuth();
+  const tNav = useTranslations("Navigation"); // For signin text
 
   if (loading) {
     return (
@@ -31,7 +32,8 @@ export default function AccountPage() {
         </p>
         <Button asChild>
           <Link href="/signin">
-            {useTranslations("Navigation")("signin")}
+            <LogIn className="mr-2 h-4 w-4" /> {/* Added icon */}
+            {tNav("signin")}
           </Link>
         </Button>
       </div>

@@ -1,8 +1,10 @@
+
 "use client"; 
 
 import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { useTranslations } from 'next-intl';
+import { RefreshCw } from 'lucide-react'; // Added RefreshCw
 
 export default function Error({
   error,
@@ -29,6 +31,7 @@ export default function Error({
         onClick={() => reset()}
         className="bg-primary text-primary-foreground hover:bg-primary/90"
       >
+        <RefreshCw className="mr-2 h-4 w-4" /> {/* Added icon */}
         Try again
       </Button>
     </div>

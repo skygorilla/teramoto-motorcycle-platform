@@ -8,6 +8,8 @@ import { Link } from "@/navigation";
 
 export default function TransportRoadsidePage() {
   const t = useTranslations("TransportRoadsidePage");
+  const tAppointments = useTranslations("AppointmentsPage"); // For accessing the general phone number
+  const phoneNumber = tAppointments("phone");
 
   return (
     <div className="container mx-auto py-12 px-4 space-y-12">
@@ -43,8 +45,10 @@ export default function TransportRoadsidePage() {
               <li>Siguran prijevoz do servisa ili željene lokacije</li>
               <li>Dostupnost po dogovoru</li>
             </ul>
-            <Button size="lg" className="w-full md:w-auto mt-4">
-              <Phone className="mr-2 h-5 w-5" /> {t("requestService")}
+            <Button size="lg" className="w-full md:w-auto mt-4" asChild>
+              <Link href={`tel:${phoneNumber}`}>
+                <Phone className="mr-2 h-5 w-5" /> {t("requestService")}
+              </Link>
             </Button>
              <p className="text-sm text-muted-foreground mt-2">
               Za hitne slučajeve pomoći na cesti, molimo nazovite nas direktno.
