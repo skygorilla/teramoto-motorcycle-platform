@@ -1,3 +1,4 @@
+
 import { useTranslations } from "next-intl";
 import { Link } from "@/navigation";
 import { Button } from "@/components/ui/button";
@@ -69,7 +70,11 @@ export default function HomePage() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <Card key={service.title} className="bg-card hover:shadow-2xl transition-shadow duration-300 animate-in fade-in-0 slide-in-from-bottom-10" style={{animationDelay: `${800 + index * 150}ms`}}>
+            <Card 
+              key={service.title} 
+              className="bg-card hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 ease-in-out animate-in fade-in-0 slide-in-from-bottom-10" 
+              style={{animationDelay: `${800 + index * 150}ms`}}
+            >
               <CardHeader className="items-center text-center">
                 <div className="p-4 bg-primary/10 rounded-full mb-4">
                   <service.icon className="h-10 w-10 text-primary" />

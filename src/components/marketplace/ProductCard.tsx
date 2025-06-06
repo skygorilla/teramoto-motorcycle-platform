@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import type { Product } from "@/types";
@@ -14,7 +15,7 @@ export function ProductCard({ product }: ProductCardProps) {
   const common_t = useTranslations("Common");
 
   return (
-    <Card className="overflow-hidden flex flex-col h-full hover:shadow-2xl transition-shadow duration-300 animate-in fade-in-0">
+    <Card className="overflow-hidden flex flex-col h-full hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 ease-in-out animate-in fade-in-0">
       <CardHeader className="p-0">
         <Image
           src={product.imageUrl}
