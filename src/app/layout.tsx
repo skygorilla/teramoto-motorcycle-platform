@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
+// Removed NextIntlClientProvider and getMessages from root layout
 import { Toaster } from "@/components/ui/toaster";
 import { AuthProvider } from '@/contexts/AuthContext';
 import './globals.css';
@@ -10,14 +9,14 @@ export const metadata: Metadata = {
   description: 'Motorcycle services, marketplace, and AI gear assistance.',
 };
 
-export default async function RootLayout({
+export default function RootLayout({ // Made synchronous, removed getMessages
   children,
   params: { locale } 
 }: Readonly<{
   children: React.ReactNode;
   params: { locale: string };
 }>) {
-  const messages = await getMessages();
+  // Messages are now fetched and provided in src/app/[locale]/layout.tsx
 
   return (
     <html lang={locale || 'en'}>
@@ -29,12 +28,11 @@ export default async function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased">
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          <AuthProvider>
-            {children}
-            <Toaster />
-          </AuthProvider>
-        </NextIntlClientProvider>
+        {/* NextIntlClientProvider removed from here */}
+        <AuthProvider>
+          {children}
+          <Toaster />
+        </AuthProvider>
       </body>
     </html>
   );
