@@ -60,7 +60,7 @@ export default function TransportRoadsidePage() {
         </CardHeader>
         <CardContent>
           <p className="text-destructive/90">
-            U slučaju hitne potrebe za pomoći na cesti, nazovite nas odmah na broj: <strong>+385 1 234 5678</strong>.
+            U slučaju hitne potrebe za pomoći na cesti, nazovite nas odmah na broj: <strong>-</strong>.
             Dostupni smo za hitne intervencije.
           </p>
         </CardContent>
