@@ -8,12 +8,12 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { 
   Home, 
-  CalendarCheck,  // Updated
-  ShoppingBag,    // Updated
-  Sparkles,       // Updated
-  CircleUserRound,// Updated
+  CalendarCheck,
+  ShoppingBag,
+  Sparkles,
+  CircleUserRound,
   Truck, 
-  CarFront,       // Updated
+  CarFront,
   type LucideIcon 
 } from "lucide-react";
 
@@ -22,7 +22,7 @@ const iconMap: { [key: string]: LucideIcon | undefined } = {
   "Navigation.home": Home,
   "Navigation.appointments": CalendarCheck,
   "Navigation.marketplace": ShoppingBag,
-  "Navigation.ai_assistant": Sparkles,
+  "Navigation.gear_advisor": Sparkles, // Changed from Navigation.ai_assistant
   "Navigation.vehicle_sales": CarFront,
   "Navigation.transport_roadside": Truck,
   "Navigation.my_account": CircleUserRound,

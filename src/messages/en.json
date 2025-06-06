@@ -4,7 +4,7 @@
     "home": "Home",
     "appointments": "Book Service",
     "marketplace": "Marketplace",
-    "ai_assistant": "AI Assistant",
+    "gear_advisor": "Gear Advisor",
     "signin": "Sign In",
     "signup": "Sign Up",
     "signout": "Sign Out",
@@ -102,7 +102,7 @@
     "price": "Price"
   },
   "AIAssistantPage": {
-    "title": "AI Gear Assistant",
+    "title": "Gear Advisor",
     "description": "Let our AI help you find the perfect motorcycle gear based on your needs.",
     "ridingStyleLabel": "Riding Style",
     "ridingStylePlaceholder": "Select your riding style",
