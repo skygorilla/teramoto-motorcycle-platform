@@ -5,11 +5,11 @@ export function Logo() {
   return (
     <Link href="/" className="flex items-center">
       <Image
-        src="/logo.png" // User must place their logo image as 'logo.png' in the 'public' folder.
+        src="/images/logo.png" // User must place their logo image as 'logo.png' in the 'public/images/' folder.
         alt="TERAMOTO Logo"
         width={40}  // Displayed width in pixels
         height={40} // Displayed height in pixels
-        priority 
+        priority
       />
     </Link>
   );
