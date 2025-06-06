@@ -12,8 +12,8 @@ export default async function middleware(request: NextRequest) {
 
   const handleI18nRouting = createMiddleware({
     locales: ['en', 'hr'],
-    defaultLocale: 'en',
-    localePrefix: 'as-needed', // Only add /en or /hr prefix if not default
+    defaultLocale: 'hr', // Changed to Croatian as default
+    localePrefix: 'as-needed', 
   });
 
   const response = handleI18nRouting(request);
