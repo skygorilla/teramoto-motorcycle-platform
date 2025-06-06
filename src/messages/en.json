@@ -2,13 +2,15 @@
 {
   "Navigation": {
     "home": "Home",
-    "appointments": "Appointments",
+    "appointments": "Book Service",
     "marketplace": "Marketplace",
     "ai_assistant": "AI Assistant",
     "signin": "Sign In",
     "signup": "Sign Up",
     "signout": "Sign Out",
-    "my_account": "My Account"
+    "my_account": "My Account",
+    "vehicle_sales": "Vehicle Sales & Purchase",
+    "transport_roadside": "Transport & Roadside"
   },
   "LocaleSwitcher": {
     "label": "Change language",
@@ -40,8 +42,8 @@
     "ctaMarketplace": "Explore Marketplace"
   },
   "AppointmentsPage": {
-    "title": "Book Your Appointment",
-    "description": "Schedule your motorcycle service with TERAMOTO. Our expert technicians are ready to provide top-quality maintenance and repair.",
+    "title": "Book Your Service",
+    "description": "Schedule your motorcycle service with TERAMOTO. Our expert technicians are ready to provide top-quality maintenance, diagnostics, and specialized services.",
     "workshopInfoTitle": "Workshop Information",
     "address": "Address: Moto Street 123, Zagreb, Croatia",
     "phone": "Phone: +385 1 234 5678",
@@ -51,6 +53,12 @@
     "bookingFormTitle": "Schedule Your Service",
     "serviceLabel": "Service Type",
     "servicePlaceholder": "Select a service",
+    "serviceExpertMaintenance": "Expert Maintenance",
+    "serviceTechInspectionPrep": "Technical Inspection Prep",
+    "serviceTireService": "Tire Service (Change & Balance)",
+    "serviceBrakeBatteryCheck": "Brake & Battery Check",
+    "serviceSuspensionTuning": "Suspension Tuning",
+    "serviceDiagnostic": "Diagnostic Service",
     "serviceOther": "Other (Specify in notes)",
     "dateLabel": "Preferred Date",
     "datePlaceholder": "Pick a date",
@@ -64,9 +72,9 @@
     "phonePlaceholder": "E.g., +1 234 567 8900",
     "notesLabel": "Additional Notes (Optional)",
     "notesPlaceholder": "Any specific requests, model of your bike, etc.",
-    "bookingSubmitButton": "Book Appointment",
+    "bookingSubmitButton": "Book Service",
     "bookingSubmittingButton": "Booking...",
-    "bookingSuccessTitle": "Appointment Request Sent!",
+    "bookingSuccessTitle": "Service Request Sent!",
     "bookingSuccessDescription": "We've received your booking request. We will contact you shortly to confirm the details.",
     "bookingErrorTitle": "Booking Failed",
     "bookingErrorDescription": "Something went wrong while submitting your request. Please try again or contact us directly."
@@ -114,6 +122,22 @@
     "appointmentsSection": "My Appointments",
     "ordersSection": "My Orders",
     "settingsSection": "Account Settings"
+  },
+  "VehicleSalesPage": {
+    "title": "Vehicle Sales & Purchase Assistance",
+    "description": "Need help buying or selling a motorcycle, scooter, or quad? We offer expert assistance and valuations. We might even be interested in purchasing your vehicle directly!",
+    "contactUs": "Contact us for more details.",
+    "sellYourVehicleTitle": "Want to Sell Your Vehicle?",
+    "sellYourVehicleDescription": "Fill out the form below, and we'll get in touch.",
+    "lookingToBuyTitle": "Looking to Buy?",
+    "lookingToBuyDescription": "Let us know what you're looking for, and we'll help you find it."
+  },
+  "TransportRoadsidePage": {
+    "title": "Transport & Roadside Assistance",
+    "description": "Reliable transport for your motorcycle, scooter, or quad. We also offer roadside assistance to get you back on the road or safely to our workshop.",
+    "requestService": "Request Service",
+    "serviceDetailsTitle": "Our Transport Services",
+    "serviceDetailsDescription": "Safe and secure transport for various vehicle types. Ideal for breakdowns, purchases, or event transport."
   },
   "Common": {
     "loading": "Loading...",

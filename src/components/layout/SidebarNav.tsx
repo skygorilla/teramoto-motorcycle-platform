@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useTranslations } from "next-intl";
@@ -5,7 +6,7 @@ import { usePathname, Link } from "@/navigation";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Home, CalendarDays, Store, BrainCircuit, UserCircle, type LucideIcon } from "lucide-react";
+import { Home, CalendarDays, Store, BrainCircuit, UserCircle, Truck, Repeat, type LucideIcon } from "lucide-react";
 
 // Map string keys to actual Lucide icon components
 const iconMap: { [key: string]: LucideIcon | undefined } = {
@@ -13,6 +14,8 @@ const iconMap: { [key: string]: LucideIcon | undefined } = {
   "Navigation.appointments": CalendarDays,
   "Navigation.marketplace": Store,
   "Navigation.ai_assistant": BrainCircuit,
+  "Navigation.vehicle_sales": Repeat,
+  "Navigation.transport_roadside": Truck,
   "Navigation.my_account": UserCircle,
 };
 

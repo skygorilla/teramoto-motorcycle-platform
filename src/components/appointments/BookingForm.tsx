@@ -48,13 +48,16 @@ export type BookingFormData = z.infer<typeof BookingFormSchema>;
 
 export function BookingForm() {
   const t = useTranslations("AppointmentsPage");
-  const tHome = useTranslations("HomePage");
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
 
   const services = [
-    { value: "expert-maintenance", label: tHome("service1Title") },
-    { value: "custom-builds", label: tHome("service2Title") },
+    { value: "expert-maintenance", label: t("serviceExpertMaintenance") },
+    { value: "tech-inspection-prep", label: t("serviceTechInspectionPrep") },
+    { value: "tire-service", label: t("serviceTireService") },
+    { value: "brake-battery-check", label: t("serviceBrakeBatteryCheck") },
+    { value: "suspension-tuning", label: t("serviceSuspensionTuning") },
+    { value: "diagnostic-service", label: t("serviceDiagnostic") },
     { value: "other", label: t("serviceOther") },
   ];
 

@@ -2,13 +2,15 @@
 {
   "Navigation": {
     "home": "Početna",
-    "appointments": "Termini",
+    "appointments": "Rezerviraj Uslugu",
     "marketplace": "Trgovina",
     "ai_assistant": "AI Asistent",
     "signin": "Prijava",
     "signup": "Registracija",
     "signout": "Odjava",
-    "my_account": "Moj Račun"
+    "my_account": "Moj Račun",
+    "vehicle_sales": "Prodaja i Kupnja Vozila",
+    "transport_roadside": "Prijevoz i Pomoć na Cesti"
   },
   "LocaleSwitcher": {
     "label": "Promijeni jezik",
@@ -40,17 +42,23 @@
     "ctaMarketplace": "Istraži Trgovinu"
   },
   "AppointmentsPage": {
-    "title": "Rezervirajte Svoj Termin",
-    "description": "Zakažite servis za svoj motocikl u TERAMOTO. Naši stručni tehničari spremni su pružiti vrhunsko održavanje i popravak.",
+    "title": "Rezervirajte Vašu Uslugu",
+    "description": "Zakažite servis za svoj motocikl u TERAMOTO. Naši stručni tehničari spremni su pružiti vrhunsko održavanje, dijagnostiku i specijalizirane usluge.",
     "workshopInfoTitle": "Informacije o Radionici",
     "address": "Adresa: Moto Ulica 123, Zagreb, Hrvatska",
     "phone": "Telefon: +385 1 234 5678",
     "email": "Email: termini@teramoto.example",
     "openingHours": "Radno Vrijeme: Pon-Pet 9:00 - 18:00",
     "workshopImageAlt": "Unutrašnjost moto radionice",
-    "bookingFormTitle": "Zakažite Vaš Servis",
+    "bookingFormTitle": "Zakažite Vašu Uslugu",
     "serviceLabel": "Vrsta Usluge",
     "servicePlaceholder": "Odaberite uslugu",
+    "serviceExpertMaintenance": "Stručno Održavanje",
+    "serviceTechInspectionPrep": "Priprema za Tehnički Pregled",
+    "serviceTireService": "Servis Guma (Zamjena i Balansiranje)",
+    "serviceBrakeBatteryCheck": "Provjera Kočnica i Akumulatora",
+    "serviceSuspensionTuning": "Podešavanje Ovjesa",
+    "serviceDiagnostic": "Dijagnostička Usluga",
     "serviceOther": "Ostalo (Navedite u napomenama)",
     "dateLabel": "Željeni Datum",
     "datePlaceholder": "Odaberite datum",
@@ -64,9 +72,9 @@
     "phonePlaceholder": "Npr. +385 91 234 5678",
     "notesLabel": "Dodatne Napomene (Opcionalno)",
     "notesPlaceholder": "Specifični zahtjevi, model motocikla, itd.",
-    "bookingSubmitButton": "Rezerviraj Termin",
+    "bookingSubmitButton": "Rezerviraj Uslugu",
     "bookingSubmittingButton": "Rezerviram...",
-    "bookingSuccessTitle": "Zahtjev za Termin Poslan!",
+    "bookingSuccessTitle": "Zahtjev za Uslugu Poslan!",
     "bookingSuccessDescription": "Primili smo vaš zahtjev za rezervaciju. Uskoro ćemo vas kontaktirati radi potvrde detalja.",
     "bookingErrorTitle": "Rezervacija Neuspješna",
     "bookingErrorDescription": "Došlo je do pogreške prilikom slanja zahtjeva. Molimo pokušajte ponovno ili nas izravno kontaktirajte."
@@ -114,6 +122,22 @@
     "appointmentsSection": "Moji Termini",
     "ordersSection": "Moje Narudžbe",
     "settingsSection": "Postavke Računa"
+  },
+  "VehicleSalesPage": {
+    "title": "Pomoć pri Prodaji i Kupnji Vozila",
+    "description": "Trebate pomoć pri kupnji ili prodaji motocikla, skutera ili quada? Nudimo stručnu pomoć i procjene. Možda smo zainteresirani i za direktan otkup vašeg vozila!",
+    "contactUs": "Kontaktirajte nas za više detalja.",
+    "sellYourVehicleTitle": "Želite Prodati Svoje Vozilo?",
+    "sellYourVehicleDescription": "Ispunite obrazac ispod, a mi ćemo Vas kontaktirati.",
+    "lookingToBuyTitle": "Tražite Vozilo za Kupnju?",
+    "lookingToBuyDescription": "Recite nam što tražite, a mi ćemo Vam pomoći pronaći."
+  },
+  "TransportRoadsidePage": {
+    "title": "Prijevoz i Pomoć na Cesti",
+    "description": "Pouzdan prijevoz za vaš motocikl, skuter ili quad. Nudimo i pomoć na cesti kako bismo vas vratili na put ili sigurno prevezli do naše radionice.",
+    "requestService": "Zatražite Uslugu",
+    "serviceDetailsTitle": "Naše Usluge Prijevoza",
+    "serviceDetailsDescription": "Siguran i osiguran prijevoz za različite tipove vozila. Idealno za kvarove, kupnju ili prijevoz na događaje."
   },
   "Common": {
     "loading": "Učitavanje...",
