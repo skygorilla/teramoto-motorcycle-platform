@@ -1,11 +1,16 @@
 import { Link } from '@/navigation';
-import { Wrench } from 'lucide-react'; // Updated icon
+import Image from 'next/image';
 
 export function Logo() {
   return (
-    <Link href="/" className="flex items-center gap-2 text-foreground hover:text-primary transition-colors">
-      <Wrench className="h-7 w-7 text-primary" />
-      <span className="text-2xl font-bold font-headline">TERAMOTO</span>
+    <Link href="/" className="flex items-center">
+      <Image
+        src="/logo.png" // User must place their logo image as 'logo.png' in the 'public' folder.
+        alt="TERAMOTO Logo"
+        width={40}  // Displayed width in pixels
+        height={40} // Displayed height in pixels
+        priority 
+      />
     </Link>
   );
 }
