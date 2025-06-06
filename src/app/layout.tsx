@@ -9,9 +9,9 @@ export const metadata: Metadata = {
   description: 'Motorcycle services, marketplace, and AI gear assistance.',
 };
 
-export default function RootLayout({ 
+export default function RootLayout({
   children,
-  params: { locale } 
+  params: { locale }
 }: Readonly<{
   children: React.ReactNode;
   params: { locale: string };
@@ -19,7 +19,7 @@ export default function RootLayout({
   // Messages are now fetched and provided in src/app/[locale]/layout.tsx
 
   return (
-    <html lang={locale || 'hr'}> {/* Ensure locale is used, fallback to hr */}
+    <html lang={locale || 'hr'}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
