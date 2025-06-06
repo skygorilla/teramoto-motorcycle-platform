@@ -12,5 +12,6 @@ export const siteConfig = {
     { titleKey: "Navigation.appointments", href: "/appointments" },
     { titleKey: "Navigation.marketplace", href: "/marketplace" },
     { titleKey: "Navigation.ai_assistant", href: "/ai-assistant" },
+    { titleKey: "Navigation.my_account", href: "/account" },
   ] as NavItem[],
 };

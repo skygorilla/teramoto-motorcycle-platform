@@ -106,6 +106,15 @@
     "generatingRecommendations": "Generiram preporuke...",
     "errorRecommendations": "Nije moguće dohvatiti preporuke. Molimo pokušajte ponovno."
   },
+  "AccountPage": {
+    "title": "Moj Račun",
+    "description": "Upravljajte svojim profilom, pregledajte povijest i ažurirajte postavke.",
+    "notLoggedIn": "Molimo prijavite se kako biste vidjeli detalje svog računa.",
+    "profileSection": "Informacije o Profilu",
+    "appointmentsSection": "Moji Termini",
+    "ordersSection": "Moje Narudžbe",
+    "settingsSection": "Postavke Računa"
+  },
   "Common": {
     "loading": "Učitavanje...",
     "error": "Dogodila se greška",

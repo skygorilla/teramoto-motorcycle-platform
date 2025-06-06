@@ -106,6 +106,15 @@
     "generatingRecommendations": "Generating recommendations...",
     "errorRecommendations": "Could not fetch recommendations. Please try again."
   },
+  "AccountPage": {
+    "title": "My Account",
+    "description": "Manage your profile, view your history, and update your settings.",
+    "notLoggedIn": "Please sign in to view your account details.",
+    "profileSection": "Profile Information",
+    "appointmentsSection": "My Appointments",
+    "ordersSection": "My Orders",
+    "settingsSection": "Account Settings"
+  },
   "Common": {
     "loading": "Loading...",
     "error": "An error occurred",
