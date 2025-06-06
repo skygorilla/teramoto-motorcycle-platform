@@ -6,17 +6,26 @@ import { usePathname, Link } from "@/navigation";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Home, CalendarDays, Store, BrainCircuit, UserCircle, Truck, Repeat, type LucideIcon } from "lucide-react";
+import { 
+  Home, 
+  CalendarCheck,  // Updated
+  ShoppingBag,    // Updated
+  Sparkles,       // Updated
+  CircleUserRound,// Updated
+  Truck, 
+  CarFront,       // Updated
+  type LucideIcon 
+} from "lucide-react";
 
 // Map string keys to actual Lucide icon components
 const iconMap: { [key: string]: LucideIcon | undefined } = {
   "Navigation.home": Home,
-  "Navigation.appointments": CalendarDays,
-  "Navigation.marketplace": Store,
-  "Navigation.ai_assistant": BrainCircuit,
-  "Navigation.vehicle_sales": Repeat,
+  "Navigation.appointments": CalendarCheck,
+  "Navigation.marketplace": ShoppingBag,
+  "Navigation.ai_assistant": Sparkles,
+  "Navigation.vehicle_sales": CarFront,
   "Navigation.transport_roadside": Truck,
-  "Navigation.my_account": UserCircle,
+  "Navigation.my_account": CircleUserRound,
 };
 
 export function SidebarNav() {
