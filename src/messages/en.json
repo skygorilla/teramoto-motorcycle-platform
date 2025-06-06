@@ -153,6 +153,9 @@
     "serviceDetailsTitle": "Our Transport Services",
     "serviceDetailsDescription": "Safe and secure transport for various vehicle types. Ideal for breakdowns, purchases, or event transport."
   },
+  "Footer": {
+    "copyright": "All rights reserved."
+  },
   "Common": {
     "loading": "Loading...",
     "error": "An error occurred",

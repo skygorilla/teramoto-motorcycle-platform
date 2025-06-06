@@ -153,6 +153,9 @@
     "serviceDetailsTitle": "Naše Usluge Prijevoza",
     "serviceDetailsDescription": "Siguran i osiguran prijevoz za različite tipove vozila. Idealno za kvarove, kupnju ili prijevoz na događaje."
   },
+  "Footer": {
+    "copyright": "Sva prava pridržana."
+  },
   "Common": {
     "loading": "Učitavanje...",
     "error": "Dogodila se greška",

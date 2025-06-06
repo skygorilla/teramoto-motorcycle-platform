@@ -10,6 +10,7 @@ import {
 import { Header } from "./Header";
 import { SidebarNav } from "./SidebarNav";
 import { Logo } from "@/components/shared/Logo";
+import { Footer } from "./Footer"; // Import the Footer component
 
 interface AppShellProps {
   children: ReactNode;
@@ -32,9 +33,9 @@ export function AppShell({ children }: AppShellProps) {
           <main className="flex-1 p-4 md:p-8">
             {children}
           </main>
+          <Footer /> 
         </SidebarInset>
       </div>
     </SidebarProvider>
   );
 }
-
