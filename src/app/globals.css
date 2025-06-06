@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  font-family: 'Alegreya', serif; /* Default body font */
+  font-family: 'Inter', sans-serif; /* Updated body font */
 }
 
 @layer base {

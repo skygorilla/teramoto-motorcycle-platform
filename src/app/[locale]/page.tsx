@@ -59,7 +59,7 @@ export default function HomePage() {
           alt="Motorcycle banner" 
           width={1200} 
           height={400} 
-          className="rounded-lg shadow-xl object-cover w-full animate-in fade-in-0 duration-700 delay-500"
+          className="rounded-lg shadow-xl object-cover w-full animate-in fade-in-0 scale-95 duration-700 delay-500"
           data-ai-hint="motorcycle workshop" 
         />
       </section>
