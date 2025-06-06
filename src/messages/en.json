@@ -39,7 +39,21 @@
     "service3Title": "Gear & Parts",
     "service3Description": "Wide selection of quality equipment.",
     "ctaAppointments": "Book Appointment",
-    "ctaMarketplace": "Explore Marketplace"
+    "ctaMarketplace": "Explore Marketplace",
+    "commonProblemsTitle": "Facing Motorcycle Troubles?",
+    "commonProblemsSubtitle": "We specialize in diagnosing and fixing common issues to get you back on the road safely.",
+    "problemBatteryTitle": "Battery Problems?",
+    "problemBatteryDescription": "Won't start or dim lights? We'll test, charge, or replace your battery quickly.",
+    "problemBatteryCTA": "Book Battery Service",
+    "problemTireTitle": "Tire Issues?",
+    "problemTireDescription": "Flat tire, worn tread, or pressure concerns? We offer full tire services, including changes and balancing.",
+    "problemTireCTA": "Book Tire Service",
+    "problemBrakeTitle": "Brake Troubles?",
+    "problemBrakeDescription": "Spongy brakes, strange noises, or poor stopping power? Your safety is our priority. Expert brake checks and repairs.",
+    "problemBrakeCTA": "Book Brake Service",
+    "problemStartingTitle": "Starting Problems?",
+    "problemStartingDescription": "Engine cranks but won't start, or no crank at all? Our diagnostic tools will find the issue.",
+    "problemStartingCTA": "Book Diagnostics"
   },
   "AppointmentsPage": {
     "title": "Book Your Service",

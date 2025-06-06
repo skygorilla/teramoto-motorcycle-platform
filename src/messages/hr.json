@@ -39,7 +39,21 @@
     "service3Title": "Oprema i Dijelovi",
     "service3Description": "Širok izbor kvalitetne opreme.",
     "ctaAppointments": "Rezerviraj Termin",
-    "ctaMarketplace": "Istraži Trgovinu"
+    "ctaMarketplace": "Istraži Trgovinu",
+    "commonProblemsTitle": "Imate Problema s Motociklom?",
+    "commonProblemsSubtitle": "Specijalizirani smo za dijagnostiku i popravak čestih kvarova kako biste se sigurno vratili na cestu.",
+    "problemBatteryTitle": "Problemi s Akumulatorom?",
+    "problemBatteryDescription": "Motor ne pali ili su svjetla slaba? Brzo testiramo, punimo ili mijenjamo vaš akumulator.",
+    "problemBatteryCTA": "Rezerviraj Servis Akumulatora",
+    "problemTireTitle": "Problemi s Gumama?",
+    "problemTireDescription": "Probušena guma, istrošeni profil ili brinete o tlaku? Nudimo kompletne vulkanizerske usluge, uključujući zamjenu i balansiranje.",
+    "problemTireCTA": "Rezerviraj Servis Guma",
+    "problemBrakeTitle": "Problemi s Kočnicama?",
+    "problemBrakeDescription": "Mekane kočnice, čudni zvukovi ili slaba zaustavna moć? Vaša sigurnost je naš prioritet. Stručni pregledi i popravci kočnica.",
+    "problemBrakeCTA": "Rezerviraj Servis Kočnica",
+    "problemStartingTitle": "Problemi s Paljenjem?",
+    "problemStartingDescription": "Motor vergla ali ne pali, ili uopće ne vergla? Naši dijagnostički alati pronaći će uzrok problema.",
+    "problemStartingCTA": "Rezerviraj Dijagnostiku"
   },
   "AppointmentsPage": {
     "title": "Rezervirajte Vašu Uslugu",

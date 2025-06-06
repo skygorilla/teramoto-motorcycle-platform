@@ -2,12 +2,43 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/navigation";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Wrench, Zap, PackageCheck, ArrowRight } from "lucide-react";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Wrench, Zap, PackageCheck, ArrowRight, BatteryWarning, Gauge, ShieldAlert, KeyRound } from "lucide-react";
 import Image from "next/image";
 
 export default function HomePage() {
   const t = useTranslations("HomePage");
+
+  const commonProblems = [
+    {
+      icon: BatteryWarning,
+      titleKey: "problemBatteryTitle",
+      descriptionKey: "problemBatteryDescription",
+      ctaKey: "problemBatteryCTA",
+      dataAiHint: "motorcycle battery",
+    },
+    {
+      icon: Gauge,
+      titleKey: "problemTireTitle",
+      descriptionKey: "problemTireDescription",
+      ctaKey: "problemTireCTA",
+      dataAiHint: "motorcycle tire",
+    },
+    {
+      icon: ShieldAlert,
+      titleKey: "problemBrakeTitle",
+      descriptionKey: "problemBrakeDescription",
+      ctaKey: "problemBrakeCTA",
+      dataAiHint: "motorcycle brakes",
+    },
+    {
+      icon: KeyRound,
+      titleKey: "problemStartingTitle",
+      descriptionKey: "problemStartingDescription",
+      ctaKey: "problemStartingCTA",
+      dataAiHint: "motorcycle ignition",
+    },
+  ];
 
   const services = [
     {
@@ -62,6 +93,41 @@ export default function HomePage() {
           className="rounded-lg shadow-xl object-cover w-full animate-in fade-in-0 scale-95 duration-700 delay-500"
           data-ai-hint="motorcycle workshop" 
         />
+      </section>
+
+      <section className="w-full mb-16">
+        <h2 className="text-3xl font-bold font-headline text-center mb-4 animate-in fade-in-0 duration-500 delay-600">
+          {t("commonProblemsTitle")}
+        </h2>
+        <p className="text-lg text-muted-foreground text-center mb-10 max-w-2xl mx-auto animate-in fade-in-0 duration-500 delay-650">
+          {t("commonProblemsSubtitle")}
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {commonProblems.map((problem, index) => (
+            <Card 
+              key={problem.titleKey} 
+              className="bg-card hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 ease-in-out flex flex-col animate-in fade-in-0 slide-in-from-bottom-10" 
+              style={{animationDelay: `${700 + index * 100}ms`}}
+            >
+              <CardHeader className="items-center text-center">
+                <div className="p-3 bg-primary/10 rounded-full mb-3">
+                  <problem.icon className="h-8 w-8 text-primary" />
+                </div>
+                <CardTitle className="font-headline text-xl">{t(problem.titleKey as any)}</CardTitle>
+              </CardHeader>
+              <CardContent className="text-center flex-grow">
+                <CardDescription>{t(problem.descriptionKey as any)}</CardDescription>
+              </CardContent>
+              <CardFooter className="mt-auto p-4">
+                <Button variant="outline" asChild className="w-full">
+                  <Link href="/appointments">
+                    {t(problem.ctaKey as any)} <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </CardFooter>
+            </Card>
+          ))}
+        </div>
       </section>
 
       <section className="w-full">
