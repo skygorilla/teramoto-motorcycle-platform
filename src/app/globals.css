@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  font-family: 'Inter', sans-serif; /* Updated body font */
+  font-family: 'Inter', sans-serif; /* This can be seen as a fallback or initial set */
 }
 
 @layer base {
@@ -64,7 +64,7 @@ body {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-body; /* Added font-body here */
     @apply antialiased;
   }
   h1, h2, h3, h4, h5, h6 {
