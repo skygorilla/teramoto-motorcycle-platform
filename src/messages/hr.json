@@ -13,7 +13,7 @@
     "transport_roadside": "Prijevoz i pomoć na cesti"
   },
   "LocaleSwitcher": {
-    "label": "Promijeni jezik",
+    "label": "Promijenite jezik",
     "en": "Engleski",
     "hr": "Hrvatski"
   },
@@ -59,7 +59,7 @@
     "title": "Rezervirajte Vašu uslugu",
     "description": "Zakažite servis za svoj motocikl u TERAMOTO. Naši stručni tehničari spremni su pružiti vrhunsko održavanje, dijagnostiku i specijalizirane usluge.",
     "workshopInfoTitle": "Informacije o radionici",
-    "address": "Adresa: Moto Ulica 123, Zagreb, Hrvatska",
+    "address": "Adresa: Žrnovo 738 A, Žrnovo, Hrvatska",
     "phone": "Telefon: +385 1 234 5678",
     "email": "Email: termini@teramoto.example",
     "openingHours": "Radno vrijeme: Pon-Pet 9:00 - 18:00",
@@ -162,5 +162,3 @@
     "submit": "Pošaljite"
   }
 }
-
-    
