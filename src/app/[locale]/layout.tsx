@@ -21,8 +21,7 @@ type Props = {
 // export const dynamic = 'force-static';
 
 
-export default async function LocaleLayout({ children, params }: Props) {
-  const locale = params.locale;
+export default async function LocaleLayout({ children, params: { locale } }: Props) {
   unstable_setRequestLocale(locale);
 
   const localesList = ['en', 'hr']; 
