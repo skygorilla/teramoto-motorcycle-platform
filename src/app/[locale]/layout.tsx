@@ -1,3 +1,4 @@
+
 import type { ReactNode } from 'react';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
@@ -26,7 +27,7 @@ export default async function LocaleLayout({ children, params: { locale } }: Pro
   const localesList = ['en', 'hr']; 
   if (!localesList.includes(locale)) notFound();
 
-  const messages = await getMessages();
+  const messages = await getMessages({ locale });
 
 
   return (
