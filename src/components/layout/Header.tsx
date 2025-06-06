@@ -1,3 +1,4 @@
+
 "use client";
 
 import { SidebarTrigger } from "@/components/ui/sidebar";
@@ -11,7 +12,9 @@ export function Header() {
       <div className="container flex h-16 max-w-screen-2xl items-center justify-between px-4 md:px-8">
         <div className="flex items-center gap-2">
           <SidebarTrigger className="md:hidden" />
-          <Logo />
+          <div className="md:hidden"> {/* Show Logo only on mobile screens */}
+            <Logo />
+          </div>
         </div>
         <div className="flex items-center gap-2">
           <LanguageSwitcher />
@@ -21,3 +24,4 @@ export function Header() {
     </header>
   );
 }
+

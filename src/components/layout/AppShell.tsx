@@ -1,3 +1,4 @@
+
 import type { ReactNode } from "react";
 import {
   SidebarProvider,
@@ -20,7 +21,7 @@ export function AppShell({ children }: AppShellProps) {
       <div className="flex min-h-screen flex-col bg-background">
         <Sidebar side="left" variant="sidebar" collapsible="icon">
           <SidebarHeader className="p-4 hidden md:flex justify-center">
-             {/* Logo can be placed here for collapsed state, or a smaller version */}
+             <Logo />
           </SidebarHeader>
           <SidebarContent>
             <SidebarNav />
@@ -36,3 +37,4 @@ export function AppShell({ children }: AppShellProps) {
     </SidebarProvider>
   );
 }
+
