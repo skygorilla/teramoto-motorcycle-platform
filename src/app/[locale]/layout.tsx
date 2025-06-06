@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { AppShell } from '@/components/layout/AppShell';
 import {notFound} from 'next/navigation';
+import {unstable_setRequestLocale} from 'next-intl/server';
 
 type Props = {
   children: ReactNode;
@@ -19,11 +20,13 @@ type Props = {
 
 
 export default function LocaleLayout({ children, params: { locale } }: Props) {
+  unstable_setRequestLocale(locale);
+
   // Using internationalization in Server Components
   // const t = useTranslations('LocaleLayout');
   // console.log(t('title'));
-  const locales = ['en', 'hr'];
-  if (!locales.includes(locale)) notFound();
+  const localesList = ['en', 'hr']; // Renamed to avoid conflict with locale from params
+  if (!localesList.includes(locale)) notFound();
 
   const messages = useMessages();
 
