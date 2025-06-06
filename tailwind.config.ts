@@ -93,6 +93,10 @@ export default {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
+      dropShadow: {
+        'primary-glow-sm': '0 1px 3px hsl(var(--primary) / 0.4)',
+        'primary-glow-md': '0 2px 5px hsl(var(--primary) / 0.3)',
+      }
     },
   },
   plugins: [require('tailwindcss-animate')],
