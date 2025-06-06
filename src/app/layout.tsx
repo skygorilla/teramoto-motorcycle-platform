@@ -12,16 +12,11 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
-  params: { locale } // Although locale is not directly used here, it's good practice if we ever need it.
+  params: { locale } 
 }: Readonly<{
   children: React.ReactNode;
   params: { locale: string };
 }>) {
-  // Providing all messages to the client
-  // side is EFFICIENT because a route just bundles
-  // common messages and messages of the current route.
-  // For a larger application, you can pass only
-  // GLOBLA messages and messages for the current route.
   const messages = await getMessages();
 
   return (
@@ -34,7 +29,7 @@ export default async function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased">
-        <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider locale={locale} messages={messages}>
           <AuthProvider>
             {children}
             <Toaster />

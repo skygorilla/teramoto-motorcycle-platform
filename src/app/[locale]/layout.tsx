@@ -1,8 +1,9 @@
 import type { ReactNode } from 'react';
-import { NextIntlClientProvider, useMessages } from 'next-intl';
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
 import { AppShell } from '@/components/layout/AppShell';
 import {notFound} from 'next/navigation';
-import {unstable_setRequestLocale} from 'next-intl/server';
+
 
 type Props = {
   children: ReactNode;
@@ -19,16 +20,13 @@ type Props = {
 // export const dynamic = 'force-static';
 
 
-export default function LocaleLayout({ children, params: { locale } }: Props) {
+export default async function LocaleLayout({ children, params: { locale } }: Props) {
   unstable_setRequestLocale(locale);
 
-  // Using internationalization in Server Components
-  // const t = useTranslations('LocaleLayout');
-  // console.log(t('title'));
-  const localesList = ['en', 'hr']; // Renamed to avoid conflict with locale from params
+  const localesList = ['en', 'hr']; 
   if (!localesList.includes(locale)) notFound();
 
-  const messages = useMessages();
+  const messages = await getMessages();
 
 
   return (
