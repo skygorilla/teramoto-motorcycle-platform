@@ -1,3 +1,4 @@
+
 import type {NextConfig} from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
 
@@ -16,6 +17,12 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'placehold.co',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'imagekit.io',
         port: '',
         pathname: '/**',
       },
