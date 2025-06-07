@@ -1,14 +1,15 @@
+
 import createMiddleware from 'next-intl/middleware';
 import type { NextRequest } from 'next/server';
  
 export default async function middleware(request: NextRequest) {
-  // Add your public routes here
-  const publicPages = ['/signin', '/signup'];
-  const publicPathnameRegex = RegExp(
-    `^(/(${['en', 'hr'].join('|')}))?(${publicPages.join('|')})?/?$`,
-    'i'
-  );
-  const isPublicPage = publicPathnameRegex.test(request.nextUrl.pathname);
+  // Note: isPublicPage was declared but not used. Removed for clarity.
+  // const publicPages = ['/signin', '/signup'];
+  // const publicPathnameRegex = RegExp(
+  //   `^(/(${['en', 'hr'].join('|')}))?(${publicPages.join('|')})?/?$`,
+  //   'i'
+  // );
+  // const isPublicPage = publicPathnameRegex.test(request.nextUrl.pathname);
 
   const handleI18nRouting = createMiddleware({
     locales: ['en', 'hr'],
