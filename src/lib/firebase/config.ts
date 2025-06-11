@@ -32,10 +32,9 @@ NEXT_PUBLIC_FIREBASE_APP_ID=1:1234567890:web:abcdef1234567890
 After adding these to your .env file, you MUST RESTART your Next.js development server for the changes to take effect.
 The application will not function correctly until this is resolved.
 `;
-  console.error(message);
   // Throwing an error here will halt execution, making it very clear the app can't proceed.
   // This is often better than letting it fail silently or in unexpected ways later.
-  throw new Error("Firebase configuration environment variables are missing. See console for details.");
+  throw new Error(message);
 }
 
 const firebaseConfig = {
