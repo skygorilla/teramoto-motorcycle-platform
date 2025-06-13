@@ -26,6 +26,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [configError, setConfigError] = useState<string | null>(coreFirebaseConfigError);
 
   useEffect(() => {
+    // Update local configError state if the imported one changes (e.g. during HMR)
+    if (coreFirebaseConfigError !== configError) {
+      setConfigError(coreFirebaseConfigError);
+    }
+
     if (isFirebaseConfigured && auth) {
       const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
         setUser(currentUser);
@@ -43,11 +48,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setConfigError(coreFirebaseConfigError);
       }
     }
-  }, []); // Run once on mount
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [coreFirebaseConfigError]); // Rerun if the imported error status changes
 
   // This initial loading state is for the auth check.
   // If firebase is not configured, loading should become false quickly via useEffect.
-  if (loading && isFirebaseConfigured) { 
+  if (loading && isFirebaseConfigured && !configError) { 
     return (
       <div className="flex min-h-screen items-center justify-center">
         <Loader2 className="h-12 w-12 animate-spin text-primary" />
