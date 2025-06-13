@@ -66,20 +66,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       {configError && (
         <div style={{
           position: 'fixed', top: 0, left: 0, right: 0, 
-          backgroundColor: 'rgb(139, 0, 0, 0.95)', /* DarkRed with slight transparency */
+          backgroundColor: 'rgb(178, 34, 34, 0.95)', /* Firebrick with slight transparency */
           color: 'white', padding: '12px', textAlign: 'center', zIndex: 9999,
-          fontSize: '0.9rem', borderBottom: '3px solid #660000',
-          maxHeight: '30vh', overflowY: 'auto',
+          fontSize: '0.9rem', borderBottom: '3px solid #8B0000', /* DarkRed border */
+          maxHeight: '40vh', overflowY: 'auto', /* Increased maxHeight slightly */
           boxShadow: '0 4px 8px rgba(0,0,0,0.3)'
         }}>
           <h3 style={{ marginTop: 0, marginBottom: '8px', fontSize: '1.1rem', fontWeight: 'bold' }}>
-            Application Configuration Error
+            Firebase Configuration Error
           </h3>
-          <p style={{margin: '0 0 8px 0'}}>
-            Firebase is not correctly configured. Authentication and related features will be disabled.
+          <p style={{margin: '0 0 8px 0', fontWeight: 'bold'}}>
+            ACTION REQUIRED: Firebase is not configured correctly. Authentication and related features will be disabled.
           </p>
           <p style={{margin: '0 0 10px 0'}}>
-            Please check your <code>.env</code> file for the required Firebase credentials and <strong>restart the server</strong>.
+            Please update your <code>.env</code> file with your Firebase credentials and <strong>RESTART THE DEVELOPMENT SERVER</strong> to resolve this.
           </p>
           <details style={{
             background: 'rgba(0,0,0,0.2)', 
@@ -87,11 +87,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             borderRadius: '4px', 
             cursor: 'pointer'
           }}>
-            <summary style={{fontWeight: 'bold', userSelect: 'none'}}>Show Error Details</summary>
+            <summary style={{fontWeight: 'bold', userSelect: 'none'}}>Show Error Details & Instructions</summary>
             <pre style={{
               fontSize: '0.75rem', textAlign: 'left', background: 'rgba(0,0,0,0.3)', color: '#f0f0f0',
               padding: '8px', borderRadius: '4px', marginTop: '8px', whiteSpace: 'pre-wrap', 
-              wordBreak: 'break-all', maxHeight: '10vh', overflowY: 'auto'
+              wordBreak: 'break-all', maxHeight: '20vh', overflowY: 'auto'
             }}>
               {configError}
             </pre>
