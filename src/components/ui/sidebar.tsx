@@ -1,3 +1,4 @@
+
 "use client"
 
 import * as React from "react"
@@ -322,8 +323,20 @@ const SidebarInset = React.forwardRef<
     <main
       ref={ref}
       className={cn(
-        "relative flex min-h-svh flex-1 flex-col bg-background",
+        "relative flex min-h-svh flex-1 flex-col bg-background transition-[padding] duration-200 ease-linear",
+        // For variant="sidebar"
+        "md:peer-data-[variant=sidebar]:peer-data-[side=left]:peer-data-[state=expanded]:pl-[var(--sidebar-width)]",
+        "md:peer-data-[variant=sidebar]:peer-data-[side=left]:peer-data-[state=collapsed]:peer-data-[collapsible=icon]:pl-[var(--sidebar-width-icon)]",
+        "md:peer-data-[variant=sidebar]:peer-data-[side=right]:peer-data-[state=expanded]:pr-[var(--sidebar-width)]",
+        "md:peer-data-[variant=sidebar]:peer-data-[side=right]:peer-data-[state=collapsed]:peer-data-[collapsible=icon]:pr-[var(--sidebar-width-icon)]",
+        // For variant="inset"
         "peer-data-[variant=inset]:min-h-[calc(100svh-theme(spacing.4))] md:peer-data-[variant=inset]:m-2 md:peer-data-[state=collapsed]:peer-data-[variant=inset]:ml-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow",
+        // For variant="floating" (similar to inset, but often uses calc for padding with spacing)
+        "md:peer-data-[variant=floating]:peer-data-[side=left]:peer-data-[state=expanded]:pl-[calc(var(--sidebar-width)_+theme(spacing.4))]",
+        "md:peer-data-[variant=floating]:peer-data-[side=left]:peer-data-[state=collapsed]:peer-data-[collapsible=icon]:pl-[calc(var(--sidebar-width-icon)_+theme(spacing.4))]",
+        "md:peer-data-[variant=floating]:peer-data-[side=right]:peer-data-[state=expanded]:pr-[calc(var(--sidebar-width)_+theme(spacing.4))]",
+        "md:peer-data-[variant=floating]:peer-data-[side=right]:peer-data-[state=collapsed]:peer-data-[collapsible=icon]:pr-[calc(var(--sidebar-width-icon)_+theme(spacing.4))]",
+        "md:peer-data-[variant=floating]:m-2 md:peer-data-[variant=floating]:rounded-xl md:peer-data-[variant=floating]:shadow",
         className
       )}
       {...props}
