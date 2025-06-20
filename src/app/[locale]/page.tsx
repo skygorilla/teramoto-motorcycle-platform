@@ -3,7 +3,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Wrench, Zap, PackageCheck, ArrowRight, BatteryWarning, Gauge, ShieldAlert, KeyRound } from "lucide-react";
+import { Wrench, Zap, PackageCheck, ArrowRight, BatteryWarning, Gauge, ShieldAlert, KeyRound, TrendingUp, Palette, ShieldCheck } from "lucide-react";
 import Image from "next/image";
 
 export default function HomePage() {
@@ -40,24 +40,34 @@ export default function HomePage() {
     },
   ];
 
-  const services = [
+  const premiumServices = [
     {
       icon: Wrench,
-      title: t("service1Title"),
-      description: t("service1Description"),
-      dataAiHint: "motorcycle repair",
+      titleKey: "premiumServiceExpertMaintenanceTitle",
+      descriptionKey: "premiumServiceExpertMaintenanceDescription",
+      itemsKey: "premiumServiceExpertMaintenanceItems",
+      dataAiHint: "motorcycle maintenance",
     },
     {
-      icon: Zap,
-      title: t("service2Title"),
-      description: t("service2Description"),
-      dataAiHint: "custom motorcycle",
+      icon: TrendingUp,
+      titleKey: "premiumServicePerformanceUpgradesTitle",
+      descriptionKey: "premiumServicePerformanceUpgradesDescription",
+      itemsKey: "premiumServicePerformanceUpgradesItems",
+      dataAiHint: "motorcycle performance",
     },
     {
-      icon: PackageCheck,
-      title: t("service3Title"),
-      description: t("service3Description"),
-      dataAiHint: "motorcycle gear",
+      icon: Palette,
+      titleKey: "premiumServiceCustomDesignTitle",
+      descriptionKey: "premiumServiceCustomDesignDescription",
+      itemsKey: "premiumServiceCustomDesignItems",
+      dataAiHint: "motorcycle custom design",
+    },
+    {
+      icon: ShieldCheck,
+      titleKey: "premiumServiceExtendedWarrantyTitle",
+      descriptionKey: "premiumServiceExtendedWarrantyDescription",
+      itemsKey: "premiumServiceExtendedWarrantyItems",
+      dataAiHint: "motorcycle warranty",
     },
   ];
 
@@ -131,24 +141,37 @@ export default function HomePage() {
       </section>
 
       <section className="w-full">
-        <h2 className="text-3xl font-bold font-headline text-center mb-10 animate-in fade-in-0 duration-500 delay-700">
-          {t("servicesTitle")}
+        <h2 className="text-3xl font-bold font-headline text-center mb-4 animate-in fade-in-0 duration-500 delay-[1100ms]">
+          {t("premiumServicesTitle")}
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {services.map((service, index) => (
+        <p className="text-lg text-muted-foreground text-center mb-10 max-w-2xl mx-auto animate-in fade-in-0 duration-500 delay-[1150ms]">
+          {t("premiumServicesSubtitle")}
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {premiumServices.map((service, index) => (
             <Card 
-              key={service.title} 
-              className="bg-card hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 ease-in-out animate-in fade-in-0 slide-in-from-bottom-10" 
-              style={{animationDelay: `${800 + index * 150}ms`}}
+              key={t(service.titleKey as any)} 
+              className="bg-card hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 ease-in-out flex flex-col group animate-in fade-in-0 slide-in-from-bottom-10" 
+              style={{animationDelay: `${1200 + index * 150}ms`}}
+              data-ai-hint={service.dataAiHint}
             >
-              <CardHeader className="items-center text-center">
-                <div className="p-4 bg-primary/10 rounded-full mb-4">
-                  <service.icon className="h-10 w-10 text-primary" />
+              <CardContent className="p-6 space-y-3 text-center flex flex-col flex-grow">
+                <div className="flex justify-center mb-2">
+                  <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center group-hover:shadow-lg group-hover:shadow-primary/25 transition-all duration-300">
+                    <service.icon className="h-8 w-8 text-primary-foreground" />
+                  </div>
                 </div>
-                <CardTitle className="font-headline text-2xl">{service.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="text-center">
-                <CardDescription>{service.description}</CardDescription>
+                <CardTitle className="font-headline text-xl text-foreground mb-1">{t(service.titleKey as any)}</CardTitle>
+                <CardDescription className="text-sm leading-relaxed text-muted-foreground mb-2 flex-grow">{t(service.descriptionKey as any)}</CardDescription>
+                
+                <ul className="space-y-1.5 text-left self-start w-full pt-2 mt-auto">
+                  {(t.raw(service.itemsKey as any) as string[]).map((item: string, itemIndex: number) => (
+                    <li key={itemIndex} className="flex items-center text-sm text-muted-foreground">
+                      <div className="w-1.5 h-1.5 bg-primary rounded-full mr-2.5 shrink-0"></div>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </CardContent>
             </Card>
           ))}

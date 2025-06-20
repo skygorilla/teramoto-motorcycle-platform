@@ -31,13 +31,6 @@
   "HomePage": {
     "title": "Dobrodošli u TERAMOTO",
     "subtitle": "Vaš premium servis i trgovina za motocikle.",
-    "servicesTitle": "Naše usluge",
-    "service1Title": "Stručno održavanje",
-    "service1Description": "Vrhunska njega i popravak motocikala.",
-    "service2Title": "Prilagođene izrade",
-    "service2Description": "Jedinstvene modifikacije prilagođene Vama.",
-    "service3Title": "Oprema i dijelovi",
-    "service3Description": "Širok izbor kvalitetne opreme.",
     "ctaAppointments": "Rezervirajte termin",
     "ctaMarketplace": "Istražite trgovinu",
     "commonProblemsTitle": "Imate problema s motociklom?",
@@ -53,7 +46,41 @@
     "problemBrakeCTA": "Rezervirajte servis kočnica",
     "problemStartingTitle": "Problemi s paljenjem?",
     "problemStartingDescription": "Motor vergla ali ne pali, ili uopće ne vergla? Naši dijagnostički alati pronaći će uzrok problema.",
-    "problemStartingCTA": "Rezervirajte dijagnostiku"
+    "problemStartingCTA": "Rezervirajte dijagnostiku",
+    "premiumServicesTitle": "Premium Usluge",
+    "premiumServicesSubtitle": "Osim izvanrednih motocikala, pružamo sveobuhvatne usluge kako bi Vaše iskustvo vožnje ostalo izvanredno.",
+    "premiumServiceExpertMaintenanceTitle": "Stručno Održavanje",
+    "premiumServiceExpertMaintenanceDescription": "Profesionalne usluge održavanja i popravaka od strane certificiranih tehničara kako bi Vaš motocikl radio na vrhuncu performansi.",
+    "premiumServiceExpertMaintenanceItems": [
+      "Redovito servisiranje",
+      "Dijagnostika motora",
+      "Podešavanje performansi",
+      "Hitni popravci"
+    ],
+    "premiumServicePerformanceUpgradesTitle": "Nadogradnje Performansi",
+    "premiumServicePerformanceUpgradesDescription": "Poboljšajte svoju vožnju s premium modifikacijama performansi dizajniranim da otključaju puni potencijal Vašeg motocikla.",
+    "premiumServicePerformanceUpgradesItems": [
+      "Remapiranje ECU-a",
+      "Ispušni sustavi",
+      "Nadogradnje ovjesa",
+      "Poboljšanja kočnica"
+    ],
+    "premiumServiceCustomDesignTitle": "Prilagođeni Dizajn",
+    "premiumServiceCustomDesignDescription": "Pretvorite svoj motocikl u jedinstveno remek-djelo s našim uslugama prilagođenog dizajna i izrade.",
+    "premiumServiceCustomDesignItems": [
+      "Prilagođeno bojanje",
+      "Modifikacije karoserije",
+      "LED osvjetljenje",
+      "Personalizirane grafike"
+    ],
+    "premiumServiceExtendedWarrantyTitle": "Produženo Jamstvo",
+    "premiumServiceExtendedWarrantyDescription": "Sveobuhvatno jamstveno pokriće koje štiti Vašu investiciju i osigurava bezbrižnost na svakoj vožnji.",
+    "premiumServiceExtendedWarrantyItems": [
+      "Pokriće od 5 godina",
+      "Dijelovi i rad",
+      "Pomoć na cesti",
+      "Podrška širom svijeta"
+    ]
   },
   "AppointmentsPage": {
     "title": "Rezervirajte Vašu uslugu",
@@ -186,5 +213,3 @@
     "submit": "Pošaljite"
   }
 }
-
-    

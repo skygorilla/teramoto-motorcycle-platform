@@ -31,13 +31,6 @@
   "HomePage": {
     "title": "Welcome to TERAMOTO",
     "subtitle": "Your premium motorcycle service and marketplace.",
-    "servicesTitle": "Our Services",
-    "service1Title": "Expert Maintenance",
-    "service1Description": "Top-tier motorcycle care and repair.",
-    "service2Title": "Custom Builds",
-    "service2Description": "Unique modifications tailored to you.",
-    "service3Title": "Gear & Parts",
-    "service3Description": "Wide selection of quality equipment.",
     "ctaAppointments": "Book Appointment",
     "ctaMarketplace": "Explore Marketplace",
     "commonProblemsTitle": "Facing Motorcycle Troubles?",
@@ -53,7 +46,41 @@
     "problemBrakeCTA": "Book Brake Service",
     "problemStartingTitle": "Starting Problems?",
     "problemStartingDescription": "Engine cranks but won't start, or no crank at all? Our diagnostic tools will find the issue.",
-    "problemStartingCTA": "Book Diagnostics"
+    "problemStartingCTA": "Book Diagnostics",
+    "premiumServicesTitle": "Premium Services",
+    "premiumServicesSubtitle": "Beyond exceptional motorcycles, we provide comprehensive services to ensure your riding experience remains extraordinary.",
+    "premiumServiceExpertMaintenanceTitle": "Expert Maintenance",
+    "premiumServiceExpertMaintenanceDescription": "Professional maintenance and repair services by certified technicians to keep your motorcycle performing at its peak.",
+    "premiumServiceExpertMaintenanceItems": [
+      "Regular servicing",
+      "Engine diagnostics",
+      "Performance tuning",
+      "Emergency repairs"
+    ],
+    "premiumServicePerformanceUpgradesTitle": "Performance Upgrades",
+    "premiumServicePerformanceUpgradesDescription": "Enhance your ride with premium performance modifications designed to unlock your motorcycle's full potential.",
+    "premiumServicePerformanceUpgradesItems": [
+      "ECU remapping",
+      "Exhaust systems",
+      "Suspension upgrades",
+      "Brake enhancements"
+    ],
+    "premiumServiceCustomDesignTitle": "Custom Design",
+    "premiumServiceCustomDesignDescription": "Transform your motorcycle into a unique masterpiece with our custom design and fabrication services.",
+    "premiumServiceCustomDesignItems": [
+      "Custom paint jobs",
+      "Body modifications",
+      "LED lighting",
+      "Personalized graphics"
+    ],
+    "premiumServiceExtendedWarrantyTitle": "Extended Warranty",
+    "premiumServiceExtendedWarrantyDescription": "Comprehensive warranty coverage that protects your investment and ensures peace of mind on every ride.",
+    "premiumServiceExtendedWarrantyItems": [
+      "5-year coverage",
+      "Parts & labor",
+      "Roadside assistance",
+      "Worldwide support"
+    ]
   },
   "AppointmentsPage": {
     "title": "Book Your Service",
@@ -186,5 +213,3 @@
     "submit": "Submit"
   }
 }
-
-    
