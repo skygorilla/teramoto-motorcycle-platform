@@ -12,8 +12,7 @@ type Props = {
   params: { locale: string };
 };
 
-export default async function LocaleLayout({ children, params }: Props) {
-  const { locale } = params; // Destructure locale here
+export default async function LocaleLayout({ children, params: { locale } }: Props) { // Changed: Destructure locale directly
   // Validate that the incoming `locale` parameter is valid
   if (!locales.includes(locale as any)) {
     notFound();

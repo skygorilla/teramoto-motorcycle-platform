@@ -141,10 +141,10 @@ export default function HomePage() {
       </section>
 
       <section className="w-full">
-        <h2 className="text-3xl font-bold font-headline text-center mb-4 animate-in fade-in-0 duration-500 delay-[1100ms]">
+        <h2 className="text-3xl font-bold font-headline text-center mb-4 animate-in fade-in-0 duration-500 delay-\[1100ms\]">
           {t("premiumServicesTitle")}
         </h2>
-        <p className="text-lg text-muted-foreground text-center mb-10 max-w-2xl mx-auto animate-in fade-in-0 duration-500 delay-[1150ms]">
+        <p className="text-lg text-muted-foreground text-center mb-10 max-w-2xl mx-auto animate-in fade-in-0 duration-500 delay-\[1150ms\]">
           {t("premiumServicesSubtitle")}
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
