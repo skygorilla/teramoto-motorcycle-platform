@@ -154,7 +154,31 @@
     "serviceDetailsDescription": "Siguran i osiguran prijevoz za različite tipove vozila. Idealno za kvarove, kupnju ili prijevoz na događaje."
   },
   "Footer": {
-    "copyright": "Sva prava pridržana."
+    "companyName": "TERA MOTO",
+    "tagline": "Stvaramo izvanredne motocikle za vozače koji zahtijevaju izvrsnost. Iskusite savršenu fuziju snage, preciznosti i performansi.",
+    "quickLinksTitle": "Brze poveznice",
+    "linkMotorcycles": "Motocikli",
+    "linkAboutUs": "O nama",
+    "linkFinancing": "Financiranje",
+    "linkWarranty": "Jamstvo",
+    "servicesTitle": "Usluge",
+    "serviceMaintenance": "Održavanje",
+    "servicePerformanceUpgrades": "Nadogradnje performansi",
+    "serviceCustomDesign": "Prilagođeni dizajn",
+    "servicePartsAccessories": "Dijelovi i oprema",
+    "serviceTestRides": "Probne vožnje",
+    "serviceTradeIns": "Zamjene staro za novo",
+    "contactInfoTitle": "Kontakt informacije",
+    "addressLine1": "Motor Bulevar 1234",
+    "addressLine2": "Los Angeles, CA 90210",
+    "phone": "+1 (555) 123-4567",
+    "email": "info@teramoto.com",
+    "hoursMonFri": "Pon-Pet: 9:00-19:00",
+    "hoursSatSun": "Sub-Ned: 10:00-17:00",
+    "copyright": "Sva prava pridržana.",
+    "privacyPolicy": "Pravila privatnosti",
+    "termsOfService": "Uvjeti korištenja",
+    "cookiePolicy": "Pravila o kolačićima"
   },
   "Common": {
     "loading": "Učitavanje...",
@@ -162,3 +186,5 @@
     "submit": "Pošaljite"
   }
 }
+
+    

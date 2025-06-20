@@ -154,7 +154,31 @@
     "serviceDetailsDescription": "Safe and secure transport for various vehicle types. Ideal for breakdowns, purchases, or event transport."
   },
   "Footer": {
-    "copyright": "All rights reserved."
+    "companyName": "TERA MOTO",
+    "tagline": "Crafting extraordinary motorcycles for riders who demand excellence. Experience the perfect fusion of power, precision, and performance.",
+    "quickLinksTitle": "Quick Links",
+    "linkMotorcycles": "Motorcycles",
+    "linkAboutUs": "About Us",
+    "linkFinancing": "Financing",
+    "linkWarranty": "Warranty",
+    "servicesTitle": "Services",
+    "serviceMaintenance": "Maintenance",
+    "servicePerformanceUpgrades": "Performance Upgrades",
+    "serviceCustomDesign": "Custom Design",
+    "servicePartsAccessories": "Parts & Accessories",
+    "serviceTestRides": "Test Rides",
+    "serviceTradeIns": "Trade-ins",
+    "contactInfoTitle": "Contact Info",
+    "addressLine1": "1234 Motor Boulevard",
+    "addressLine2": "Los Angeles, CA 90210",
+    "phone": "+1 (555) 123-4567",
+    "email": "info@teramoto.com",
+    "hoursMonFri": "Mon-Fri: 9AM-7PM",
+    "hoursSatSun": "Sat-Sun: 10AM-5PM",
+    "copyright": "All rights reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "cookiePolicy": "Cookie Policy"
   },
   "Common": {
     "loading": "Loading...",
@@ -162,3 +186,5 @@
     "submit": "Submit"
   }
 }
+
+    
