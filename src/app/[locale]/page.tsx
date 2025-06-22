@@ -1,4 +1,6 @@
 
+"use client";
+
 import { useTranslations } from "next-intl";
 import { Link } from "@/navigation";
 import { Button } from "@/components/ui/button";

@@ -1,3 +1,6 @@
+
+"use client";
+
 import { useTranslations } from "next-intl";
 import { ProductCard } from "@/components/marketplace/ProductCard";
 import type { Product } from "@/types";
