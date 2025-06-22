@@ -15,11 +15,6 @@ export function Footer() {
     setCurrentYear(new Date().getFullYear());
   }, []);
 
-  if (currentYear === null) {
-    // Prevents flash of unstyled content or hydration mismatch
-    return <footer className="bg-card text-card-foreground py-12 px-4 md:px-8 border-t border-border/40"></footer>;
-  }
-
   return (
     <footer className="bg-card text-card-foreground py-12 px-4 md:px-8 border-t border-border/40">
       <div className="container mx-auto">
@@ -97,5 +92,3 @@ export function Footer() {
     </footer>
   );
 }
-
-    
