@@ -21,7 +21,7 @@ interface AppShellProps {
 export function AppShell({ children }: AppShellProps) {
   return (
     <SidebarProvider defaultOpen={true}>
-      <div className="flex min-h-screen flex-col bg-background">
+      <div className="flex min-h-screen bg-background">
         <Sidebar side="left" variant="sidebar" collapsible="icon">
           <SidebarHeader className="p-4 hidden md:flex justify-center">
              <Logo />
