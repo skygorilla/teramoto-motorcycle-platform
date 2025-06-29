@@ -74,7 +74,7 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="container mx-auto flex flex-col items-center py-12 px-4">
+    <div className="container mx-auto py-12 px-4">
       <section className="text-center mb-16">
         <h1 className="text-5xl font-bold font-headline mb-4 text-primary animate-in fade-in-0 slide-in-from-top-8 duration-500 drop-shadow-primary-glow-md">
           {t("title")}
