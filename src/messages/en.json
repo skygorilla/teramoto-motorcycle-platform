@@ -131,6 +131,7 @@
   "AIAssistantPage": {
     "title": "Gear Advisor",
     "description": "Let our AI help you find the perfect motorcycle gear based on your needs.",
+    "formTitle": "Your Preferences",
     "ridingStyleLabel": "Riding Style",
     "ridingStylePlaceholder": "Select your riding style",
     "road": "Road",

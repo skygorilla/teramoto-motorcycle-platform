@@ -43,7 +43,7 @@ export default function AIAssistantPage() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <Card className="md:col-span-1 animate-in fade-in-0 slide-in-from-left-10 duration-500 delay-300">
           <CardHeader>
-            <CardTitle className="font-headline text-xl">{t("AIAssistantPage.title")}</CardTitle>
+            <CardTitle className="font-headline text-xl">{t("formTitle")}</CardTitle>
           </CardHeader>
           <CardContent>
             <GearRecommendationForm onSubmit={handleSubmit} isLoading={isLoading} />

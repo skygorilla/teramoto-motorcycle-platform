@@ -131,6 +131,7 @@
   "AIAssistantPage": {
     "title": "Savjetnik za opremu",
     "description": "Dopustite našem AI-ju da Vam pomogne pronaći savršenu moto opremu prema Vašim potrebama.",
+    "formTitle": "Vaše postavke",
     "ridingStyleLabel": "Stil vožnje",
     "ridingStylePlaceholder": "Odaberite svoj stil vožnje",
     "road": "Cesta",
