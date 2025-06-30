@@ -11,9 +11,9 @@ export function Logo() {
       <img
         src="/logo.png"
         alt="TERAMOTO Logo"
-        className="h-9 w-auto"
-        width="140" // Set a width to prevent layout shift
-        height="36" // Set a height to prevent layout shift
+        className="h-12 w-auto"
+        width="186" // Set a width to prevent layout shift
+        height="48" // Set a height to prevent layout shift
       />
     </Link>
   );
