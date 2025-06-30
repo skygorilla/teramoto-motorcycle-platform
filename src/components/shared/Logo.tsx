@@ -5,7 +5,7 @@ export function Logo() {
   return (
     <Link href="/" className="flex items-center" aria-label="TERAMOTO Home">
       <Image
-        src="https://placehold.co/100x100.png"
+        src="/logo.png"
         alt="TERAMOTO Logo"
         width={100} 
         height={100}

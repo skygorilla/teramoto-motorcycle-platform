@@ -9,6 +9,7 @@ export default getRequestConfig(async ({locale}) => {
   // For example, by checking if it's included in a list of supported locales.
  
   return {
+    locale,
     messages: (await import(`./messages/${locale}.json`)).default
   };
 });
