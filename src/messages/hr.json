@@ -208,6 +208,11 @@
     "termsOfService": "Uvjeti korištenja",
     "cookiePolicy": "Pravila o kolačićima"
   },
+  "NotFoundPage": {
+    "title": "Stranica nije pronađena",
+    "description": "Žao nam je, nismo mogli pronaći stranicu koju tražite. Možda je premještena ili obrisana.",
+    "goHome": "Povratak na početnu"
+  },
   "Common": {
     "loading": "Učitavanje...",
     "error": "Dogodila se pogreška",
