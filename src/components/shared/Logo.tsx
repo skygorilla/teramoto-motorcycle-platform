@@ -11,9 +11,9 @@ export function Logo() {
       <img
         src="/logo.png"
         alt="TERAMOTO Logo"
-        className="h-[100px] w-auto"
-        width="388" 
-        height="100" 
+        className="h-[180px] w-auto"
+        width="698" 
+        height="180" 
       />
     </Link>
   );
