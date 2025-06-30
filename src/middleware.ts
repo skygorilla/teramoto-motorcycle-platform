@@ -1,31 +1,21 @@
-
 import createMiddleware from 'next-intl/middleware';
 import type { NextRequest } from 'next/server';
  
 export default async function middleware(request: NextRequest) {
-  // Note: isPublicPage was declared but not used. Removed for clarity.
-  // const publicPages = ['/signin', '/signup'];
-  // const publicPathnameRegex = RegExp(
-  //   `^(/(${['en', 'hr'].join('|')}))?(${publicPages.join('|')})?/?$`,
-  //   'i'
-  // );
-  // const isPublicPage = publicPathnameRegex.test(request.nextUrl.pathname);
-
   const handleI18nRouting = createMiddleware({
     locales: ['en', 'hr'],
-    defaultLocale: 'hr', // Changed to Croatian as default
+    defaultLocale: 'hr',
     localePrefix: 'as-needed', 
   });
 
   const response = handleI18nRouting(request);
 
-  // Example: Add security headers
-  // response.headers.set('x-custom-header', 'custom-value');
-
   return response;
 }
  
 export const config = {
-  // Matcher ignoring `/_next/` and `/api/`
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)']
+  // Match all pathnames except for
+  // - … if they start with `/api`, `/_next` or `/_vercel`
+  // - … the ones containing a dot (e.g. `favicon.ico`, `logo.png`)
+  matcher: ['/((?!api|_next/static|_next/image|_vercel|.*\\..*).*)']
 };
