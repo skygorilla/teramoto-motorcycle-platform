@@ -1,18 +1,20 @@
 
 import { Link } from '@/navigation';
-import Image from 'next/image';
 
 export function Logo() {
   return (
-    <Link href="/" className="flex items-center">
-      <Image
-        src="https://placehold.co/32x32.png"
-        alt="TERAMOTO Logo"
-        width={32}
-        height={32}
-        priority
-        data-ai-hint="logo teramoto"
-      />
+    <Link href="/" className="flex items-center" aria-label="TERAMOTO Home">
+      <svg
+        className="h-8 w-auto text-primary"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <path d="M5 3H19V5H13V21H11V5H5V3Z" />
+      </svg>
     </Link>
   );
 }
