@@ -22,7 +22,7 @@ export function AppShell({ children }: AppShellProps) {
     <SidebarProvider defaultOpen={true}>
       <div className="flex min-h-screen bg-background">
         <Sidebar side="left" variant="sidebar" collapsible="icon">
-          <SidebarHeader className="p-4 hidden md:flex justify-center">
+          <SidebarHeader className="p-4 hidden md:flex justify-center items-center">
              <Logo />
           </SidebarHeader>
           <SidebarContent>
