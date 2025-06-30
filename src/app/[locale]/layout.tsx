@@ -20,7 +20,7 @@ export default async function LocaleLayout({ children, params: { locale } }: Pro
 
   unstable_setRequestLocale(locale);
 
-  const messages = await getMessages({ locale });
+  const messages = await getMessages();
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
