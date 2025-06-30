@@ -10,6 +10,7 @@ export function Logo() {
         width={36}
         height={36}
         className="h-9 w-auto"
+        unoptimized={true}
       />
       <span className="font-headline text-2xl font-bold text-foreground hidden md:inline">
         TERAMOTO
