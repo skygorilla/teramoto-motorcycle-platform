@@ -30,7 +30,7 @@ export function AppShell({ children }: AppShellProps) {
             <SidebarNav />
           </SidebarContent>
         </Sidebar>
-        <SidebarInset className="flex flex-1 flex-col">
+        <SidebarInset>
           <Header />
           <main className="flex-1 p-4 md:p-8">
             {children}
