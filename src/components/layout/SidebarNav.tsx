@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useTranslations } from "next-intl";
@@ -41,7 +40,7 @@ export function SidebarNav() {
             key={item.href}
             variant={pathname === item.href ? "secondary" : "ghost"}
             className={cn(
-              "w-full justify-start",
+              "w-full justify-start font-nav tracking-wider text-base",
               pathname === item.href && "bg-sidebar-accent text-sidebar-accent-foreground hover:bg-sidebar-accent/90"
             )}
             asChild
