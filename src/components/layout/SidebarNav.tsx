@@ -5,6 +5,7 @@ import { usePathname, Link } from "@/navigation";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/useAuth";
 import { 
   Home, 
   CalendarCheck,
@@ -13,6 +14,7 @@ import {
   CircleUserRound,
   Truck, 
   CarFront,
+  LayoutDashboard,
   type LucideIcon 
 } from "lucide-react";
 
@@ -21,19 +23,27 @@ const iconMap: { [key: string]: LucideIcon | undefined } = {
   "Navigation.home": Home,
   "Navigation.appointments": CalendarCheck,
   "Navigation.marketplace": ShoppingBag,
-  "Navigation.gear_advisor": Sparkles, // Changed from Navigation.ai_assistant
+  "Navigation.gear_advisor": Sparkles,
   "Navigation.vehicle_sales": CarFront,
   "Navigation.transport_roadside": Truck,
+  "Navigation.admin": LayoutDashboard,
   "Navigation.my_account": CircleUserRound,
 };
 
 export function SidebarNav() {
   const t = useTranslations();
   const pathname = usePathname();
+  const { user } = useAuth();
+  const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
 
   return (
     <nav className="flex flex-col gap-2 p-4">
       {siteConfig.mainNav.map((item) => {
+        // Conditionally render the admin link
+        if (item.href === '/admin' && (!user || user.email !== adminEmail)) {
+          return null;
+        }
+        
         const IconComponent = iconMap[item.titleKey];
         return (
           <Button

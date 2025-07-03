@@ -21,6 +21,7 @@ export const pathnames = {
   '/account': '/account',
   '/vehicle-sales': '/vehicle-sales',
   '/transport-roadside': '/transport-roadside',
+  '/admin': '/admin',
 
   // If locales use different paths, you can
   // specify each external path per locale.

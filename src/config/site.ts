@@ -15,6 +15,7 @@ export const siteConfig = {
     { titleKey: "Navigation.gear_advisor", href: "/ai-assistant" },
     { titleKey: "Navigation.vehicle_sales", href: "/vehicle-sales" },
     { titleKey: "Navigation.transport_roadside", href: "/transport-roadside" },
+    { titleKey: "Navigation.admin", href: "/admin" },
     { titleKey: "Navigation.my_account", href: "/account" },
   ] as NavItem[],
 };
