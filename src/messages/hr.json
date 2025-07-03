@@ -122,7 +122,9 @@
   },
   "MarketplacePage": {
     "title": "Trgovina",
-    "browseProducts": "Pregledajte našu ponudu moto opreme i dijelova."
+    "browseProducts": "Pregledajte našu ponudu moto opreme i dijelova.",
+    "noProductsTitle": "Trenutno Nema Proizvoda",
+    "noProductsDescription": "Trenutno pripremamo našu ponudu. Molimo vas da uskoro ponovno provjerite našu trgovinu!"
   },
   "ProductCard": {
     "viewDetails": "Pogledajte detalje",

@@ -122,7 +122,9 @@
   },
   "MarketplacePage": {
     "title": "Marketplace",
-    "browseProducts": "Browse our selection of motorcycle gear and parts."
+    "browseProducts": "Browse our selection of motorcycle gear and parts.",
+    "noProductsTitle": "No Products Available Yet",
+    "noProductsDescription": "We're currently preparing our inventory. Please check back soon for exciting gear and parts!"
   },
   "ProductCard": {
     "viewDetails": "View Details",
