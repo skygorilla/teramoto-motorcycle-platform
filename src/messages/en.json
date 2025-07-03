@@ -87,7 +87,7 @@
     "description": "Schedule your motorcycle service with TERAMOTO. Our expert technicians are ready to provide top-quality maintenance, diagnostics, and specialized services.",
     "workshopInfoTitle": "Workshop Information",
     "address": "Žrnovo 738 A, Žrnovo, Croatia",
-    "phone": "-",
+    "phone": "+385915149339",
     "email": "-",
     "openingHours": "Opening Hours: Mon-Fri 9:00 AM - 6:00 PM",
     "workshopImageAlt": "Motorcycle workshop interior",
@@ -183,7 +183,14 @@
     "description": "Reliable transport for your motorcycle, scooter, or quad. We also offer roadside assistance to get you back on the road or safely to our workshop.",
     "requestService": "Request Service",
     "serviceDetailsTitle": "Our Transport Services",
-    "serviceDetailsDescription": "Safe and secure transport for various vehicle types. Ideal for breakdowns, purchases, or event transport."
+    "serviceDetailsDescription": "Safe and secure transport for various vehicle types. Ideal for breakdowns, purchases, or event transport.",
+    "servicePoint1": "Transport for motorcycles, scooters, and quads",
+    "servicePoint2": "Roadside assistance in case of breakdown",
+    "servicePoint3": "Secure transport to the workshop or desired location",
+    "servicePoint4": "Available by appointment",
+    "nonUrgentInfo": "For urgent roadside assistance, please call us directly.",
+    "emergencyTitle": "Emergency Roadside Assistance",
+    "emergencyText": "In case of an emergency, please call us directly at: <bold>{phoneNumber}</bold>. We are available for urgent interventions."
   },
   "Footer": {
     "companyName": "TERA MOTO",
@@ -203,7 +210,7 @@
     "contactInfoTitle": "Workshop Information",
     "addressLine1": "Žrnovo 738 A",
     "addressLine2": "Žrnovo, Croatia",
-    "phone": "-",
+    "phone": "+385915149339",
     "email": "-",
     "hoursMonFri": "Mon-Fri: 9:00 AM - 6:00 PM",
     "hoursSatSun": "",

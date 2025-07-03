@@ -87,7 +87,7 @@
     "description": "Zakažite servis za svoj motocikl u TERAMOTO. Naši stručni tehničari spremni su pružiti vrhunsko održavanje, dijagnostiku i specijalizirane usluge.",
     "workshopInfoTitle": "Informacije o radionici",
     "address": "Žrnovo 738 A, Žrnovo, Hrvatska",
-    "phone": "-",
+    "phone": "+385915149339",
     "email": "-",
     "openingHours": "Radno vrijeme: Pon-Pet 9:00 - 18:00",
     "workshopImageAlt": "Unutrašnjost moto radionice",
@@ -183,7 +183,14 @@
     "description": "Pouzdan prijevoz za Vaš motocikl, skuter ili quad. Nudimo i pomoć na cesti kako bismo Vas vratili na put ili sigurno prevezli do naše radionice.",
     "requestService": "Zatražite uslugu",
     "serviceDetailsTitle": "Naše usluge prijevoza",
-    "serviceDetailsDescription": "Siguran i osiguran prijevoz za različite tipove vozila. Idealno za kvarove, kupnju ili prijevoz na događaje."
+    "serviceDetailsDescription": "Siguran i osiguran prijevoz za različite tipove vozila. Idealno za kvarove, kupnju ili prijevoz na događaje.",
+    "servicePoint1": "Prijevoz motocikala, skutera i quadova",
+    "servicePoint2": "Pomoć na cesti u slučaju kvara",
+    "servicePoint3": "Siguran prijevoz do servisa ili željene lokacije",
+    "servicePoint4": "Dostupnost po dogovoru",
+    "nonUrgentInfo": "Za hitne slučajeve pomoći na cesti, molimo nazovite nas direktno.",
+    "emergencyTitle": "Hitna Pomoć na Cesti",
+    "emergencyText": "U slučaju hitne potrebe za pomoći na cesti, nazovite nas odmah na broj: <bold>{phoneNumber}</bold>. Dostupni smo za hitne intervencije."
   },
   "Footer": {
     "companyName": "TERA MOTO",
@@ -203,7 +210,7 @@
     "contactInfoTitle": "Informacije o radionici",
     "addressLine1": "Žrnovo 738 A",
     "addressLine2": "Žrnovo, Hrvatska",
-    "phone": "-",
+    "phone": "+385915149339",
     "email": "-",
     "hoursMonFri": "Pon-Pet: 9:00 - 18:00",
     "hoursSatSun": "",

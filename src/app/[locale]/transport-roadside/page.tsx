@@ -42,10 +42,10 @@ export default function TransportRoadsidePage() {
           <div className="md:w-1/2 space-y-4">
             <p className="text-muted-foreground">{t("serviceDetailsDescription")}</p>
             <ul className="list-disc list-inside space-y-1 text-muted-foreground">
-              <li>Prijevoz motocikala, skutera i quadova</li>
-              <li>Pomoć na cesti u slučaju kvara</li>
-              <li>Siguran prijevoz do servisa ili željene lokacije</li>
-              <li>Dostupnost po dogovoru</li>
+              <li>{t("servicePoint1")}</li>
+              <li>{t("servicePoint2")}</li>
+              <li>{t("servicePoint3")}</li>
+              <li>{t("servicePoint4")}</li>
             </ul>
             <Button size="lg" className="w-full md:w-auto mt-4" asChild>
               <a href={`tel:${phoneNumber}`}>
@@ -53,7 +53,7 @@ export default function TransportRoadsidePage() {
               </a>
             </Button>
              <p className="text-sm text-muted-foreground mt-2">
-              Za hitne slučajeve pomoći na cesti, molimo nazovite nas direktno.
+              {t("nonUrgentInfo")}
             </p>
           </div>
         </CardContent>
@@ -62,12 +62,14 @@ export default function TransportRoadsidePage() {
       <Card className="bg-destructive/10 border-destructive animate-in fade-in-0 duration-500 delay-400">
         <CardHeader className="flex flex-row items-center space-x-3">
           <AlertTriangle className="h-8 w-8 text-destructive" />
-          <CardTitle className="font-headline text-xl text-destructive">Hitna Pomoć na Cesti</CardTitle>
+          <CardTitle className="font-headline text-xl text-destructive">{t("emergencyTitle")}</CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-destructive/90">
-            U slučaju hitne potrebe za pomoći na cesti, nazovite nas odmah na broj: <strong>-</strong>.
-            Dostupni smo za hitne intervencije.
+            {t.rich("emergencyText", {
+              phoneNumber: phoneNumber,
+              bold: (chunks) => <strong>{chunks}</strong>,
+            })}
           </p>
         </CardContent>
       </Card>
