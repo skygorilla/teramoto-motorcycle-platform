@@ -43,12 +43,14 @@ export function SignUpForm() {
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     setIsLoading(true);
     try {
-      await createUserWithEmailAndPassword(auth, data.email, data.password);
-      toast({
-        title: "Account Created",
-        description: "Successfully created your TERAMOTO account.",
-      });
-      router.push("/"); // Redirect to homepage or dashboard
+      if (auth) {
+        await createUserWithEmailAndPassword(auth, data.email, data.password);
+        toast({
+          title: "Account Created",
+          description: "Successfully created your TERAMOTO account.",
+        });
+        router.push("/"); // Redirect to homepage or dashboard
+      }
     } catch (error: any) {
       console.error("Sign up error:", error);
       toast({

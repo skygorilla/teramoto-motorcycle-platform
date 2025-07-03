@@ -45,7 +45,7 @@ export function SidebarNav() {
             )}
             asChild
           >
-            <Link href={item.href}>
+            <Link href={item.href as any}>
               {IconComponent && <IconComponent className="mr-2 h-4 w-4" />}
               {t(item.titleKey as any)}
             </Link>

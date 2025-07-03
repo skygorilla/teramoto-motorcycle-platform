@@ -48,9 +48,9 @@ export default function TransportRoadsidePage() {
               <li>Dostupnost po dogovoru</li>
             </ul>
             <Button size="lg" className="w-full md:w-auto mt-4" asChild>
-              <Link href={`tel:${phoneNumber}`}>
+              <a href={`tel:${phoneNumber}`}>
                 <Phone className="mr-2 h-5 w-5" /> {t("requestService")}
-              </Link>
+              </a>
             </Button>
              <p className="text-sm text-muted-foreground mt-2">
               Za hitne slučajeve pomoći na cesti, molimo nazovite nas direktno.

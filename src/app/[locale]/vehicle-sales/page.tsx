@@ -37,7 +37,7 @@ export default function VehicleSalesPage() {
             />
             <p className="text-muted-foreground mb-4">{t("sellYourVehicleDescription")}</p>
             <Button asChild className="w-full">
-              <Link href="/appointments?service=vehicle-sale-consultation"> {/* Example: Link to a specific consultation type */}
+              <Link href="/appointments">
                 {t("contactUs")}
               </Link>
             </Button>
@@ -59,7 +59,7 @@ export default function VehicleSalesPage() {
             />
             <p className="text-muted-foreground mb-4">{t("lookingToBuyDescription")}</p>
              <Button asChild className="w-full">
-              <Link href="/appointments?service=vehicle-purchase-consultation"> {/* Example: Link to a specific consultation type */}
+              <Link href="/appointments">
                 {t("contactUs")}
               </Link>
             </Button>

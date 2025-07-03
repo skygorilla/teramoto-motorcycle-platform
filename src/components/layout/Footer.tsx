@@ -35,9 +35,9 @@ export function Footer() {
               <li><Link href="/" className="hover:text-primary transition-colors">{tNav("home")}</Link></li>
               <li><Link href="/marketplace" className="hover:text-primary transition-colors">{t("linkMotorcycles")}</Link></li>
               <li><Link href="/appointments" className="hover:text-primary transition-colors">{tNav("appointments")}</Link></li>
-              <li><Link href="#" className="hover:text-primary transition-colors">{t("linkAboutUs")}</Link></li>
-              <li><Link href="#" className="hover:text-primary transition-colors">{t("linkFinancing")}</Link></li>
-              <li><Link href="#" className="hover:text-primary transition-colors">{t("linkWarranty")}</Link></li>
+              <li><a href="#" className="hover:text-primary transition-colors">{t("linkAboutUs")}</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">{t("linkFinancing")}</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">{t("linkWarranty")}</a></li>
             </ul>
           </div>
 
@@ -45,12 +45,12 @@ export function Footer() {
           <div>
             <h3 className="text-lg font-semibold font-headline mb-4 text-primary">{t("servicesTitle")}</h3>
             <ul className="space-y-2">
-              <li><Link href="/appointments?service=maintenance" className="hover:text-primary transition-colors">{t("serviceMaintenance")}</Link></li>
-              <li><Link href="/appointments?service=performance-upgrades" className="hover:text-primary transition-colors">{t("servicePerformanceUpgrades")}</Link></li>
-              <li><Link href="/appointments?service=custom-design" className="hover:text-primary transition-colors">{t("serviceCustomDesign")}</Link></li>
-              <li><Link href="/marketplace?category=parts-accessories" className="hover:text-primary transition-colors">{t("servicePartsAccessories")}</Link></li>
-              <li><Link href="/appointments?service=test-ride" className="hover:text-primary transition-colors">{t("serviceTestRides")}</Link></li>
-              <li><Link href="/vehicle-sales?action=trade-in" className="hover:text-primary transition-colors">{t("serviceTradeIns")}</Link></li>
+              <li><Link href="/appointments" className="hover:text-primary transition-colors">{t("serviceMaintenance")}</Link></li>
+              <li><Link href="/appointments" className="hover:text-primary transition-colors">{t("servicePerformanceUpgrades")}</Link></li>
+              <li><Link href="/appointments" className="hover:text-primary transition-colors">{t("serviceCustomDesign")}</Link></li>
+              <li><Link href="/marketplace" className="hover:text-primary transition-colors">{t("servicePartsAccessories")}</Link></li>
+              <li><Link href="/appointments" className="hover:text-primary transition-colors">{t("serviceTestRides")}</Link></li>
+              <li><Link href="/vehicle-sales" className="hover:text-primary transition-colors">{t("serviceTradeIns")}</Link></li>
             </ul>
           </div>
 
@@ -83,9 +83,9 @@ export function Footer() {
             &copy; {currentYear} {t("companyName")}. {t("copyright")}
           </p>
           <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-sm">
-            <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">{t("privacyPolicy")}</Link>
-            <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">{t("termsOfService")}</Link>
-            <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">{t("cookiePolicy")}</Link>
+            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">{t("privacyPolicy")}</a>
+            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">{t("termsOfService")}</a>
+            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">{t("cookiePolicy")}</a>
           </div>
         </div>
       </div>

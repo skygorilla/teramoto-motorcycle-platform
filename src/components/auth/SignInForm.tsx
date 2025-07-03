@@ -44,12 +44,14 @@ export function SignInForm() {
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     setIsLoading(true);
     try {
-      await signInWithEmailAndPassword(auth, data.email, data.password);
-      toast({
-        title: "Signed In",
-        description: "Successfully signed in to TERAMOTO.",
-      });
-      router.push("/"); // Redirect to homepage or dashboard
+      if (auth) {
+        await signInWithEmailAndPassword(auth, data.email, data.password);
+        toast({
+          title: "Signed In",
+          description: "Successfully signed in to TERAMOTO.",
+        });
+        router.push("/"); // Redirect to homepage or dashboard
+      }
     } catch (error: any) {
       console.error("Sign in error:", error);
       toast({

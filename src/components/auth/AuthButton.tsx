@@ -24,8 +24,10 @@ export function AuthButton() {
 
   const handleSignOut = async () => {
     try {
-      await signOut(auth);
-      router.push("/"); // Redirect to home after sign out
+      if (auth) {
+        await signOut(auth);
+        router.push("/"); // Redirect to home after sign out
+      }
     } catch (error) {
       console.error("Error signing out:", error);
     }
