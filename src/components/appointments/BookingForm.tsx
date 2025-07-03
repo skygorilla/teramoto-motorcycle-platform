@@ -52,6 +52,8 @@ export function BookingForm() {
   const [isLoading, setIsLoading] = useState(false);
 
   const services = [
+    { value: "vehicle-sale-consultation", label: t("serviceVehicleSaleConsultation") },
+    { value: "vehicle-purchase-consultation", label: t("serviceVehiclePurchaseConsultation") },
     { value: "expert-maintenance", label: t("serviceExpertMaintenance") },
     { value: "tech-inspection-prep", label: t("serviceTechInspectionPrep") },
     { value: "tire-service", label: t("serviceTireService") },
