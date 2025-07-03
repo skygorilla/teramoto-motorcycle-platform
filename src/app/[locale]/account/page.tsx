@@ -23,7 +23,7 @@ export default function AccountPage() {
 
   if (!user) {
     return (
-      <div className="container mx-auto py-12 px-4 text-center">
+      <div className="container mx-auto flex min-h-[calc(100vh-200px)] flex-col items-center justify-center py-12 px-4 text-center">
         <h1 className="text-3xl font-bold font-headline mb-4 text-primary">
           {t("title")}
         </h1>

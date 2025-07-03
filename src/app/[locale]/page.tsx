@@ -74,15 +74,15 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="container mx-auto py-12 px-4">
+    <div className="container mx-auto py-8 md:py-12 px-4 md:px-6">
       <section className="text-center mb-16">
-        <h1 className="text-5xl font-bold font-headline mb-4 text-primary animate-in fade-in-0 slide-in-from-top-8 duration-500 drop-shadow-primary-glow-md">
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-headline mb-4 text-primary animate-in fade-in-0 slide-in-from-top-8 duration-500 drop-shadow-primary-glow-md">
           {t("title")}
         </h1>
-        <p className="text-xl text-muted-foreground mb-8 animate-in fade-in-0 slide-in-from-top-12 duration-500 delay-200">
+        <p className="text-lg md:text-xl text-muted-foreground mb-8 animate-in fade-in-0 slide-in-from-top-12 duration-500 delay-200">
           {t("subtitle")}
         </p>
-        <div className="flex justify-center gap-4 animate-in fade-in-0 slide-in-from-bottom-8 duration-500 delay-300">
+        <div className="flex flex-col sm:flex-row justify-center gap-4 animate-in fade-in-0 slide-in-from-bottom-8 duration-500 delay-300">
           <Button size="lg" asChild className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all transform hover:scale-105">
             <Link href="/appointments">
               {t("ctaAppointments")} <ArrowRight className="ml-2 h-5 w-5" />

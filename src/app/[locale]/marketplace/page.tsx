@@ -13,7 +13,7 @@ export default function MarketplacePage() {
   const t = useTranslations("MarketplacePage");
 
   return (
-    <div className="container mx-auto py-12 px-4">
+    <div className="container mx-auto py-8 md:py-12 px-4 md:px-6">
       <h1 className="text-4xl font-bold font-headline text-center mb-4 text-primary animate-in fade-in-0 slide-in-from-top-8 duration-500">
         {t("title")}
       </h1>

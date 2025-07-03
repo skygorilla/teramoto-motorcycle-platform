@@ -11,7 +11,7 @@ export default function AppointmentsPage() {
   const t = useTranslations("AppointmentsPage");
 
   return (
-    <div className="container mx-auto py-12 px-4">
+    <div className="container mx-auto py-8 md:py-12 px-4 md:px-6">
       <h1 className="text-4xl font-bold font-headline text-center mb-10 text-primary animate-in fade-in-0 slide-in-from-top-8 duration-500">
         {t("title")}
       </h1>
@@ -19,7 +19,7 @@ export default function AppointmentsPage() {
         {t("description")}
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start mb-16">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-start mb-12 md:mb-16">
         <Card className="animate-in fade-in-0 slide-in-from-left-10 duration-500 delay-300">
           <CardHeader>
             <CardTitle className="font-headline text-2xl">{t("workshopInfoTitle")}</CardTitle>
