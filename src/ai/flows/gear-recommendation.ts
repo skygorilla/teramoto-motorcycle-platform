@@ -36,6 +36,10 @@ const GearRecommendationOutputSchema = z.object({
 export type GearRecommendationOutput = z.infer<typeof GearRecommendationOutputSchema>;
 
 export async function gearRecommendation(input: GearRecommendationInput): Promise<GearRecommendationOutput> {
+  if (!process.env.GOOGLE_API_KEY) {
+    // This will be caught by the UI and displayed to the user.
+    throw new Error("The GOOGLE_API_KEY environment variable is not set. The AI Assistant cannot function without it.");
+  }
   return gearRecommendationFlow(input);
 }
 
