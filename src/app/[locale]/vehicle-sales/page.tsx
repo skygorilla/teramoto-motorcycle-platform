@@ -4,9 +4,9 @@
 import { useTranslations } from "next-intl";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import { Link } from "@/navigation";
 import { siteImages } from "@/config/images";
+import { EditableImage } from "@/components/shared/EditableImage";
 
 export default function VehicleSalesPage() {
   const t = useTranslations("VehicleSalesPage");
@@ -29,7 +29,8 @@ export default function VehicleSalesPage() {
           </CardHeader>
           <CardContent>
             <div className="aspect-[3/2] overflow-hidden rounded-lg shadow-md mb-6">
-              <Image
+              <EditableImage
+                imageKey="sellVehicle"
                 src={siteImages.sellVehicle}
                 alt="Motorcycle for sale"
                 width={600}
@@ -52,7 +53,8 @@ export default function VehicleSalesPage() {
           </CardHeader>
           <CardContent>
             <div className="aspect-[3/2] overflow-hidden rounded-lg shadow-md mb-6">
-              <Image
+              <EditableImage
+                imageKey="buyVehicle"
                 src={siteImages.buyVehicle}
                 alt="Person looking at motorcycles"
                 width={600}

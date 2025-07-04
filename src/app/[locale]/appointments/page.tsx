@@ -4,9 +4,9 @@
 import { useTranslations } from "next-intl";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
-import Image from "next/image";
 import { BookingForm } from "@/components/appointments/BookingForm";
 import { siteImages } from "@/config/images";
+import { EditableImage } from "@/components/shared/EditableImage";
 
 export default function AppointmentsPage() {
   const t = useTranslations("AppointmentsPage");
@@ -47,7 +47,8 @@ export default function AppointmentsPage() {
         
         <div className="animate-in fade-in-0 slide-in-from-right-10 duration-500 delay-400">
           <div className="aspect-[3/2] overflow-hidden rounded-lg shadow-xl">
-            <Image 
+            <EditableImage 
+              imageKey="workshop"
               src={siteImages.workshop}
               alt={t("workshopImageAlt")} 
               width={600} 

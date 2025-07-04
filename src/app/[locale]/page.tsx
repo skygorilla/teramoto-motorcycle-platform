@@ -6,7 +6,7 @@ import { Link } from "@/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Wrench, Zap, PackageCheck, ArrowRight, BatteryWarning, Gauge, ShieldAlert, KeyRound, TrendingUp, Palette, ShieldCheck } from "lucide-react";
-import Image from "next/image";
+import { EditableImage } from "@/components/shared/EditableImage";
 import { siteImages } from "@/config/images";
 
 export default function HomePage() {
@@ -99,7 +99,8 @@ export default function HomePage() {
 
       <section className="w-full mb-16">
         <div className="aspect-[3/1] overflow-hidden rounded-lg shadow-xl animate-in fade-in-0 scale-95 duration-700 delay-500">
-          <Image 
+          <EditableImage 
+            imageKey="heroBanner"
             src={siteImages.heroBanner}
             alt="Motorcycle banner" 
             width={1200} 

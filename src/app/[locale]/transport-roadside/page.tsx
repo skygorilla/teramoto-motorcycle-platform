@@ -4,10 +4,10 @@
 import { useTranslations } from "next-intl";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import { Phone, AlertTriangle } from "lucide-react";
 import { Link } from "@/navigation";
 import { siteImages } from "@/config/images";
+import { EditableImage } from "@/components/shared/EditableImage";
 
 export default function TransportRoadsidePage() {
   const t = useTranslations("TransportRoadsidePage");
@@ -32,7 +32,8 @@ export default function TransportRoadsidePage() {
         <CardContent className="md:flex md:items-center md:gap-8">
           <div className="md:w-1/2 mb-6 md:mb-0">
             <div className="aspect-[3/2] overflow-hidden rounded-lg shadow-xl">
-              <Image
+              <EditableImage
+                imageKey="transportVan"
                 src={siteImages.transportVan}
                 alt="Motorcycle transport"
                 width={600}
