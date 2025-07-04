@@ -18,6 +18,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { Link, useRouter } from "@/navigation";
+import { GoogleSignInButton } from "./GoogleSignInButton";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
 
@@ -64,8 +65,20 @@ export function SignUpForm() {
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 w-full max-w-sm">
+    <div className="space-y-6 w-full max-w-sm">
+      <GoogleSignInButton />
+      
+      <div className="relative">
+        <div className="absolute inset-0 flex items-center">
+          <span className="w-full border-t" />
+        </div>
+        <div className="relative flex justify-center text-xs uppercase">
+          <span className="bg-background px-2 text-muted-foreground">Or continue with email</span>
+        </div>
+      </div>
+
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         <FormField
           control={form.control}
           name="email"
@@ -102,7 +115,8 @@ export function SignUpForm() {
             {t("signInButton")}
           </Link>
         </p>
-      </form>
-    </Form>
+        </form>
+      </Form>
+    </div>
   );
 }

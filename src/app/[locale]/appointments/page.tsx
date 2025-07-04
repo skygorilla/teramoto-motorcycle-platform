@@ -46,13 +46,15 @@ export default function AppointmentsPage() {
         </Card>
         
         <div className="animate-in fade-in-0 slide-in-from-right-10 duration-500 delay-400">
-          <Image 
-            src={siteImages.workshop}
-            alt={t("workshopImageAlt")} 
-            width={600} 
-            height={400} 
-            className="rounded-lg shadow-xl object-cover w-full"
-          />
+          <div className="aspect-[3/2] overflow-hidden rounded-lg shadow-xl">
+            <Image 
+              src={siteImages.workshop}
+              alt={t("workshopImageAlt")} 
+              width={600} 
+              height={400} 
+              className="w-full h-full object-cover"
+            />
+          </div>
         </div>
       </div>
       

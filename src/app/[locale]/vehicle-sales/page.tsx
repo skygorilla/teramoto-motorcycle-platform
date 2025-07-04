@@ -28,13 +28,15 @@ export default function VehicleSalesPage() {
             <CardTitle className="font-headline text-xl">{t("sellYourVehicleTitle")}</CardTitle>
           </CardHeader>
           <CardContent>
-            <Image
-              src={siteImages.sellVehicle}
-              alt="Motorcycle for sale"
-              width={600}
-              height={400}
-              className="rounded-lg shadow-md mb-6 object-cover w-full"
-            />
+            <div className="aspect-[3/2] overflow-hidden rounded-lg shadow-md mb-6">
+              <Image
+                src={siteImages.sellVehicle}
+                alt="Motorcycle for sale"
+                width={600}
+                height={400}
+                className="w-full h-full object-cover"
+              />
+            </div>
             <p className="text-muted-foreground mb-4">{t("sellYourVehicleDescription")}</p>
             <Button asChild className="w-full">
               <Link href="/appointments">
@@ -49,13 +51,15 @@ export default function VehicleSalesPage() {
             <CardTitle className="font-headline text-xl">{t("lookingToBuyTitle")}</CardTitle>
           </CardHeader>
           <CardContent>
-            <Image
-              src={siteImages.buyVehicle}
-              alt="Person looking at motorcycles"
-              width={600}
-              height={400}
-              className="rounded-lg shadow-md mb-6 object-cover w-full"
-            />
+            <div className="aspect-[3/2] overflow-hidden rounded-lg shadow-md mb-6">
+              <Image
+                src={siteImages.buyVehicle}
+                alt="Person looking at motorcycles"
+                width={600}
+                height={400}
+                className="w-full h-full object-cover"
+              />
+            </div>
             <p className="text-muted-foreground mb-4">{t("lookingToBuyDescription")}</p>
              <Button asChild className="w-full">
               <Link href="/appointments">

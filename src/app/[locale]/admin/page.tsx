@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { useAuth } from "@/hooks/useAuth";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { AddProductForm } from "@/components/admin/AddProductForm";
+import { ImageManager } from "@/components/admin/ImageManager";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { ShieldAlert, PackageOpen, CalendarClock } from "lucide-react";
 import { Loader2 } from "lucide-react";
@@ -48,6 +49,16 @@ export default function AdminPage() {
       </header>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <Card className="lg:col-span-2 animate-in fade-in-0 slide-in-from-left-10 duration-500 delay-200">
+          <CardHeader>
+            <CardTitle className="font-headline text-xl">Image Manager</CardTitle>
+            <CardDescription>Upload and manage images for your site</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ImageManager />
+          </CardContent>
+        </Card>
+
         <Card className="lg:col-span-2 animate-in fade-in-0 slide-in-from-left-10 duration-500 delay-300">
           <CardHeader>
             <CardTitle className="font-headline text-xl">{t("addProductTitle")}</CardTitle>

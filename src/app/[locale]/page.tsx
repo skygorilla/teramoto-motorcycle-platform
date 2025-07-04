@@ -98,14 +98,16 @@ export default function HomePage() {
       </section>
 
       <section className="w-full mb-16">
-        <Image 
-          src={siteImages.heroBanner}
-          alt="Motorcycle banner" 
-          width={1200} 
-          height={400} 
-          className="rounded-lg shadow-xl object-cover w-full animate-in fade-in-0 scale-95 duration-700 delay-500"
-          priority
-        />
+        <div className="aspect-[3/1] overflow-hidden rounded-lg shadow-xl animate-in fade-in-0 scale-95 duration-700 delay-500">
+          <Image 
+            src={siteImages.heroBanner}
+            alt="Motorcycle banner" 
+            width={1200} 
+            height={400} 
+            className="w-full h-full object-cover"
+            priority
+          />
+        </div>
       </section>
 
       <section className="w-full mb-16">

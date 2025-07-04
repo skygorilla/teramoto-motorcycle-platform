@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { ImageSelector } from "@/components/admin/ImageSelector";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
@@ -24,7 +25,7 @@ const ProductFormSchema = z.object({
   name: z.string().min(3, { message: "Product name must be at least 3 characters." }),
   description: z.string().min(10, { message: "Description must be at least 10 characters." }),
   price: z.coerce.number().positive({ message: "Price must be a positive number." }),
-  imageUrl: z.string().url({ message: "Please enter a valid image URL." }),
+  imageUrl: z.string().min(1, { message: "Please select an image." }),
 });
 
 export type ProductFormData = z.infer<typeof ProductFormSchema>;
@@ -106,9 +107,13 @@ export function AddProductForm() {
             name="imageUrl"
             render={({ field }) => (
                 <FormItem>
-                <FormLabel>{t("formImageUrlLabel")}</FormLabel>
+                <FormLabel>Product Image</FormLabel>
                 <FormControl>
-                    <Input placeholder="https://placehold.co/400x300.png" {...field} />
+                    <ImageSelector 
+                      value={field.value} 
+                      onSelect={field.onChange}
+                      placeholder="Select product image"
+                    />
                 </FormControl>
                 <FormMessage />
                 </FormItem>

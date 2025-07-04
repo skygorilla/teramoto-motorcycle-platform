@@ -31,13 +31,15 @@ export default function TransportRoadsidePage() {
         </CardHeader>
         <CardContent className="md:flex md:items-center md:gap-8">
           <div className="md:w-1/2 mb-6 md:mb-0">
-            <Image
-              src={siteImages.transportVan}
-              alt="Motorcycle transport"
-              width={600}
-              height={400}
-              className="rounded-lg shadow-xl object-cover w-full"
-            />
+            <div className="aspect-[3/2] overflow-hidden rounded-lg shadow-xl">
+              <Image
+                src={siteImages.transportVan}
+                alt="Motorcycle transport"
+                width={600}
+                height={400}
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
           <div className="md:w-1/2 space-y-4">
             <p className="text-muted-foreground">{t("serviceDetailsDescription")}</p>
