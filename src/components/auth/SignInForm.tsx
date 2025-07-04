@@ -21,6 +21,7 @@ import { Link, useRouter } from "@/navigation";
 import { GoogleSignInButton } from "./GoogleSignInButton";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
+import { verifyRecaptcha } from "@/actions/auth";
 
 declare const grecaptcha: any;
 const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
@@ -71,7 +72,21 @@ export function SignInForm() {
     grecaptcha.enterprise.ready(async () => {
       try {
         const token = await grecaptcha.enterprise.execute(RECAPTCHA_SITE_KEY, {action: 'LOGIN'});
-        console.log("reCAPTCHA Token for LOGIN:", token); // The token would be sent to a backend for verification in a real app
+        
+        const verificationResult = await verifyRecaptcha({ token, action: 'LOGIN' });
+
+        if (!verificationResult.success) {
+          console.error("reCAPTCHA verification failed:", verificationResult.message);
+          toast({
+            variant: "destructive",
+            title: "Verification Failed",
+            description: "Could not verify you are human. Please try again.",
+          });
+          setIsLoading(false);
+          return;
+        }
+
+        console.log("reCAPTCHA verified on backend. Proceeding with sign-in.");
 
         if (auth) {
           await signInWithEmailAndPassword(auth, data.email, data.password);
