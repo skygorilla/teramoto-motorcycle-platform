@@ -1,3 +1,4 @@
+
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -21,6 +22,13 @@ import { Link, useRouter } from "@/navigation";
 import { GoogleSignInButton } from "./GoogleSignInButton";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
+import { verifyRecaptcha } from "@/lib/actions/auth";
+
+declare global {
+  interface Window {
+    grecaptcha: any;
+  }
+}
 
 const FormSchema = z.object({
   email: z.string().email({ message: "Invalid email address." }),
@@ -44,6 +52,22 @@ export function SignUpForm() {
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     setIsLoading(true);
     try {
+      if (!window.grecaptcha || !window.grecaptcha.enterprise) {
+        throw new Error("reCAPTCHA script not loaded or ready.");
+      }
+
+      const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+      if (!siteKey) {
+        throw new Error("reCAPTCHA site key not configured in .env file.");
+      }
+
+      const token = await window.grecaptcha.enterprise.execute(siteKey, {action: 'SIGNUP'});
+      const recaptchaResult = await verifyRecaptcha(token, 'SIGNUP');
+
+      if (!recaptchaResult.success) {
+        throw new Error(recaptchaResult.message || "reCAPTCHA verification failed.");
+      }
+
       if (!auth) {
         throw new Error("Firebase is not configured.");
       }

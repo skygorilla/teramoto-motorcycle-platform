@@ -1,5 +1,6 @@
+
 import type { Metadata } from 'next';
-// Removed NextIntlClientProvider and getMessages from root layout
+import Script from 'next/script';
 import { Toaster } from "@/components/ui/toaster";
 import { AuthProvider } from '@/contexts/AuthContext';
 import './globals.css';
@@ -16,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
   params: { locale: string };
 }>) {
-  // Messages are now fetched and provided in src/app/[locale]/layout.tsx
+  const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
   return (
     <html lang={locale || 'hr'}>
@@ -29,11 +30,16 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased" suppressHydrationWarning={true}>
-        {/* NextIntlClientProvider removed from here */}
         <AuthProvider>
           {children}
           <Toaster />
         </AuthProvider>
+        {recaptchaSiteKey && (
+          <Script
+            src={`https://www.google.com/recaptcha/enterprise.js?render=${recaptchaSiteKey}`}
+            strategy="lazyOnload"
+          />
+        )}
       </body>
     </html>
   );
