@@ -31,12 +31,11 @@ export default function TransportRoadsidePage() {
         <CardContent className="md:flex md:items-center md:gap-8">
           <div className="md:w-1/2 mb-6 md:mb-0">
             <Image
-              src="https://placehold.co/600x400.png"
+              src="/images/transport-van.png"
               alt="Motorcycle transport"
               width={600}
               height={400}
               className="rounded-lg shadow-xl object-cover w-full"
-              data-ai-hint="motorcycle transport van"
             />
           </div>
           <div className="md:w-1/2 space-y-4">

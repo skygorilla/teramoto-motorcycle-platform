@@ -28,12 +28,11 @@ export default function VehicleSalesPage() {
           </CardHeader>
           <CardContent>
             <Image
-              src="https://placehold.co/600x400.png"
+              src="/images/motorcycle-sale.png"
               alt="Motorcycle for sale"
               width={600}
               height={400}
               className="rounded-lg shadow-md mb-6 object-cover w-full"
-              data-ai-hint="motorcycle sale"
             />
             <p className="text-muted-foreground mb-4">{t("sellYourVehicleDescription")}</p>
             <Button asChild className="w-full">
@@ -50,12 +49,11 @@ export default function VehicleSalesPage() {
           </CardHeader>
           <CardContent>
             <Image
-              src="https://placehold.co/600x400.png"
+              src="/images/motorcycle-buyer.png"
               alt="Person looking at motorcycles"
               width={600}
               height={400}
               className="rounded-lg shadow-md mb-6 object-cover w-full"
-              data-ai-hint="motorcycle buyer"
             />
             <p className="text-muted-foreground mb-4">{t("lookingToBuyDescription")}</p>
              <Button asChild className="w-full">
