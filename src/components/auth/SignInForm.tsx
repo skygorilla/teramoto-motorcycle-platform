@@ -21,6 +21,9 @@ import { Link, useRouter } from "@/navigation";
 import { GoogleSignInButton } from "./GoogleSignInButton";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
+import { verifyRecaptcha } from "@/actions/auth";
+
+declare const grecaptcha: any;
 
 const FormSchema = z.object({
   email: z.string().email({ message: "Invalid email address." }),
@@ -29,7 +32,6 @@ const FormSchema = z.object({
 
 export function SignInForm() {
   const t = useTranslations("Auth");
-  const common_t = useTranslations("Common");
   const router = useRouter();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
@@ -44,21 +46,32 @@ export function SignInForm() {
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     setIsLoading(true);
+
     try {
-      if (auth) {
-        await signInWithEmailAndPassword(auth, data.email, data.password);
-        toast({
-          title: "Signed In",
-          description: "Successfully signed in to TERAMOTO.",
-        });
-        router.push("/");
-      } else {
-        toast({
-            variant: "destructive",
-            title: "Configuration Error",
-            description: "Firebase is not configured. Please check your .env file.",
-        });
+      if (!auth) {
+        throw new Error("Firebase is not configured.");
       }
+      
+      if (typeof grecaptcha === 'undefined' || !process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY) {
+        throw new Error("reCAPTCHA script not loaded or site key not configured.");
+      }
+
+      await grecaptcha.enterprise.ready();
+      const token = await grecaptcha.enterprise.execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, { action: 'SIGNIN' });
+
+      const recaptchaResult = await verifyRecaptcha({ token, action: 'SIGNIN' });
+
+      if (!recaptchaResult.success) {
+        throw new Error(`reCAPTCHA verification failed: ${recaptchaResult.message}`);
+      }
+
+      await signInWithEmailAndPassword(auth, data.email, data.password);
+      toast({
+        title: "Signed In",
+        description: "Successfully signed in to TERAMOTO.",
+      });
+      router.push("/");
+
     } catch (error: any) {
       console.error("Sign in error:", error);
       toast({

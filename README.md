@@ -40,7 +40,7 @@ To run this project locally, you'll need to set up your environment variables.
     # Firebase Client-side Config
     NEXT_PUBLIC_FIREBASE_API_KEY=AIz...
     NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=...
-    NEXT_PUBLIC_FIREBASE_PROJECT_ID=...
+    NEXT_PUBLIC_FIREBASE_PROJECT_ID=teramoto-yd0q5
     NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=...
     NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=...
     NEXT_PUBLIC_FIREBASE_APP_ID=...
@@ -49,7 +49,7 @@ To run this project locally, you'll need to set up your environment variables.
     NEXT_PUBLIC_ADMIN_EMAIL=your-admin-email@example.com
 
     # reCAPTCHA
-    NEXT_PUBLIC_RECAPTCHA_SITE_KEY=6Ld...
+    NEXT_PUBLIC_RECAPTCHA_SITE_KEY=6LdpgHcrAAAAACxK1VEg3HtmhQmuRguFkgZcJdfS
 
     # Google AI (Genkit)
     GOOGLE_API_KEY=AIz...
@@ -80,7 +80,7 @@ git push origin main
 
 ### Step 2: Connect Firebase to GitHub
 
-1.  Go to the **[Firebase Console](https://console.firebase.google.com/)** and select your project (`moto-program`).
+1.  Go to the **[Firebase Console](https://console.firebase.google.com/)** and select your project (`teramoto-yd0q5`).
 2.  Navigate to the **App Hosting** section.
 3.  Connect your GitHub account and select the `skygorilla/teramoto-motorcycle-platform` repository.
 4.  Configure the deployment settings to build from your main branch.
