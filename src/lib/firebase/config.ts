@@ -1,8 +1,6 @@
-
 import { initializeApp, getApps, type FirebaseApp } from "firebase/app";
 import { getAuth, type Auth } from "firebase/auth";
 
-// All environment variables that Firebase SDK will use from firebaseConfig
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -14,32 +12,28 @@ const firebaseConfig = {
 
 let app: FirebaseApp | null = null;
 let auth: Auth | null = null;
-let firebaseConfigError: string | null = null;
 
-// This is a simpler and more direct check. It verifies that the essential variables are present.
-const isFirebaseConfigured =
-  !!firebaseConfig.apiKey &&
-  !!firebaseConfig.authDomain &&
-  !!firebaseConfig.projectId;
-
-if (isFirebaseConfigured) {
-  try {
-    if (!getApps().length) {
-      app = initializeApp(firebaseConfig);
-    } else {
-      app = getApps()[0];
-    }
-    auth = getAuth(app);
-  } catch (e: any) {
-    firebaseConfigError = `Firebase initialization failed: ${e.message}`;
-    console.error(firebaseConfigError, e);
-    app = null;
-    auth = null;
+// This check ensures that all necessary Firebase environment variables are available.
+// If they are, Firebase is initialized.
+if (
+  firebaseConfig.apiKey &&
+  firebaseConfig.authDomain &&
+  firebaseConfig.projectId
+) {
+  if (getApps().length === 0) {
+    app = initializeApp(firebaseConfig);
+  } else {
+    app = getApps()[0];
   }
+  auth = getAuth(app);
 } else {
-  // A clear error message for the developer console.
-  firebaseConfigError = `CRITICAL ERROR: Firebase configuration is incomplete. Please ensure all NEXT_PUBLIC_FIREBASE_ variables are set in your .env file and that you have RESTARTED the development server.`;
-  console.error(firebaseConfigError);
+  // A clear error for developers if the .env file is not set up correctly.
+  console.error(
+    "CRITICAL ERROR: Firebase configuration is incomplete. " +
+    "Please ensure all NEXT_PUBLIC_FIREBASE_ variables are set in your .env file " +
+    "and that you have RESTARTED the development server."
+  );
 }
 
-export { app, auth, isFirebaseConfigured, firebaseConfigError };
+// Export the initialized app and auth services. They will be null if config is missing.
+export { app, auth };

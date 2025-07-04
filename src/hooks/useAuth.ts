@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useContext } from "react";
@@ -9,6 +8,5 @@ export const useAuth = () => {
   if (context === undefined) {
     throw new Error("useAuth must be used within an AuthProvider");
   }
-  // context now includes firebaseConfigError
   return context;
 };

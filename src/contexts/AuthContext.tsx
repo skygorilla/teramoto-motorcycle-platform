@@ -4,7 +4,7 @@ import type { User } from "firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
 import type { ReactNode } from "react";
 import { createContext, useEffect, useState } from "react";
-import { auth, isFirebaseConfigured, firebaseConfigError as coreFirebaseConfigError } from "@/lib/firebase/config";
+import { auth } from "@/lib/firebase/config"; // auth can be null if config is missing
 import { Loader2 } from "lucide-react";
 
 interface AuthContextType {
@@ -22,36 +22,30 @@ export const AuthContext = createContext<AuthContextType>({
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-  const [configError, setConfigError] = useState<string | null>(coreFirebaseConfigError);
+  const [firebaseConfigError, setFirebaseConfigError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Update local configError state if the imported one changes (e.g. during HMR)
-    if (coreFirebaseConfigError !== configError) {
-      setConfigError(coreFirebaseConfigError);
-    }
-
-    if (isFirebaseConfigured && auth) {
+    // If the auth object from firebase/config is not null, it means Firebase is configured.
+    if (auth) {
       const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
         setUser(currentUser);
         setLoading(false);
+        setFirebaseConfigError(null); // Clear any previous errors
       });
       // Cleanup subscription on unmount
       return () => unsubscribe();
     } else {
-      // If Firebase is not configured, or auth object is null,
-      // we are not "loading" Firebase auth state.
-      setUser(null); 
-      setLoading(false); 
-      // Ensure configError state reflects the imported error status if not already set
-      if (coreFirebaseConfigError && !configError) {
-        setConfigError(coreFirebaseConfigError);
-      }
+      // If auth object is null, it means Firebase is not configured.
+      // Set an error message and stop loading.
+      setFirebaseConfigError(
+        "Firebase is not configured. Please check your .env file and restart the server."
+      );
+      setUser(null);
+      setLoading(false);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [coreFirebaseConfigError]); // Rerun if the imported error status changes
+  }, []);
 
-  // This initial loading state is for the auth check.
-  // It will show until the useEffect determines the auth state.
+  // Show a global loading spinner while we check for the user's auth state.
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center">
@@ -61,7 +55,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, loading, firebaseConfigError: configError }}>
+    <AuthContext.Provider value={{ user, loading, firebaseConfigError }}>
       {children}
     </AuthContext.Provider>
   );
