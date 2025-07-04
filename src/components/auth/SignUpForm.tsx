@@ -22,6 +22,9 @@ import { GoogleSignInButton } from "./GoogleSignInButton";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
 
+declare const grecaptcha: any;
+const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+
 const FormSchema = z.object({
   email: z.string().email({ message: "Invalid email address." }),
   password: z.string().min(6, { message: "Password must be at least 6 characters." }),
@@ -43,25 +46,51 @@ export function SignUpForm() {
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     setIsLoading(true);
-    try {
-      if (auth) {
-        await createUserWithEmailAndPassword(auth, data.email, data.password);
-        toast({
-          title: "Account Created",
-          description: "Successfully created your TERAMOTO account.",
-        });
-        router.push("/"); // Redirect to homepage or dashboard
-      }
-    } catch (error: any) {
-      console.error("Sign up error:", error);
+
+    if (!RECAPTCHA_SITE_KEY) {
       toast({
         variant: "destructive",
-        title: "Sign Up Failed",
-        description: error.message || "An unexpected error occurred.",
+        title: "Configuration Error",
+        description: "reCAPTCHA site key is not configured.",
       });
-    } finally {
       setIsLoading(false);
+      return;
     }
+
+    if (typeof grecaptcha === 'undefined' || !grecaptcha.enterprise) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "reCAPTCHA not loaded. Please try again.",
+      });
+      setIsLoading(false);
+      return;
+    }
+
+    grecaptcha.enterprise.ready(async () => {
+      try {
+        const token = await grecaptcha.enterprise.execute(RECAPTCHA_SITE_KEY, {action: 'SIGNUP'});
+        console.log("reCAPTCHA Token for SIGNUP:", token); // The token would be sent to a backend for verification in a real app
+
+        if (auth) {
+          await createUserWithEmailAndPassword(auth, data.email, data.password);
+          toast({
+            title: "Account Created",
+            description: "Successfully created your TERAMOTO account.",
+          });
+          router.push("/");
+        }
+      } catch (error: any) {
+        console.error("Sign up error:", error);
+        toast({
+          variant: "destructive",
+          title: "Sign Up Failed",
+          description: error.message || "An unexpected error occurred.",
+        });
+      } finally {
+        setIsLoading(false);
+      }
+    });
   }
 
   return (
