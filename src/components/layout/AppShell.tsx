@@ -12,6 +12,7 @@ import { Header } from "./Header";
 import { SidebarNav } from "./SidebarNav";
 import { Logo } from "@/components/shared/Logo";
 import { Footer } from "./Footer"; // Import the Footer component
+import { JinglePlayer } from "./JinglePlayer";
 
 interface AppShellProps {
   children: ReactNode;
@@ -20,23 +21,24 @@ interface AppShellProps {
 export function AppShell({ children }: AppShellProps) {
   return (
     <SidebarProvider defaultOpen={true}>
-      <div className="flex min-h-screen bg-background">
-        <Sidebar side="left" variant="sidebar" collapsible="icon">
-          <SidebarHeader className="p-4 hidden md:flex justify-center items-center [&_img]:w-[180px] [&_img]:h-auto">
-             <Logo />
-          </SidebarHeader>
-          <SidebarContent>
-            <SidebarNav />
-          </SidebarContent>
-        </Sidebar>
-        <SidebarInset>
-          <Header />
-          <main className="flex-1 p-0">
-            {children}
-          </main>
-          <Footer /> 
-        </SidebarInset>
-      </div>
+      <>
+        <div className="flex min-h-screen bg-background">
+          <Sidebar side="left" variant="sidebar" collapsible="icon">
+            <SidebarHeader className="p-4 hidden md:flex justify-center items-center [&_img]:w-[180px] [&_img]:h-auto">
+              <Logo />
+            </SidebarHeader>
+            <SidebarContent>
+              <SidebarNav />
+            </SidebarContent>
+          </Sidebar>
+          <SidebarInset>
+            <Header />
+            <main className="flex-1 p-0 pb-24">{children}</main>
+            <Footer />
+          </SidebarInset>
+        </div>
+        <JinglePlayer />
+      </>
     </SidebarProvider>
   );
 }
