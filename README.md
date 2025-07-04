@@ -28,8 +28,8 @@ To run this project locally, you'll need to set up your environment variables.
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/skygorilla/Teramoto.git
-    cd Teramoto
+    git clone https://github.com/skygorilla/teramoto-motorcycle-platform.git
+    cd teramoto-motorcycle-platform
     ```
 2.  **Create an environment file:**
     Create a file named `.env` in the root of the project.
@@ -82,7 +82,7 @@ git push origin main
 
 1.  Go to the **[Firebase Console](https://console.firebase.google.com/)** and select your project (`teramoto-yd0q5`).
 2.  Navigate to the **App Hosting** section.
-3.  Connect your GitHub account and select the `skygorilla/Teramoto` repository.
+3.  Connect your GitHub account and select the `skygorilla/teramoto-motorcycle-platform` repository.
 4.  Configure the deployment settings to build from your main branch.
 
 ### Step 3: Set Environment Variables in Firebase
