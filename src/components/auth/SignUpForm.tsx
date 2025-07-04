@@ -21,9 +21,6 @@ import { Link, useRouter } from "@/navigation";
 import { GoogleSignInButton } from "./GoogleSignInButton";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
-import { verifyRecaptcha } from "@/actions/auth";
-
-declare const grecaptcha: any;
 
 const FormSchema = z.object({
   email: z.string().email({ message: "Invalid email address." }),
@@ -51,19 +48,6 @@ export function SignUpForm() {
         throw new Error("Firebase is not configured.");
       }
       
-      if (typeof grecaptcha === 'undefined' || !process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY) {
-        throw new Error("reCAPTCHA script not loaded or site key not configured.");
-      }
-
-      await grecaptcha.enterprise.ready();
-      const token = await grecaptcha.enterprise.execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, { action: 'SIGNUP' });
-      
-      const recaptchaResult = await verifyRecaptcha({ token, action: 'SIGNUP' });
-
-      if (!recaptchaResult.success) {
-        throw new Error(`reCAPTCHA verification failed: ${recaptchaResult.message}`);
-      }
-
       await createUserWithEmailAndPassword(auth, data.email, data.password);
       toast({
         title: "Account Created",
