@@ -1633,6 +1633,11 @@
   dependencies:
     handlebars "*"
 
+"@types/jsmediatags@^3.9.5":
+  version "3.9.6"
+  resolved "https://registry.npmjs.org/@types/jsmediatags/-/jsmediatags-3.9.6.tgz"
+  integrity sha512-a2IVxVGXBCCVzONBFKGBb2mnTNMAt0shl+Mb5+wM5YVxymhgqNilr/7/x+XePYM2DnmWwCYlBRjq+8q7nsp2PA==
+
 "@types/json-schema@^7.0.15":
   version "7.0.15"
   resolved "https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.15.tgz"
@@ -3368,6 +3373,13 @@ js-yaml@^4.1.0:
   dependencies:
     argparse "^2.0.1"
 
+jsmediatags@^3.9.7:
+  version "3.9.7"
+  resolved "https://registry.npmjs.org/jsmediatags/-/jsmediatags-3.9.7.tgz"
+  integrity sha512-xCAO8C3li3t5hYkXqn8iv8zQQUB4T1QqRN2aSONHMls21ICdEvXi4xtb6W70/fAFYSDwMHd32hIqvo4YuXoNcQ==
+  dependencies:
+    xhr2 "^0.1.4"
+
 json-2-csv@^5.5.1:
   version "5.5.9"
   resolved "https://registry.npmjs.org/json-2-csv/-/json-2-csv-5.5.9.tgz"
@@ -4982,6 +4994,11 @@ xdg-basedir@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/xdg-basedir/-/xdg-basedir-4.0.0.tgz"
   integrity sha512-PSNhEJDejZYV7h50BohL09Er9VaIefr2LMAf3OEmpCkjOi34eYyQYAXUTjEQtZJTKcF0E2UKTh+osDLsgNim9Q==
+
+xhr2@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.npmjs.org/xhr2/-/xhr2-0.1.4.tgz"
+  integrity sha512-3QGhDryRzTbIDj+waTRvMBe8SyPhW79kz3YnNb+HQt/6LPYQT3zT3Jt0Y8pBofZqQX26x8Ecfv0FXR72uH5VpA==
 
 y18n@^5.0.5:
   version "5.0.8"

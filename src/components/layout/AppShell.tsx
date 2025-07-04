@@ -33,7 +33,7 @@ export function AppShell({ children }: AppShellProps) {
           </Sidebar>
           <SidebarInset>
             <Header />
-            <main className="flex-1 p-0 pb-24">{children}</main>
+            <main className="flex-1 p-0 pb-20">{children}</main>
             <Footer />
           </SidebarInset>
         </div>
