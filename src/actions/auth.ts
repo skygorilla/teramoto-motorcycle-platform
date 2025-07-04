@@ -2,7 +2,7 @@
 
 import { z } from 'zod';
 
-const RECAPTCHA_API_KEY = process.env.GOOGLE_API_KEY;
+const RECAPTCHA_API_KEY = process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
 const RECAPTCHA_PROJECT_ID = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
 const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
