@@ -21,10 +21,6 @@ import { Link, useRouter } from "@/navigation";
 import { GoogleSignInButton } from "./GoogleSignInButton";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
-import { verifyRecaptcha } from "@/actions/auth";
-
-declare const grecaptcha: any;
-const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
 const FormSchema = z.object({
   email: z.string().email({ message: "Invalid email address." }),
@@ -47,65 +43,31 @@ export function SignUpForm() {
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     setIsLoading(true);
-
-    if (!RECAPTCHA_SITE_KEY) {
-      toast({
-        variant: "destructive",
-        title: "Configuration Error",
-        description: "reCAPTCHA site key is not configured.",
-      });
-      setIsLoading(false);
-      return;
-    }
-
-    if (typeof grecaptcha === 'undefined' || !grecaptcha.enterprise) {
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: "reCAPTCHA not loaded. Please try again.",
-      });
-      setIsLoading(false);
-      return;
-    }
-
-    grecaptcha.enterprise.ready(async () => {
-      try {
-        const token = await grecaptcha.enterprise.execute(RECAPTCHA_SITE_KEY, {action: 'SIGNUP'});
-        
-        const verificationResult = await verifyRecaptcha({ token, action: 'SIGNUP' });
-
-        if (!verificationResult.success) {
-          console.error("reCAPTCHA verification failed:", verificationResult.message);
-          toast({
-            variant: "destructive",
-            title: "Verification Failed",
-            description: "Could not verify you are human. Please try again.",
-          });
-          setIsLoading(false);
-          return;
-        }
-        
-        console.log("reCAPTCHA verified on backend. Proceeding with sign-up.");
-
-        if (auth) {
-          await createUserWithEmailAndPassword(auth, data.email, data.password);
-          toast({
-            title: "Account Created",
-            description: "Successfully created your TERAMOTO account.",
-          });
-          router.push("/");
-        }
-      } catch (error: any) {
-        console.error("Sign up error:", error);
+    try {
+      if (auth) {
+        await createUserWithEmailAndPassword(auth, data.email, data.password);
         toast({
-          variant: "destructive",
-          title: "Sign Up Failed",
-          description: error.message || "An unexpected error occurred.",
+          title: "Account Created",
+          description: "Successfully created your TERAMOTO account.",
         });
-      } finally {
-        setIsLoading(false);
+        router.push("/");
+      } else {
+        toast({
+            variant: "destructive",
+            title: "Configuration Error",
+            description: "Firebase is not configured. Please check your .env file.",
+        });
       }
-    });
+    } catch (error: any) {
+      console.error("Sign up error:", error);
+      toast({
+        variant: "destructive",
+        title: "Sign Up Failed",
+        description: error.message || "An unexpected error occurred.",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (

@@ -80,7 +80,7 @@ git push origin main
 
 ### Step 2: Connect Firebase to GitHub
 
-1.  Go to the **[Firebase Console](https://console.firebase.google.com/)** and select your project (`teramoto-yd0q5`).
+1.  Go to the **[Firebase Console](https://console.firebase.google.com/)** and select your project (`moto-program`).
 2.  Navigate to the **App Hosting** section.
 3.  Connect your GitHub account and select the `skygorilla/teramoto-motorcycle-platform` repository.
 4.  Configure the deployment settings to build from your main branch.

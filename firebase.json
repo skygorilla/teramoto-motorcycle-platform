@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "teramoto-yd0q5",
+    "site": "moto-program",
     "public": "public",
     "ignore": [
       "firebase.json",
