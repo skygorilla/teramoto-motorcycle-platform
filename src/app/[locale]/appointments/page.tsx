@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import Image from "next/image";
 import { BookingForm } from "@/components/appointments/BookingForm";
+import { siteImages } from "@/config/images";
 
 export default function AppointmentsPage() {
   const t = useTranslations("AppointmentsPage");
@@ -46,12 +47,11 @@ export default function AppointmentsPage() {
         
         <div className="animate-in fade-in-0 slide-in-from-right-10 duration-500 delay-400">
           <Image 
-            src="https://placehold.co/600x400.png" 
+            src={siteImages.workshop}
             alt={t("workshopImageAlt")} 
             width={600} 
             height={400} 
             className="rounded-lg shadow-xl object-cover w-full"
-            data-ai-hint="mechanic working"
           />
         </div>
       </div>

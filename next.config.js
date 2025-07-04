@@ -7,14 +7,8 @@ const withNextIntl = require('next-intl/plugin')(
 const nextConfig = {
   /* config options here */
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'placehold.co',
-        port: '',
-        pathname: '/**',
-      },
-    ],
+    // No remotePatterns needed if you're only using local images
+    // from the /public folder.
   },
 };
 

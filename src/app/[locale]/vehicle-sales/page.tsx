@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Link } from "@/navigation";
+import { siteImages } from "@/config/images";
 
 export default function VehicleSalesPage() {
   const t = useTranslations("VehicleSalesPage");
@@ -28,12 +29,11 @@ export default function VehicleSalesPage() {
           </CardHeader>
           <CardContent>
             <Image
-              src="https://placehold.co/600x400.png"
+              src={siteImages.sellVehicle}
               alt="Motorcycle for sale"
               width={600}
               height={400}
               className="rounded-lg shadow-md mb-6 object-cover w-full"
-              data-ai-hint="motorcycle sale"
             />
             <p className="text-muted-foreground mb-4">{t("sellYourVehicleDescription")}</p>
             <Button asChild className="w-full">
@@ -50,12 +50,11 @@ export default function VehicleSalesPage() {
           </CardHeader>
           <CardContent>
             <Image
-              src="https://placehold.co/600x400.png"
+              src={siteImages.buyVehicle}
               alt="Person looking at motorcycles"
               width={600}
               height={400}
               className="rounded-lg shadow-md mb-6 object-cover w-full"
-              data-ai-hint="motorcycle buyer"
             />
             <p className="text-muted-foreground mb-4">{t("lookingToBuyDescription")}</p>
              <Button asChild className="w-full">

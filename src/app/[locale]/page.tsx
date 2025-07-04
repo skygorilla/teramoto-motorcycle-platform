@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Wrench, Zap, PackageCheck, ArrowRight, BatteryWarning, Gauge, ShieldAlert, KeyRound, TrendingUp, Palette, ShieldCheck } from "lucide-react";
 import Image from "next/image";
+import { siteImages } from "@/config/images";
 
 export default function HomePage() {
   const t = useTranslations("HomePage");
@@ -98,12 +99,12 @@ export default function HomePage() {
 
       <section className="w-full mb-16">
         <Image 
-          src="https://placehold.co/1200x400.png" 
+          src={siteImages.heroBanner}
           alt="Motorcycle banner" 
           width={1200} 
           height={400} 
           className="rounded-lg shadow-xl object-cover w-full animate-in fade-in-0 scale-95 duration-700 delay-500"
-          data-ai-hint="motorcycle workshop"
+          priority
         />
       </section>
 
