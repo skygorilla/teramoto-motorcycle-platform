@@ -1,50 +1,100 @@
 # TERAMOTO - Motorcycle Service Platform
 
-A comprehensive motorcycle service platform combining workshop booking, parts marketplace, AI gear recommendations, and vehicle sales services.
+This is the official repository for the TERAMOTO motorcycle service platform, built with Next.js, Firebase, and Genkit AI.
 
-## Project Status
+## About The Project
 
-### ✅ What's Working:
-- Solid technical foundation (Next.js 14, Firebase, TypeScript)
-- Professional UI/UX with shadcn/ui
-- Responsive design
-- Authentication system
-- Internationalization setup (EN/HR)
-- Clean component architecture
+TERAMOTO is a comprehensive platform designed for motorcycle enthusiasts, combining:
+-   **Workshop Booking**: Schedule service appointments easily.
+-   **Parts Marketplace**: Browse and purchase gear and parts.
+-   **AI Gear Advisor**: Get intelligent recommendations for the right equipment.
+-   **Vehicle Sales**: Assistance with buying or selling a motorcycle.
+-   **User Accounts**: Manage your profile, appointments, and orders.
 
-### ❌ Critical Gaps:
-**Backend Logic Missing:**
-- Booking form submits to nowhere
-- No database integration
-- No real appointment management
-- No user data persistence
+## Tech Stack
 
-**Empty Core Features:**
-- Marketplace has zero products
-- AI assistant is placeholder only
-- No actual service scheduling
-- No payment processing
+*   **Framework**: Next.js 14 (with App Router)
+*   **Authentication & Hosting**: Firebase
+*   **AI**: Google's Genkit
+*   **UI**: Shadcn UI & Tailwind CSS
+*   **Language**: TypeScript
+*   **Internationalization**: `next-intl` for English & Croatian
 
-**Placeholder Content:**
-- All images are placeholders
-- Contact info is fake
-- No real business data
+---
 
-**Firebase Integration Issues:**
-- Environment variables not configured
-- Auth works but no user profiles
-- No Firestore database setup
+## Getting Started (Local Development)
 
-## Development Priority:
-1. Configure Firebase properly (.env values)
-2. Set up Firestore for bookings/users
-3. Connect booking form to database
-4. Add real product data to marketplace
-5. Implement actual AI recommendations
-6. Add payment integration
+To run this project locally, you'll need to set up your environment variables.
 
-**Current State:** Beautiful demo with zero business functionality (70% UI/UX, 30% working features)
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/skygorilla/Teramoto.git
+    cd Teramoto
+    ```
+2.  **Create an environment file:**
+    Create a file named `.env` in the root of the project.
 
-## Getting Started
+3.  **Add Firebase & Genkit Credentials:**
+    Populate the `.env` file with your Firebase and Google AI credentials. You can get these from your Firebase project settings and Google AI Studio.
+    ```env
+    # Firebase Client-side Config
+    NEXT_PUBLIC_FIREBASE_API_KEY=AIz...
+    NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=...
+    NEXT_PUBLIC_FIREBASE_PROJECT_ID=...
+    NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=...
+    NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=...
+    NEXT_PUBLIC_FIREBASE_APP_ID=...
 
-To get started, take a look at src/app/page.tsx.
+    # Firebase Admin Email
+    NEXT_PUBLIC_ADMIN_EMAIL=your-admin-email@example.com
+
+    # reCAPTCHA
+    NEXT_PUBLIC_RECAPTCHA_SITE_KEY=6Ld...
+
+    # Google AI (Genkit)
+    GOOGLE_API_KEY=AIz...
+    ```
+
+4.  **Install dependencies and run:**
+    ```bash
+    npm install
+    npm run dev
+    ```
+    The app will be available at `http://localhost:3000`.
+
+---
+
+## Deployment & Linking to `tera-moto.hr`
+
+This project is set up for easy deployment with **Firebase App Hosting**.
+
+### Step 1: Push Your Code to GitHub
+
+First, make sure all your code is pushed to this GitHub repository.
+```bash
+git add .
+git commit -m "Ready for deployment"
+git push origin main
+```
+*(Note: Your main branch might be called `main`, `master`, or `tera`. Adjust the command accordingly.)*
+
+### Step 2: Connect Firebase to GitHub
+
+1.  Go to the **[Firebase Console](https://console.firebase.google.com/)** and select your project (`teramoto-yd0q5`).
+2.  Navigate to the **App Hosting** section.
+3.  Connect your GitHub account and select the `skygorilla/Teramoto` repository.
+4.  Configure the deployment settings to build from your main branch.
+
+### Step 3: Set Environment Variables in Firebase
+
+Your local `.env` file is not pushed to GitHub for security. You must configure your secrets in the Firebase Console:
+1.  In App Hosting, go to the settings for your backend.
+2.  Find the **Environment variables** section.
+3.  Add all the same keys and values from your local `.env` file (`GOOGLE_API_KEY`, `NEXT_PUBLIC_FIREBASE_API_KEY`, etc.).
+
+### Step 4: Add Your Custom Domain
+
+1.  In the Firebase App Hosting dashboard, click **Add custom domain**.
+2.  Enter `tera-moto.hr`.
+3.  Firebase will give you DNS records (usually A records or TXT records). You need to add these records in the DNS settings panel of your domain registrar (where you purchased `tera-moto.hr`).
+4.  Once the DNS changes are verified by Firebase (this can take a few hours), your site will be live at `https://tera-moto.hr`!
