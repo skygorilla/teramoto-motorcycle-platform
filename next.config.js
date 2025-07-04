@@ -10,7 +10,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'imagekit.io',
+        hostname: 'placehold.co',
         port: '',
         pathname: '/**',
       },
