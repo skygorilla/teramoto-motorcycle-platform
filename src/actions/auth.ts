@@ -2,7 +2,8 @@
 
 import { z } from 'zod';
 
-const RECAPTCHA_API_KEY = process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
+// Use the server-side Google API key for verification, not the public Firebase key.
+const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 const RECAPTCHA_PROJECT_ID = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
 const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
@@ -24,13 +25,13 @@ export async function verifyRecaptcha(input: z.infer<typeof RecaptchaInputSchema
     return { success: false, message: 'Invalid input.' };
   }
 
-  if (!RECAPTCHA_API_KEY || !RECAPTCHA_PROJECT_ID || !RECAPTCHA_SITE_KEY) {
-    console.error("reCAPTCHA environment variables are not fully set.");
+  if (!GOOGLE_API_KEY || !RECAPTCHA_PROJECT_ID || !RECAPTCHA_SITE_KEY) {
+    console.error("reCAPTCHA or Google API Key environment variables are not fully set.");
     return { success: false, message: 'Server configuration error for reCAPTCHA.' };
   }
 
   try {
-    const response = await fetch(`https://recaptchaenterprise.googleapis.com/v1/projects/${RECAPTCHA_PROJECT_ID}/assessments?key=${RECAPTCHA_API_KEY}`, {
+    const response = await fetch(`https://recaptchaenterprise.googleapis.com/v1/projects/${RECAPTCHA_PROJECT_ID}/assessments?key=${GOOGLE_API_KEY}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
