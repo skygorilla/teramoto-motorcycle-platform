@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from 'react';
@@ -43,9 +44,11 @@ interface Track {
 
 const defaultMetadata: TrackMetadata = {
   title: "TERAMOTO Radio",
-  artist: "Ready for your jingles",
+  artist: "Drag & drop jingles to play",
   albumArt: "https://placehold.co/64x64.png"
 };
+
+const PLAYLIST_LIMIT = 100;
 
 export function JinglePlayer() {
   const { toast } = useToast();
@@ -64,37 +67,62 @@ export function JinglePlayer() {
   const audioRef = useRef<HTMLAudioElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Effect to handle track changes and load metadata
+  // Effect to handle play/pause state
+  useEffect(() => {
+    if (!audioRef.current) return;
+    if (isPlaying && currentTrackIndex !== null) {
+      audioRef.current.play().catch(e => console.error("Error playing audio:", e));
+    } else {
+      audioRef.current.pause();
+    }
+  }, [isPlaying, currentTrackIndex]);
+
+  // Effect to handle track changes
   useEffect(() => {
     if (currentTrackIndex === null || playlist.length === 0) {
-        // Reset player if playlist is empty or no track is selected
-        setIsPlaying(false);
-        setMetadata(defaultMetadata);
-        if (audioRef.current) {
-            audioRef.current.src = "";
-        }
-        return;
-    };
+      setIsPlaying(false);
+      setMetadata(defaultMetadata);
+      if (audioRef.current) audioRef.current.src = "";
+      return;
+    }
 
     const track = playlist[currentTrackIndex];
     if (audioRef.current) {
-        audioRef.current.src = track.url;
-        audioRef.current.load();
-        if (isPlaying) {
-            audioRef.current.play().catch(e => console.error("Error playing audio:", e));
-        }
+      audioRef.current.src = track.url;
+      audioRef.current.load();
+      if (isPlaying) {
+        audioRef.current.play().catch(e => console.error("Error playing audio:", e));
+      }
     }
     setMetadata(track.metadata);
-  }, [currentTrackIndex, playlist, isPlaying]);
+  }, [currentTrackIndex, playlist]);
+
 
   const handleFiles = useCallback(async (files: FileList) => {
-    const audioFiles = Array.from(files).filter(file => file.type.startsWith('audio/'));
+    let audioFiles = Array.from(files).filter(file => file.type.startsWith('audio/'));
+    
+    if (audioFiles.length === 0) return;
+
+    if (playlist.length >= PLAYLIST_LIMIT) {
+      toast({ variant: "destructive", title: "Playlist full", description: "You cannot add more than 100 jingles." });
+      return;
+    }
+
+    if (playlist.length + audioFiles.length > PLAYLIST_LIMIT) {
+      const slotsAvailable = PLAYLIST_LIMIT - playlist.length;
+      toast({
+          variant: "destructive",
+          title: "Playlist Limit Reached",
+          description: `Only adding the first ${slotsAvailable} jingles. The limit is ${PLAYLIST_LIMIT}.`,
+      });
+      audioFiles = audioFiles.slice(0, slotsAvailable);
+    }
+    
     if (audioFiles.length === 0) return;
 
     toast({ title: `Processing ${audioFiles.length} file(s)...` });
 
     const newTracks: Track[] = [];
-
     for (const file of audioFiles) {
         const url = URL.createObjectURL(file);
         const metadata: TrackMetadata = await new Promise((resolve) => {
@@ -134,7 +162,6 @@ export function JinglePlayer() {
     setPlaylist(prev => {
         const updatedPlaylist = [...prev, ...newTracks];
         if (prev.length === 0 && updatedPlaylist.length > 0) {
-            // If playlist was empty, start playing the first new track
             setCurrentTrackIndex(0);
             setIsPlaying(true);
         }
@@ -142,14 +169,11 @@ export function JinglePlayer() {
     });
 
     toast({ title: "Jingles added to playlist!" });
-  }, [toast]);
+  }, [playlist, toast]);
 
   const handlePlayPause = () => {
-    if (!audioRef.current || currentTrackIndex === null) return;
-    if (isPlaying) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play().catch(e => console.error("Error playing audio:", e));
+    if (currentTrackIndex === null && playlist.length > 0) {
+      setCurrentTrackIndex(0);
     }
     setIsPlaying(!isPlaying);
   };
@@ -179,23 +203,23 @@ export function JinglePlayer() {
   };
   
   const deleteTrack = (trackId: string) => {
-    const trackIndex = playlist.findIndex(t => t.id === trackId);
-    if(trackIndex === -1) return;
+    const trackIndexToDelete = playlist.findIndex(t => t.id === trackId);
+    if(trackIndexToDelete === -1) return;
 
-    // Revoke the object URL to free up memory
-    URL.revokeObjectURL(playlist[trackIndex].url);
+    URL.revokeObjectURL(playlist[trackIndexToDelete].url);
 
     const newPlaylist = playlist.filter(t => t.id !== trackId);
     setPlaylist(newPlaylist);
 
-    if (currentTrackIndex === trackIndex) {
-        if (newPlaylist.length > 0) {
-            // If it was the last song, wrap around to the first.
-            setCurrentTrackIndex(trackIndex % newPlaylist.length);
-        } else {
+    if (currentTrackIndex === null) return;
+
+    if (trackIndexToDelete === currentTrackIndex) {
+        if (newPlaylist.length === 0) {
             setCurrentTrackIndex(null);
+        } else {
+            setCurrentTrackIndex(trackIndexToDelete % newPlaylist.length);
         }
-    } else if (currentTrackIndex !== null && currentTrackIndex > trackIndex) {
+    } else if (trackIndexToDelete < currentTrackIndex) {
         setCurrentTrackIndex(prev => prev! - 1);
     }
   };
@@ -286,6 +310,9 @@ export function JinglePlayer() {
             onTimeUpdate={handleTimeUpdate}
             onLoadedData={handleLoadedData}
             onEnded={handleTrackEnd}
+            onVolumeChange={() => {
+              if (audioRef.current) setVolume(audioRef.current.volume);
+            }}
         />
         <div className="container mx-auto flex h-full items-center justify-between gap-4">
             {/* Song Info */}
@@ -307,19 +334,19 @@ export function JinglePlayer() {
             {/* Player Controls */}
             <div className="flex flex-col items-center gap-1 flex-grow">
                 <div className="flex items-center gap-2 sm:gap-4">
-                    <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground hidden sm:inline-flex" onClick={() => setIsShuffle(!isShuffle)} data-active={isShuffle}>
+                    <Button variant="ghost" size="icon" className={cn("text-muted-foreground hover:text-foreground hidden sm:inline-flex", isShuffle && "text-primary")} onClick={() => setIsShuffle(!isShuffle)}>
                         <Shuffle className="h-4 w-4" />
                     </Button>
                     <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground" onClick={playPrevTrack} disabled={playlist.length < 2}>
                         <SkipBack className="h-5 w-5" />
                     </Button>
-                    <Button variant="default" size="icon" className="h-10 w-10 rounded-full" onClick={handlePlayPause} disabled={!playlist.length}>
+                    <Button variant="default" size="icon" className="h-10 w-10 rounded-full" onClick={handlePlayPause} disabled={playlist.length === 0}>
                         {isPlaying ? <Pause className="h-5 w-5" /> : <Play className="h-5 w-5 fill-current" />}
                     </Button>
                     <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground" onClick={playNextTrack} disabled={playlist.length < 2}>
                         <SkipForward className="h-5 w-5" />
                     </Button>
-                    <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground hidden sm:inline-flex" onClick={() => setIsRepeat(!isRepeat)} data-active={isRepeat}>
+                    <Button variant="ghost" size="icon" className={cn("text-muted-foreground hover:text-foreground hidden sm:inline-flex", isRepeat && "text-primary")} onClick={() => setIsRepeat(!isRepeat)}>
                         <Repeat className="h-4 w-4" />
                     </Button>
                 </div>
@@ -349,10 +376,10 @@ export function JinglePlayer() {
                     </SheetTrigger>
                     <SheetContent>
                       <SheetHeader>
-                        <SheetTitle>Playlist</SheetTitle>
+                        <SheetTitle>Playlist ({playlist.length}/{PLAYLIST_LIMIT})</SheetTitle>
                       </SheetHeader>
                       <div className='py-4'>
-                        <Button className="w-full" variant="outline" onClick={() => fileInputRef.current?.click()}>
+                        <Button className="w-full" variant="outline" onClick={() => fileInputRef.current?.click()} disabled={playlist.length >= PLAYLIST_LIMIT}>
                           <UploadCloud className='mr-2 h-4 w-4'/> Add Jingles
                         </Button>
                       </div>
@@ -362,23 +389,24 @@ export function JinglePlayer() {
                             {playlist.map((track, index) => (
                               <div key={track.id} className={cn(
                                 "flex items-center gap-3 p-2 rounded-md transition-colors",
-                                currentTrackIndex === index ? "bg-accent" : "hover:bg-accent/50"
+                                currentTrackIndex === index ? "bg-accent text-accent-foreground" : "hover:bg-accent/50"
                               )}>
                                 <Image src={track.metadata.albumArt} alt={track.metadata.title} width={40} height={40} className="rounded-md" />
                                 <div className='flex-grow min-w-0'>
                                   <p className='font-semibold truncate'>{track.metadata.title}</p>
                                   <p className='text-sm text-muted-foreground truncate'>{track.metadata.artist}</p>
                                 </div>
-                                <Button variant="ghost" size="icon" onClick={() => deleteTrack(track.id)}>
+                                <Button variant="ghost" size="icon" className="shrink-0" onClick={() => deleteTrack(track.id)}>
                                   <Trash2 className="h-4 w-4" />
                                 </Button>
                               </div>
                             ))}
                            </div>
                         ) : (
-                          <div className='text-center text-muted-foreground pt-10'>
-                            <p>Your playlist is empty.</p>
-                            <p>Drag & drop MP3 files onto the player to add them.</p>
+                          <div className='text-center text-muted-foreground pt-10 space-y-2'>
+                            <ListMusic className="h-10 w-10 mx-auto opacity-50" />
+                            <p className='font-semibold'>Your playlist is empty.</p>
+                            <p className="text-sm">Drag & drop MP3 files onto the player to add them.</p>
                           </div>
                         )}
                       </ScrollArea>
