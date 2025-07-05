@@ -5,7 +5,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyBIXy-LgcODghnxFzwOpUiT6bTkP1Duey4",
   authDomain: "teramoto-yd0q5.firebaseapp.com",
   projectId: "teramoto-yd0q5",
-  storageBucket: "teramoto-yd0q5.appspot.com",
+  storageBucket: "teramoto-yd0q5.firebasestorage.app",
   messagingSenderId: "163038206054",
   appId: "1:163038206054:web:cec06c9e480e1982bcf5a7"
 };
