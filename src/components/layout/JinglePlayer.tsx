@@ -78,7 +78,8 @@ export function JinglePlayer() {
 
   const combinedPlaylist = [...publicPlaylist, ...localPlaylist];
 
-  const urlToTrack = (url: string, isLocal = false): Promise<Track> => {
+  // For remote URLs from public/audio
+  const urlToTrack = (url: string): Promise<Track> => {
     return new Promise<Track>(resolve => {
       const name = url.split('/').pop()?.replace(/%20/g, " ") || 'Unknown Track';
       jsmediatags.read(url, {
@@ -90,19 +91,65 @@ export function JinglePlayer() {
                   albumArt = `data:${picture.format};base64,${base64String}`;
               }
               resolve({
-                  id: url, url, name, isLocal,
+                  id: url, url, name, isLocal: false,
                   metadata: { title: title || name.replace(/\.[^/.]+$/, ''), artist: artist || 'TERAMOTO Radio', albumArt },
               });
           },
           onError: () => {
               resolve({
-                  id: url, url, name, isLocal,
+                  id: url, url, name, isLocal: false,
                   metadata: { title: name.replace(/\.[^/.]+$/, ''), artist: 'TERAMOTO Radio', albumArt: defaultMetadata.albumArt },
               });
           },
       });
     });
   };
+
+  // For local File objects from drag-and-drop
+  const fileToTrack = (file: File): Promise<Track> => {
+    return new Promise<Track>((resolve) => {
+      const name = file.name || 'Unknown Track';
+      const objectUrl = URL.createObjectURL(file);
+      const id = `${name}-${file.size}-${file.lastModified}`;
+
+      jsmediatags.read(file, {
+        onSuccess: (tag: TagType) => {
+          const { title, artist, picture } = tag.tags;
+          let albumArt = defaultMetadata.albumArt;
+          if (picture) {
+            const base64String = btoa(String.fromCharCode.apply(null, picture.data as any));
+            albumArt = `data:${picture.format};base64,${base64String}`;
+          }
+          resolve({
+            id,
+            url: objectUrl,
+            name,
+            isLocal: true,
+            metadata: {
+              title: title || name.replace(/\.[^/.]+$/, ''),
+              artist: artist || 'TERAMOTO Radio',
+              albumArt,
+            },
+          });
+        },
+        onError: (error) => {
+          console.error(`Error reading media tags for ${name}:`, error);
+          resolve({
+            id,
+            url: objectUrl,
+            name,
+            isLocal: true,
+            metadata: {
+              title: name.replace(/\.[^/.]+$/, ''),
+              artist: 'TERAMOTO Radio',
+              albumArt: defaultMetadata.albumArt,
+            },
+          });
+        },
+      });
+    });
+  };
+
 
   useEffect(() => {
     async function fetchPlaylist() {
@@ -111,7 +158,7 @@ export function JinglePlayer() {
         if (!response.ok) throw new Error('Failed to fetch playlist');
         const audioUrls: string[] = await response.json();
         if (audioUrls.length > 0) {
-          const tracks = await Promise.all(audioUrls.map(url => urlToTrack(url, false)));
+          const tracks = await Promise.all(audioUrls.map(url => urlToTrack(url)));
           setPublicPlaylist(tracks);
         }
       } catch (error) {
@@ -164,7 +211,7 @@ export function JinglePlayer() {
     }
 
     const newTracks = await Promise.all(
-        audioFiles.map(file => urlToTrack(URL.createObjectURL(file), true))
+        audioFiles.map(file => fileToTrack(file))
     );
 
     setLocalPlaylist(prev => [...prev, ...newTracks]);
