@@ -46,13 +46,17 @@ export function SidebarNav() {
         }
         
         const IconComponent = iconMap[item.titleKey];
+        const isActive = pathname === item.href;
+
         return (
           <Button
             key={item.href}
-            variant={pathname === item.href ? "secondary" : "ghost"}
+            variant="ghost"
             className={cn(
               "w-full justify-start font-nav tracking-wider text-base",
-              pathname === item.href && "bg-sidebar-accent text-sidebar-accent-foreground hover:bg-sidebar-accent/90"
+              isActive
+                ? "bg-sidebar-accent text-sidebar-accent-foreground hover:bg-sidebar-accent/90"
+                : "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
             )}
             asChild
           >
