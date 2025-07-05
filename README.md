@@ -98,3 +98,48 @@ Your local `.env` file is not pushed to GitHub for security. You must configure 
 2.  Enter `tera-moto.hr`.
 3.  Firebase will give you DNS records (usually A records or TXT records). You need to add these records in the DNS settings panel of your domain registrar (where you purchased `tera-moto.hr`).
 4.  Once the DNS changes are verified by Firebase (this can take a few hours), your site will be live at `https://tera-moto.hr`!
+
+---
+
+## Troubleshooting Common Git Issues
+
+If you encounter issues pushing to the repository, especially after adding new media files, here are some common solutions.
+
+### Issue: Push Fails (Timeout or `remote end hung up`)
+
+This often happens if the push size is too large for GitHub's default HTTP connection.
+
+**Solution: Use Git LFS and SSH**
+
+This repository is now configured to use **Git LFS (Large File Storage)** for images and audio files. This is the best way to handle large media.
+
+1.  **Install Git LFS on Your Machine (One-Time Setup):**
+    If you don't have it, you need to install it. You can download it from [git-lfs.github.com](https://git-lfs.github.com). After installing, run:
+    ```bash
+    git lfs install
+    ```
+    This activates Git LFS for your user account. The `.gitattributes` file in this project will then automatically handle the rest.
+
+2.  **Switch Your Git Remote to SSH (More Reliable):**
+    Check your current remote URL:
+    ```bash
+    git remote -v
+    ```
+    If it shows an `https://` URL, switch it to SSH for a more stable connection:
+    ```bash
+    git remote set-url origin git@github.com:skygorilla/teramoto-motorcycle-platform.git
+    ```
+
+### Issue: Branch Configuration Error
+
+If you see an error like `no such ref was fetched` or your local branch doesn't know what to track, you can fix it with these commands:
+
+```bash
+# Tell git to update its knowledge of remote branches
+git remote set-head origin -a
+
+# Link your local 'main' branch to the remote 'origin/main'
+git branch --set-upstream-to=origin/main main
+```
+
+After applying these fixes, your `git pull` and `git push origin main` commands should work reliably.
