@@ -1,17 +1,44 @@
 "use client";
 
-import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { signInWithRedirect, GoogleAuthProvider, getRedirectResult } from "firebase/auth";
 import { auth } from "@/lib/firebase/config";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "@/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Loader2 } from "lucide-react";
 
 export function GoogleSignInButton() {
   const { toast } = useToast();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const handleRedirectResult = async () => {
+      if (!auth) return;
+      
+      try {
+        const result = await getRedirectResult(auth);
+        if (result?.user) {
+          console.log("Google sign-in successful:", result.user.email);
+          toast({
+            title: "Signed In",
+            description: "Successfully signed in with Google.",
+          });
+          router.push("/");
+        }
+      } catch (error: any) {
+        console.error("Google redirect error:", error);
+        toast({
+          variant: "destructive",
+          title: "Sign In Failed",
+          description: error.message || "Failed to complete Google sign-in.",
+        });
+      }
+    };
+    
+    handleRedirectResult();
+  }, [toast, router]);
 
   const signInWithGoogle = async () => {
     if (!auth) {
@@ -26,22 +53,25 @@ export function GoogleSignInButton() {
     setIsLoading(true);
     try {
       const provider = new GoogleAuthProvider();
-      console.log("Starting Google sign-in...");
-      const result = await signInWithPopup(auth, provider);
-      console.log("Google sign-in successful:", result.user.email);
-      toast({
-        title: "Signed In",
-        description: "Successfully signed in with Google.",
-      });
-      router.push("/");
+      console.log("Starting Google sign-in redirect...");
+      await signInWithRedirect(auth, provider);
     } catch (error: any) {
       console.error("Google sign-in error:", error);
+      let errorMessage = "Failed to sign in with Google.";
+      
+      if (error.code === 'auth/configuration-not-found') {
+        errorMessage = "Google Sign-In not configured in Firebase Console.";
+      } else if (error.code === 'auth/unauthorized-domain') {
+        errorMessage = "Domain not authorized. Add your domain to Firebase Console.";
+      } else if (error.message) {
+        errorMessage = error.message;
+      }
+      
       toast({
         variant: "destructive",
         title: "Sign In Failed",
-        description: error.message || "Failed to sign in with Google.",
+        description: errorMessage,
       });
-    } finally {
       setIsLoading(false);
     }
   };

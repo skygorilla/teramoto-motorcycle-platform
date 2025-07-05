@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { useAuth } from "@/hooks/useAuth";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { AudioManager } from "@/components/admin/AudioManager";
 import { ShieldAlert, Image as ImageIcon, Music, Code } from "lucide-react";
 import { Loader2 } from "lucide-react";
 
@@ -74,24 +75,16 @@ export default function AdminPage() {
           </CardContent>
         </Card>
 
-        <Card className="lg:col-span-1 animate-in fade-in-0 slide-in-from-right-10 duration-500 delay-400">
+        <Card className="lg:col-span-2 animate-in fade-in-0 slide-in-from-bottom-10 duration-500 delay-400">
           <CardHeader>
             <div className="flex items-center gap-4">
               <Music className="h-8 w-8 text-primary" />
-              <CardTitle className="font-headline text-xl">{t("manageAudioTitle")}</CardTitle>
+              <CardTitle className="font-headline text-xl">Audio Playlist Manager</CardTitle>
             </div>
-            <CardDescription>{t("manageAudioDescription")}</CardDescription>
+            <CardDescription>Drag & drop MP3 files to add background music</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <div>
-              <h4 className="font-semibold mb-1">1. {t("step1Title")}</h4>
-              <p className="text-muted-foreground">{t("audioStep1Description")}</p>
-              <pre className="mt-2 p-2 bg-muted rounded-md text-sm font-code">public/audio/</pre>
-            </div>
-            <div>
-                <h4 className="font-semibold mb-1">2. {t("step2Title")}</h4>
-                <p className="text-muted-foreground">{t("audioStep2Description")}</p>
-            </div>
+          <CardContent>
+            <AudioManager />
           </CardContent>
         </Card>
       </div>

@@ -22,13 +22,7 @@ import { Link, useRouter } from "@/navigation";
 import { GoogleSignInButton } from "./GoogleSignInButton";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
-import { verifyRecaptcha } from "@/lib/actions/auth";
 
-declare global {
-  interface Window {
-    grecaptcha: any;
-  }
-}
 
 const FormSchema = z.object({
   email: z.string().email({ message: "Invalid email address." }),
@@ -53,22 +47,6 @@ export function SignInForm() {
     setIsLoading(true);
 
     try {
-      if (!window.grecaptcha || !window.grecaptcha.enterprise) {
-        throw new Error("reCAPTCHA script not loaded or ready.");
-      }
-      
-      const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
-      if (!siteKey) {
-        throw new Error("reCAPTCHA site key not configured in .env file.");
-      }
-      
-      const token = await window.grecaptcha.enterprise.execute(siteKey, {action: 'LOGIN'});
-      const recaptchaResult = await verifyRecaptcha(token, 'LOGIN');
-      
-      if (!recaptchaResult.success) {
-        throw new Error(recaptchaResult.message || "reCAPTCHA verification failed.");
-      }
-      
       if (!auth) {
         throw new Error("Firebase is not configured.");
       }
@@ -82,10 +60,22 @@ export function SignInForm() {
 
     } catch (error: any) {
       console.error("Sign in error:", error);
+      let errorMessage = "An unexpected error occurred.";
+      
+      if (error.code === 'auth/user-not-found') {
+        errorMessage = "No account found with this email.";
+      } else if (error.code === 'auth/wrong-password') {
+        errorMessage = "Incorrect password.";
+      } else if (error.code === 'auth/invalid-email') {
+        errorMessage = "Invalid email address.";
+      } else if (error.message) {
+        errorMessage = error.message;
+      }
+      
       toast({
         variant: "destructive",
         title: "Sign In Failed",
-        description: error.message || "An unexpected error occurred.",
+        description: errorMessage,
       });
     } finally {
       setIsLoading(false);
