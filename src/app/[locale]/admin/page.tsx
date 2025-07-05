@@ -4,9 +4,8 @@
 import { useTranslations } from "next-intl";
 import { useAuth } from "@/hooks/useAuth";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { AddProductForm } from "@/components/admin/AddProductForm";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { ShieldAlert, PackageOpen, CalendarClock, Info } from "lucide-react";
+import { ShieldAlert, Image as ImageIcon, Music, Code } from "lucide-react";
 import { Loader2 } from "lucide-react";
 
 export default function AdminPage() {
@@ -37,7 +36,7 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="container mx-auto py-12 px-4 space-y-12">
+    <div className="container mx-auto py-12 px-4 space-y-8">
       <header className="text-center">
         <h1 className="text-4xl font-bold font-headline mb-4 text-primary animate-in fade-in-0 slide-in-from-top-8 duration-500">
           {t("title")}
@@ -48,47 +47,62 @@ export default function AdminPage() {
       </header>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <Alert className="lg:col-span-2">
-            <Info className="h-4 w-4" />
-            <AlertTitle>How to Manage Site Content</AlertTitle>
-            <AlertDescription>
-              As an admin, you can now upload new images and audio directly for preview. Look for edit icons on images and use drag-and-drop on the audio player. To make your changes permanent for all users, follow the instructions in the toast notifications that appear after you upload.
-            </AlertDescription>
-        </Alert>
 
-        <Card className="lg:col-span-2 animate-in fade-in-0 slide-in-from-left-10 duration-500 delay-300">
+        <Card className="lg:col-span-1 animate-in fade-in-0 slide-in-from-left-10 duration-500 delay-300">
           <CardHeader>
-            <CardTitle className="font-headline text-xl">{t("addProductTitle")}</CardTitle>
-            <CardDescription>{t("addProductDescription")}</CardDescription>
+            <div className="flex items-center gap-4">
+              <ImageIcon className="h-8 w-8 text-primary" />
+              <CardTitle className="font-headline text-xl">{t("manageImagesTitle")}</CardTitle>
+            </div>
+            <CardDescription>{t("manageImagesDescription")}</CardDescription>
           </CardHeader>
-          <CardContent>
-            <AddProductForm />
+          <CardContent className="space-y-4">
+            <div>
+              <h4 className="font-semibold mb-1">1. {t("step1Title")}</h4>
+              <p className="text-muted-foreground">{t("imageStep1Description")}</p>
+              <pre className="mt-2 p-2 bg-muted rounded-md text-sm font-code">public/images/</pre>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-1">2. {t("step2Title")}</h4>
+              <p className="text-muted-foreground">{t("imageStep2Description")}</p>
+              <pre className="mt-2 p-2 bg-muted rounded-md text-sm font-code">src/config/images.ts</pre>
+            </div>
+            <div>
+                <h4 className="font-semibold mb-1">3. {t("step3Title")}</h4>
+                <p className="text-muted-foreground">{t("imageStep3Description")}</p>
+            </div>
           </CardContent>
         </Card>
 
-        <Card className="animate-in fade-in-0 slide-in-from-bottom-10 duration-500 delay-400">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">{t("productsTitle")}</CardTitle>
-                <PackageOpen className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-                <p className="text-muted-foreground">{t("productsDescription")}</p>
-                {/* Product list would be rendered here */}
-            </CardContent>
+        <Card className="lg:col-span-1 animate-in fade-in-0 slide-in-from-right-10 duration-500 delay-400">
+          <CardHeader>
+            <div className="flex items-center gap-4">
+              <Music className="h-8 w-8 text-primary" />
+              <CardTitle className="font-headline text-xl">{t("manageAudioTitle")}</CardTitle>
+            </div>
+            <CardDescription>{t("manageAudioDescription")}</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div>
+              <h4 className="font-semibold mb-1">1. {t("step1Title")}</h4>
+              <p className="text-muted-foreground">{t("audioStep1Description")}</p>
+              <pre className="mt-2 p-2 bg-muted rounded-md text-sm font-code">public/audio/</pre>
+            </div>
+            <div>
+                <h4 className="font-semibold mb-1">2. {t("step2Title")}</h4>
+                <p className="text-muted-foreground">{t("audioStep2Description")}</p>
+            </div>
+          </CardContent>
         </Card>
-
-        <Card className="animate-in fade-in-0 slide-in-from-bottom-10 duration-500 delay-500">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">{t("appointmentsTitle")}</CardTitle>
-                <CalendarClock className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-                <p className="text-muted-foreground">{t("appointmentsDescription")}</p>
-                {/* Appointments list would be rendered here */}
-            </CardContent>
-        </Card>
-
       </div>
+      
+      <Alert>
+          <Code className="h-4 w-4" />
+          <AlertTitle>{t("developerNoteTitle")}</AlertTitle>
+          <AlertDescription>
+            {t("developerNoteDescription")}
+          </AlertDescription>
+      </Alert>
     </div>
   );
 }
