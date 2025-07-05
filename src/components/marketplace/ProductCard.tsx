@@ -37,7 +37,7 @@ export function ProductCard({ product }: ProductCardProps) {
       </CardContent>
       <CardFooter className="p-6 pt-0">
         <Button variant="outline" className="w-full">
-          {t("viewDetails")} <ArrowRight className="ml-2 h-4 w-4" />
+          {t("viewDetails")} <ArrowRight className="ml-2" />
         </Button>
       </CardFooter>
     </Card>

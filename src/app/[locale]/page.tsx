@@ -86,12 +86,12 @@ export default function HomePage() {
         <div className="flex flex-col sm:flex-row justify-center gap-4 animate-in fade-in-0 slide-in-from-bottom-8 duration-500 delay-300">
           <Button size="lg" asChild className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all transform hover:scale-105">
             <Link href="/appointments">
-              {t("ctaAppointments")} <ArrowRight className="ml-2 h-5 w-5" />
+              {t("ctaAppointments")} <ArrowRight className="ml-2" />
             </Link>
           </Button>
           <Button size="lg" variant="outline" asChild className="transition-all transform hover:scale-105">
             <Link href="/marketplace">
-              {t("ctaMarketplace")} <ArrowRight className="ml-2 h-5 w-5" />
+              {t("ctaMarketplace")} <ArrowRight className="ml-2" />
             </Link>
           </Button>
         </div>
@@ -137,7 +137,7 @@ export default function HomePage() {
               <CardFooter className="mt-auto p-4">
                 <Button variant="outline" asChild className="w-full">
                   <Link href="/appointments">
-                    {t(problem.ctaKey as any)} <ArrowRight className="ml-2 h-4 w-4" />
+                    {t(problem.ctaKey as any)} <ArrowRight className="ml-2" />
                   </Link>
                 </Button>
               </CardFooter>
