@@ -2,12 +2,12 @@ import { initializeApp, getApps, type FirebaseApp } from "firebase/app";
 import { getAuth, type Auth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  apiKey: "AIzaSyBIXy-LgcODghnxFzwOpUiT6bTkP1Duey4",
+  authDomain: "teramoto-yd0q5.firebaseapp.com",
+  projectId: "teramoto-yd0q5",
+  storageBucket: "teramoto-yd0q5.appspot.com",
+  messagingSenderId: "163038206054",
+  appId: "1:163038206054:web:cec06c9e480e1982bcf5a7"
 };
 
 let app: FirebaseApp | null = null;
@@ -27,11 +27,9 @@ if (
   }
   auth = getAuth(app);
 } else {
-  // A clear error for developers if the .env file is not set up correctly.
+  // A clear error for developers if the config is incomplete.
   console.error(
-    "CRITICAL ERROR: Firebase configuration is incomplete. " +
-    "Please ensure all NEXT_PUBLIC_FIREBASE_ variables are set in your .env file " +
-    "and that you have RESTARTED the development server."
+    "CRITICAL ERROR: Firebase configuration is incomplete. "
   );
 }
 
