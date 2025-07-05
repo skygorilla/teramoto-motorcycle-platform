@@ -1,10 +1,6 @@
-
 "use client"; 
 
 import { useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { useTranslations } from 'next-intl';
-import { RefreshCw } from 'lucide-react'; // Added RefreshCw
 
 export default function Error({
   error,
@@ -13,27 +9,44 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
-  const t = useTranslations('Common');
-
   useEffect(() => {
+    // Log the error to an error reporting service
     console.error(error);
   }, [error]);
 
   return (
-    <div className="container mx-auto flex flex-col items-center justify-center min-h-[calc(100vh-200px)] text-center py-12 px-4">
-      <h1 className="text-4xl font-bold font-headline mb-4 text-destructive">
-        {t('error')}
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      minHeight: 'calc(100vh - 200px)',
+      textAlign: 'center',
+      padding: '1rem',
+      fontFamily: 'sans-serif',
+      color: 'hsl(var(--foreground))'
+    }}>
+      <h1 style={{ fontSize: '2.25rem', fontWeight: 'bold', color: 'hsl(var(--destructive))' }}>
+        An Error Occurred
       </h1>
-      <p className="text-lg text-muted-foreground mb-8">
-        {error.message || "Something went wrong on our end."}
+      <p style={{ marginTop: '1rem', marginBottom: '2rem', color: 'hsl(var(--muted-foreground))' }}>
+        Something went wrong while trying to render this page.
       </p>
-      <Button
+      <button
         onClick={() => reset()}
-        className="bg-primary text-primary-foreground hover:bg-primary/90"
+        style={{
+          padding: '0.5rem 1.5rem',
+          backgroundColor: 'hsl(var(--primary))',
+          color: 'hsl(var(--primary-foreground))',
+          border: 'none',
+          borderRadius: '0.5rem',
+          cursor: 'pointer',
+          fontSize: '1rem',
+          fontWeight: '500'
+        }}
       >
-        <RefreshCw className="mr-2 h-4 w-4" /> {/* Added icon */}
         Try again
-      </Button>
+      </button>
     </div>
   );
 }
