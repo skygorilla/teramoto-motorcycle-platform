@@ -22,6 +22,7 @@ import { Link, useRouter } from "@/navigation";
 import { GoogleSignInButton } from "./GoogleSignInButton";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
+import { verifyRecaptcha } from "@/lib/actions/auth";
 
 
 const FormSchema = z.object({
@@ -48,6 +49,19 @@ export function SignUpForm() {
     try {
       if (!auth) {
         throw new Error("Firebase is not configured.");
+      }
+
+      const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+      if (recaptchaSiteKey) {
+        const grecaptcha = (window as any).grecaptcha;
+        if (!grecaptcha?.enterprise) {
+          throw new Error("reCAPTCHA script not loaded or enterprise version is missing.");
+        }
+        const token = await grecaptcha.enterprise.execute(recaptchaSiteKey, { action: 'signup' });
+        const verification = await verifyRecaptcha(token, 'signup');
+        if (!verification.success) {
+            throw new Error(verification.message || "reCAPTCHA verification failed.");
+        }
       }
       
       await createUserWithEmailAndPassword(auth, data.email, data.password);
