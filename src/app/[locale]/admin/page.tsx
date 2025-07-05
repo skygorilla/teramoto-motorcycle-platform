@@ -5,9 +5,8 @@ import { useTranslations } from "next-intl";
 import { useAuth } from "@/hooks/useAuth";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { AddProductForm } from "@/components/admin/AddProductForm";
-import { ImageManager } from "@/components/admin/ImageManager";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { ShieldAlert, PackageOpen, CalendarClock } from "lucide-react";
+import { ShieldAlert, PackageOpen, CalendarClock, Info } from "lucide-react";
 import { Loader2 } from "lucide-react";
 
 export default function AdminPage() {
@@ -49,15 +48,13 @@ export default function AdminPage() {
       </header>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <Card className="lg:col-span-2 animate-in fade-in-0 slide-in-from-left-10 duration-500 delay-200">
-          <CardHeader>
-            <CardTitle className="font-headline text-xl">How to Manage Site Images</CardTitle>
-            <CardDescription>Instructions for adding and changing permanent site images.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <ImageManager />
-          </CardContent>
-        </Card>
+        <Alert className="lg:col-span-2">
+            <Info className="h-4 w-4" />
+            <AlertTitle>How to Manage Site Content</AlertTitle>
+            <AlertDescription>
+              As an admin, you can now upload new images and audio directly for preview. Look for edit icons on images and use drag-and-drop on the audio player. To make your changes permanent for all users, follow the instructions in the toast notifications that appear after you upload.
+            </AlertDescription>
+        </Alert>
 
         <Card className="lg:col-span-2 animate-in fade-in-0 slide-in-from-left-10 duration-500 delay-300">
           <CardHeader>

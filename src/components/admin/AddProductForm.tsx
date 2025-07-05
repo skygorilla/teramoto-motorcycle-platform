@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -16,7 +17,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { ImageSelector } from "@/components/admin/ImageSelector";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
@@ -25,7 +25,7 @@ const ProductFormSchema = z.object({
   name: z.string().min(3, { message: "Product name must be at least 3 characters." }),
   description: z.string().min(10, { message: "Description must be at least 10 characters." }),
   price: z.coerce.number().positive({ message: "Price must be a positive number." }),
-  imageUrl: z.string().min(1, { message: "Please select an image." }),
+  imageUrl: z.string().url({ message: "Please enter a valid image URL." }),
 });
 
 export type ProductFormData = z.infer<typeof ProductFormSchema>;
@@ -107,15 +107,14 @@ export function AddProductForm() {
             name="imageUrl"
             render={({ field }) => (
                 <FormItem>
-                <FormLabel>Product Image</FormLabel>
-                <FormControl>
-                    <ImageSelector 
-                      value={field.value} 
-                      onSelect={field.onChange}
-                      placeholder="Select product image"
-                    />
-                </FormControl>
-                <FormMessage />
+                    <FormLabel>{t("formImageUrlLabel")}</FormLabel>
+                    <FormControl>
+                        <Input placeholder="https://example.com/image.jpg" {...field} />
+                    </FormControl>
+                    <FormDescription>
+                        First, upload the image via the main site pages, then paste the final URL here.
+                    </FormDescription>
+                    <FormMessage />
                 </FormItem>
             )}
             />
@@ -129,4 +128,3 @@ export function AddProductForm() {
     </Form>
   );
 }
-
