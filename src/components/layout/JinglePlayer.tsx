@@ -55,8 +55,8 @@ const MAX_PLAYLIST_SIZE = 100;
 
 export function JinglePlayer() {
   const { toast } = useToast();
-  const { user } = useAuth();
-  const isAdmin = user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+  const { user, loading } = useAuth();
+  const isAdmin = !loading && user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL;
 
   const [playlist, setPlaylist] = useState<Track[]>([]);
   const [currentTrackIndex, setCurrentTrackIndex] = useState<number | null>(null);
@@ -421,6 +421,3 @@ export function JinglePlayer() {
     </div>
   );
 }
-
-
-    
