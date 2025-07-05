@@ -22,7 +22,8 @@ export default function AdminPage() {
     );
   }
 
-  if (!user || user.email !== adminEmail) {
+  // Use a case-insensitive comparison for the email check to make it more robust.
+  if (!user || user.email?.toLowerCase() !== adminEmail.toLowerCase()) {
     return (
       <div className="container mx-auto flex min-h-[calc(100vh-200px)] items-center justify-center py-12 px-4">
         <Alert variant="destructive" className="max-w-lg">
