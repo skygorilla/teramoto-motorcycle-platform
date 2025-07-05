@@ -51,8 +51,8 @@ export default function AdminPage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <Card className="lg:col-span-2 animate-in fade-in-0 slide-in-from-left-10 duration-500 delay-200">
           <CardHeader>
-            <CardTitle className="font-headline text-xl">Image Manager</CardTitle>
-            <CardDescription>Upload and manage images for your site</CardDescription>
+            <CardTitle className="font-headline text-xl">How to Manage Site Images</CardTitle>
+            <CardDescription>Instructions for adding and changing permanent site images.</CardDescription>
           </CardHeader>
           <CardContent>
             <ImageManager />

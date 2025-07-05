@@ -15,8 +15,6 @@ import {
   Volume2,
   ListMusic,
   Music2,
-  Trash2,
-  Upload,
 } from 'lucide-react';
 import { Slider } from '@/components/ui/slider';
 import { Button } from '@/components/ui/button';
@@ -30,7 +28,6 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
-import { useAuth } from '@/hooks/useAuth';
 
 interface TrackMetadata {
   title: string;
@@ -51,12 +48,8 @@ const defaultMetadata: TrackMetadata = {
   albumArt: "https://placehold.co/64x64.png"
 };
 
-const MAX_PLAYLIST_SIZE = 100;
-
 export function JinglePlayer() {
   const { toast } = useToast();
-  const { user, loading } = useAuth();
-  const isAdmin = !loading && user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL;
 
   const [playlist, setPlaylist] = useState<Track[]>([]);
   const [currentTrackIndex, setCurrentTrackIndex] = useState<number | null>(null);
@@ -70,7 +63,6 @@ export function JinglePlayer() {
   const [repeatMode, setRepeatMode] = useState<'off' | 'all' | 'one'>('all');
   
   const audioRef = useRef<HTMLAudioElement>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Fetch public playlist on initial load
   useEffect(() => {
@@ -151,85 +143,6 @@ export function JinglePlayer() {
         });
     });
   };
-
-  const fileToTrack = (file: File): Promise<Track> => {
-    return new Promise<Track>((resolve, reject) => {
-      const url = URL.createObjectURL(file);
-      jsmediatags.read(file, {
-        onSuccess: (tag: TagType) => {
-          const { title, artist, picture } = tag.tags;
-          let albumArt = defaultMetadata.albumArt;
-          if (picture) {
-            const base64String = btoa(String.fromCharCode.apply(null, picture.data as any));
-            albumArt = `data:${picture.format};base64,${base64String}`;
-          }
-          resolve({
-            id: `${file.name}-${file.lastModified}`,
-            url,
-            name: file.name,
-            metadata: { title: title || file.name.replace(/\.[^/.]+$/, ""), artist: artist || "Local File", albumArt }
-          });
-        },
-        onError: (error) => {
-          console.error('Error reading media tags:', error);
-          reject(error);
-        }
-      });
-    });
-  };
-
-  const handleFiles = async (files: FileList) => {
-    if (!isAdmin) return;
-    if (!files || files.length === 0) return;
-
-    const wasEmpty = playlist.length === 0;
-    let addedCount = 0;
-    const newTracks: Track[] = [];
-
-    for (const file of Array.from(files)) {
-      if (playlist.length + newTracks.length >= MAX_PLAYLIST_SIZE) {
-        toast({
-            variant: "destructive",
-            title: `Playlist limit of ${MAX_PLAYLIST_SIZE} reached.`,
-            description: `Some files were not added.`,
-        });
-        break;
-      }
-      if (file.type.startsWith("audio/")) {
-        try {
-          const track = await fileToTrack(file);
-          newTracks.push(track);
-          addedCount++;
-        } catch (e) {
-            console.error("Failed to process file:", file.name, e);
-        }
-      }
-    }
-    
-    if (newTracks.length > 0) {
-        setPlaylist(prev => [...prev, ...newTracks]);
-        toast({
-            title: "Admin Preview Mode",
-            description: `${addedCount} track(s) added to your session. This change is not public.`,
-        });
-    }
-
-    if (wasEmpty && newTracks.length > 0) {
-      setCurrentTrackIndex(0);
-      setIsPlaying(true);
-    }
-  };
-
-  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-    if (!isAdmin) return;
-    e.preventDefault();
-  };
-
-  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
-    if (!isAdmin) return;
-    e.preventDefault();
-    handleFiles(e.dataTransfer.files);
-  };
   
   const handlePlayPause = () => {
     if (playlist.length === 0) return;
@@ -274,26 +187,6 @@ export function JinglePlayer() {
     setIsPlaying(true);
   };
 
-  const deleteTrack = (indexToDelete: number) => {
-    if (!isAdmin) return;
-    setPlaylist(prev => {
-        const newPlaylist = prev.filter((_, index) => index !== indexToDelete);
-        
-        if (currentTrackIndex === indexToDelete) {
-            if (newPlaylist.length === 0) {
-                setCurrentTrackIndex(null);
-                setIsPlaying(false);
-            } else if (currentTrackIndex >= newPlaylist.length) {
-                setCurrentTrackIndex(0);
-            }
-        } else if (currentTrackIndex !== null && currentTrackIndex > indexToDelete) {
-            setCurrentTrackIndex(currentTrackIndex - 1);
-        }
-        
-        return newPlaylist;
-    });
-  };
-
   const handleTimeUpdate = () => { if (audioRef.current) setCurrentTime(audioRef.current.currentTime); };
   const handleLoadedData = () => { if (audioRef.current) setDuration(audioRef.current.duration); };
   const handleSliderChange = (value: number[]) => { if (audioRef.current) audioRef.current.currentTime = value[0]; };
@@ -317,8 +210,6 @@ export function JinglePlayer() {
 
   return (
     <div
-      onDragOver={handleDragOver}
-      onDrop={handleDrop}
       className={cn("fixed bottom-0 left-0 right-0 z-50 h-20 bg-card/95 backdrop-blur-sm border-t border-border/40 p-2 text-card-foreground shadow-[0_-2px_10px_rgba(0,0,0,0.5)]")}
     >
         <audio 
@@ -372,7 +263,6 @@ export function JinglePlayer() {
             <div className="flex items-center justify-end gap-2 w-[25%]">
                  <Volume2 className="h-5 w-5 text-muted-foreground" />
                  <Slider value={[volume]} max={1} step={0.05} className="w-24 hidden md:flex" onValueChange={handleVolumeChange}/>
-                 <input type="file" ref={fileInputRef} onChange={(e) => handleFiles(e.target.files!)} multiple accept="audio/*" className="hidden" />
                  <Sheet>
                     <SheetTrigger asChild>
                       <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
@@ -382,11 +272,6 @@ export function JinglePlayer() {
                     <SheetContent>
                       <SheetHeader className="flex-row justify-between items-center">
                         <SheetTitle>Playlist ({playlist.length})</SheetTitle>
-                        {isAdmin && (
-                            <Button variant="outline" size="sm" onClick={() => fileInputRef.current?.click()}>
-                                <Upload className="mr-2 h-4 w-4" /> Add Songs
-                            </Button>
-                        )}
                       </SheetHeader>
                       <ScrollArea className="h-[calc(100vh-120px)] mt-4">
                         {playlist.length > 0 ? (
@@ -398,11 +283,6 @@ export function JinglePlayer() {
                                   <p className='font-semibold truncate'>{track.metadata.title}</p>
                                   <p className='text-sm text-muted-foreground truncate'>{track.metadata.artist}</p>
                                 </div>
-                                {isAdmin && (
-                                    <Button variant="ghost" size="icon" className="h-8 w-8 opacity-0 group-hover:opacity-100" onClick={(e) => { e.stopPropagation(); deleteTrack(index); }}>
-                                        <Trash2 className="h-4 w-4" />
-                                    </Button>
-                                )}
                               </div>
                             ))}
                            </div>
@@ -410,7 +290,7 @@ export function JinglePlayer() {
                           <div className='text-center text-muted-foreground pt-10 space-y-2'>
                             <Music2 className="h-10 w-10 mx-auto opacity-50" />
                             <p className='font-semibold'>The playlist is empty.</p>
-                            {isAdmin ? <p className="text-sm">Drag & drop audio files here or use the 'Add Songs' button.</p> : <p className="text-sm">No audio tracks have been added by the site admin.</p>}
+                            <p className="text-sm">The site administrator can add tracks to the <code className='bg-muted px-1 rounded'>public/audio</code> folder.</p>
                           </div>
                         )}
                       </ScrollArea>

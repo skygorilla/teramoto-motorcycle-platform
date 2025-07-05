@@ -1,18 +1,21 @@
+
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Image as ImageIcon } from "lucide-react";
 import Image from "next/image";
+import { siteImages } from "@/config/images";
 
-interface UploadedImage {
-  id: string;
-  name: string;
-  url: string;
-  uploadedAt: Date;
-}
+// Transform the siteImages object into an array for the select component
+const availableImages = Object.entries(siteImages).map(([key, url]) => ({
+  id: key,
+  // Format key for display e.g., "heroBanner" -> "Hero Banner"
+  name: key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase()), 
+  url: url,
+}));
 
 interface ImageSelectorProps {
   value?: string;
@@ -21,17 +24,9 @@ interface ImageSelectorProps {
 }
 
 export function ImageSelector({ value, onSelect, placeholder = "Select image" }: ImageSelectorProps) {
-  const [images, setImages] = useState<UploadedImage[]>([]);
   const [open, setOpen] = useState(false);
 
-  useEffect(() => {
-    const savedImages = localStorage.getItem('admin-images');
-    if (savedImages) {
-      setImages(JSON.parse(savedImages));
-    }
-  }, []);
-
-  const selectedImage = images.find(img => img.url === value);
+  const selectedImage = availableImages.find(img => img.url === value);
 
   return (
     <div className="space-y-2">
@@ -40,7 +35,7 @@ export function ImageSelector({ value, onSelect, placeholder = "Select image" }:
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
         <SelectContent>
-          {images.map((image) => (
+          {availableImages.map((image) => (
             <SelectItem key={image.id} value={image.url}>
               {image.name}
             </SelectItem>
