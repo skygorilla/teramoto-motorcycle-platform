@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useTranslations } from "next-intl";
@@ -11,7 +12,7 @@ import { Loader2 } from "lucide-react";
 export default function AdminPage() {
   const t = useTranslations("AdminPage");
   const { user, loading } = useAuth();
-  const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+  const adminEmail = "info.skygorilla@gmail.com";
 
   if (loading) {
     return (
