@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect, useRef } from "react";
@@ -24,10 +25,6 @@ export function AudioManager() {
 
   const isAdmin = user?.email === adminEmail;
 
-  useEffect(() => {
-    fetchPlaylist();
-  }, []);
-
   const fetchPlaylist = async () => {
     try {
       const response = await fetch('/api/playlist');
@@ -43,6 +40,10 @@ export function AudioManager() {
       console.error('Error fetching playlist:', error);
     }
   };
+
+  useEffect(() => {
+    fetchPlaylist();
+  }, []);
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
@@ -117,7 +118,8 @@ export function AudioManager() {
     }
 
     setUploading(false);
-    fetchPlaylist();
+    await fetchPlaylist();
+    window.dispatchEvent(new CustomEvent('playlistUpdated'));
   };
 
   const deleteFile = async (fileName: string) => {
@@ -135,7 +137,9 @@ export function AudioManager() {
         description: `${fileName} removed from playlist.`,
       });
       
-      fetchPlaylist();
+      await fetchPlaylist();
+      window.dispatchEvent(new CustomEvent('playlistUpdated'));
+
     } catch (error) {
       toast({
         variant: "destructive",
@@ -161,7 +165,7 @@ export function AudioManager() {
               className={cn(
                 "border-2 border-dashed rounded-lg p-8 text-center transition-all duration-300",
                 isDragOver 
-                  ? "border-primary bg-primary/10 shadow-[0_0_20px_rgba(59,130,246,0.5)] animate-pulse" 
+                  ? "border-primary bg-primary/10 shadow-[0_0_20px_rgba(255,145,0,0.5)] animate-pulse" 
                   : "border-border hover:border-primary/50",
                 "relative overflow-hidden"
               )}
@@ -208,12 +212,12 @@ export function AudioManager() {
           <h3 className="font-semibold">Current Playlist ({audioFiles.length})</h3>
           
           {audioFiles.length > 0 ? (
-            <div className="space-y-2 max-h-60 overflow-y-auto">
-              {audioFiles.map((file, index) => (
+            <div className="space-y-2 max-h-60 overflow-y-auto pr-2">
+              {audioFiles.map((file) => (
                 <div key={file.url} className="flex items-center justify-between p-3 bg-muted rounded-lg">
-                  <div className="flex items-center gap-3">
-                    <Music className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-sm font-medium">{file.name}</span>
+                  <div className="flex items-center gap-3 overflow-hidden">
+                    <Music className="h-4 w-4 text-muted-foreground shrink-0" />
+                    <span className="text-sm font-medium truncate">{file.name}</span>
                   </div>
                   
                   {isAdmin && (
@@ -239,7 +243,7 @@ export function AudioManager() {
 
         {!isAdmin && (
           <div className="text-center py-4 text-muted-foreground">
-            <p className="text-sm">Only administrators can manage the playlist</p>
+            <p className="text-sm">The playlist is managed by the site administrator.</p>
           </div>
         )}
       </CardContent>

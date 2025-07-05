@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from 'react';
@@ -46,6 +47,32 @@ const defaultMetadata: TrackMetadata = {
   albumArt: "https://placehold.co/64x64.png"
 };
 
+const urlToTrack = (url: string): Promise<Track> => {
+  return new Promise<Track>(resolve => {
+    const name = url.split('/').pop()?.replace(/%20/g, " ") || 'Unknown Track';
+    jsmediatags.read(url, {
+        onSuccess: (tag: TagType) => {
+            const { title, artist, picture } = tag.tags;
+            let albumArt = defaultMetadata.albumArt;
+            if (picture) {
+                const base64String = btoa(String.fromCharCode.apply(null, picture.data as any));
+                albumArt = `data:${picture.format};base64,${base64String}`;
+            }
+            resolve({
+                id: url, url, name,
+                metadata: { title: title || name.replace(/\.[^/.]+$/, ''), artist: artist || 'TERAMOTO Radio', albumArt },
+            });
+        },
+        onError: () => {
+            resolve({
+                id: url, url, name,
+                metadata: { title: name.replace(/\.[^/.]+$/, ''), artist: 'TERAMOTO Radio', albumArt: defaultMetadata.albumArt },
+            });
+        },
+    });
+  });
+};
+
 export function JinglePlayer() {
   const [playlist, setPlaylist] = useState<Track[]>([]);
   const [currentTrackIndex, setCurrentTrackIndex] = useState<number | null>(null);
@@ -60,57 +87,45 @@ export function JinglePlayer() {
 
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  const urlToTrack = (url: string): Promise<Track> => {
-    return new Promise<Track>(resolve => {
-      const name = url.split('/').pop()?.replace(/%20/g, " ") || 'Unknown Track';
-      jsmediatags.read(url, {
-          onSuccess: (tag: TagType) => {
-              const { title, artist, picture } = tag.tags;
-              let albumArt = defaultMetadata.albumArt;
-              if (picture) {
-                  const base64String = btoa(String.fromCharCode.apply(null, picture.data as any));
-                  albumArt = `data:${picture.format};base64,${base64String}`;
-              }
-              resolve({
-                  id: url, url, name,
-                  metadata: { title: title || name.replace(/\.[^/.]+$/, ''), artist: artist || 'TERAMOTO Radio', albumArt },
-              });
-          },
-          onError: () => {
-              resolve({
-                  id: url, url, name,
-                  metadata: { title: name.replace(/\.[^/.]+$/, ''), artist: 'TERAMOTO Radio', albumArt: defaultMetadata.albumArt },
-              });
-          },
-      });
-    });
-  };
-
-  useEffect(() => {
-    async function fetchPlaylist() {
-      try {
-        const response = await fetch('/api/playlist');
-        if (!response.ok) throw new Error('Failed to fetch playlist');
-        const audioUrls: string[] = await response.json();
-        if (audioUrls.length > 0) {
-          const tracks = await Promise.all(audioUrls.map(url => urlToTrack(url)));
-          setPlaylist(tracks);
+  const fetchPlaylist = useCallback(async () => {
+    try {
+      const response = await fetch('/api/playlist');
+      if (!response.ok) throw new Error('Failed to fetch playlist');
+      const audioUrls: string[] = await response.json();
+      
+      const tracks = audioUrls.length > 0 
+        ? await Promise.all(audioUrls.map(url => urlToTrack(url)))
+        : [];
+      
+      setPlaylist(tracks);
+      
+      setCurrentTrackIndex(prevIndex => {
+        if (tracks.length === 0) {
+          setIsPlaying(false);
+          return null;
         }
-      } catch (error) {
-        console.error("Error fetching public playlist:", error);
-      }
+        if (prevIndex === null || prevIndex >= tracks.length) {
+          return 0; // Start with the first track
+        }
+        return prevIndex; // Index is still valid, keep it.
+      });
+
+    } catch (error) {
+      console.error("Error fetching public playlist:", error);
+      setPlaylist([]);
+      setCurrentTrackIndex(null);
+      setIsPlaying(false);
     }
-    fetchPlaylist();
   }, []);
 
   useEffect(() => {
-    if (playlist.length > 0 && currentTrackIndex === null) {
-      setCurrentTrackIndex(0);
-    }
-    if (playlist.length === 0) {
-      setCurrentTrackIndex(null);
-    }
-  }, [playlist, currentTrackIndex]);
+    fetchPlaylist();
+    
+    window.addEventListener('playlistUpdated', fetchPlaylist);
+    return () => {
+      window.removeEventListener('playlistUpdated', fetchPlaylist);
+    };
+  }, [fetchPlaylist]);
 
   useEffect(() => {
     if (currentTrackIndex === null || playlist.length === 0) {
