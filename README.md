@@ -107,32 +107,32 @@ If you encounter issues pushing to the repository, especially after adding new m
 
 ### Issue: Push Fails (Timeout or `remote end hung up`)
 
-This often happens if the push size is too large for GitHub's default HTTP connection.
+This often happens if the push size is too large (e.g., >100MB) for GitHub's default HTTP connection. This can be caused by committing large files like images, audio, or build artifacts (`.next/` folder).
 
 **Solution: Use Git LFS and SSH**
 
-This repository is now configured to use **Git LFS (Large File Storage)** for images and audio files. This is the best way to handle large media.
+This repository is now configured to use **Git LFS (Large File Storage)** for images and audio files, and `.gitignore` to exclude build artifacts. This is the best way to handle large repositories.
 
 1.  **Install Git LFS on Your Machine (One-Time Setup):**
-    If you don't have it, you need to install it. You can download it from [git-lfs.github.com](https://git-lfs.github.com). After installing, run:
+    If you don't have it, you need to install it. You can download it from [git-lfs.github.com](https://git-lfs.github.com). After installing, run this command once to activate Git LFS for your user account:
     ```bash
     git lfs install
     ```
-    This activates Git LFS for your user account. The `.gitattributes` file in this project will then automatically handle the rest.
+    The `.gitattributes` file in this project will then automatically handle tracking the correct files.
 
 2.  **Switch Your Git Remote to SSH (More Reliable):**
-    Check your current remote URL:
+    An SSH connection is more stable for large pushes. Check your current remote URL:
     ```bash
     git remote -v
     ```
-    If it shows an `https://` URL, switch it to SSH for a more stable connection:
+    If it shows an `https://` URL, switch it to SSH:
     ```bash
     git remote set-url origin git@github.com:skygorilla/teramoto-motorcycle-platform.git
     ```
 
-### Issue: Branch Configuration Error
+### Issue: Branch Configuration Error ("no such ref was fetched")
 
-If you see an error like `no such ref was fetched` or your local branch doesn't know what to track, you can fix it with these commands:
+If you see an error like `no such ref was fetched` or your local branch doesn't know what to track on the remote repository, you can fix it with these commands:
 
 ```bash
 # Tell git to update its knowledge of remote branches
