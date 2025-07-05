@@ -1,3 +1,4 @@
+
 "use client";
 
 import type { ReactNode } from "react";
@@ -31,9 +32,9 @@ export function AppShell({ children }: AppShellProps) {
               <SidebarNav />
             </SidebarContent>
           </Sidebar>
-          <SidebarInset>
+          <SidebarInset className="pb-20">
             <Header />
-            <main className="flex-1 p-0 pb-20">{children}</main>
+            <main className="flex-1 p-0">{children}</main>
             <Footer />
           </SidebarInset>
         </div>

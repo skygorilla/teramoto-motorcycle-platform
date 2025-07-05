@@ -11,10 +11,10 @@ import {
   Pause,
   SkipForward,
   Repeat,
+  Repeat1,
   Volume2,
-  Trash2,
   ListMusic,
-  UploadCloud,
+  Music2,
 } from 'lucide-react';
 import { Slider } from '@/components/ui/slider';
 import { Button } from '@/components/ui/button';
@@ -26,8 +26,8 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
+import { useToast } from '@/hooks/use-toast';
 
 interface TrackMetadata {
   title: string;
@@ -44,11 +44,9 @@ interface Track {
 
 const defaultMetadata: TrackMetadata = {
   title: "TERAMOTO Radio",
-  artist: "Drag & drop jingles to play",
+  artist: "No audio in playlist",
   albumArt: "https://placehold.co/64x64.png"
 };
-
-const PLAYLIST_LIMIT = 100;
 
 export function JinglePlayer() {
   const { toast } = useToast();
@@ -61,11 +59,82 @@ export function JinglePlayer() {
   const [currentTime, setCurrentTime] = useState(0);
   const [volume, setVolume] = useState(0.7);
   const [isShuffle, setIsShuffle] = useState(false);
-  const [isRepeat, setIsRepeat] = useState(false);
-  const [isDragging, setIsDragging] = useState(false);
+  const [repeatMode, setRepeatMode] = useState<'off' | 'all' | 'one'>('all');
   
   const audioRef = useRef<HTMLAudioElement>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Fetch playlist from the server on initial load
+  useEffect(() => {
+    async function fetchPlaylist() {
+      try {
+        const response = await fetch('/api/playlist');
+        if (!response.ok) {
+          throw new Error('Failed to fetch playlist');
+        }
+        const audioUrls: string[] = await response.json();
+
+        if (audioUrls.length === 0) {
+          setPlaylist([]);
+          return;
+        }
+
+        toast({ title: `Loading ${audioUrls.length} audio file(s)...` });
+
+        const tracks: Track[] = await Promise.all(
+          audioUrls.map(url =>
+            new Promise<Track>(resolve => {
+              const name = url.split('/').pop()?.replace(/%20/g, " ") || 'Unknown Track';
+              jsmediatags.read(url, {
+                onSuccess: (tag: TagType) => {
+                  const { title, artist, picture } = tag.tags;
+                  let albumArt = defaultMetadata.albumArt;
+                  if (picture) {
+                    const base64String = btoa(String.fromCharCode.apply(null, picture.data as any));
+                    albumArt = `data:${picture.format};base64,${base64String}`;
+                  }
+                  resolve({
+                    id: url,
+                    url: url,
+                    name: name,
+                    metadata: {
+                      title: title || name.replace(/\.[^/.]+$/, ''),
+                      artist: artist || 'TERAMOTO Radio',
+                      albumArt,
+                    },
+                  });
+                },
+                onError: () => {
+                  resolve({
+                    id: url,
+                    url: url,
+                    name: name,
+                    metadata: {
+                      title: name.replace(/\.[^/.]+$/, ''),
+                      artist: 'TERAMOTO Radio',
+                      albumArt: defaultMetadata.albumArt,
+                    },
+                  });
+                },
+              });
+            })
+          )
+        );
+        setPlaylist(tracks);
+        if (tracks.length > 0 && currentTrackIndex === null) {
+          setCurrentTrackIndex(0);
+        }
+      } catch (error) {
+        console.error("Error fetching playlist:", error);
+        toast({
+          variant: 'destructive',
+          title: 'Could not load playlist',
+          description: 'The audio player may not function correctly.',
+        });
+      }
+    }
+    fetchPlaylist();
+  }, [toast]);
+
 
   // Effect to handle play/pause state
   useEffect(() => {
@@ -95,81 +164,8 @@ export function JinglePlayer() {
       }
     }
     setMetadata(track.metadata);
-  }, [currentTrackIndex, playlist]);
+  }, [currentTrackIndex, playlist, isPlaying]);
 
-
-  const handleFiles = useCallback(async (files: FileList) => {
-    let audioFiles = Array.from(files).filter(file => file.type.startsWith('audio/'));
-    
-    if (audioFiles.length === 0) return;
-
-    if (playlist.length >= PLAYLIST_LIMIT) {
-      toast({ variant: "destructive", title: "Playlist full", description: "You cannot add more than 100 jingles." });
-      return;
-    }
-
-    if (playlist.length + audioFiles.length > PLAYLIST_LIMIT) {
-      const slotsAvailable = PLAYLIST_LIMIT - playlist.length;
-      toast({
-          variant: "destructive",
-          title: "Playlist Limit Reached",
-          description: `Only adding the first ${slotsAvailable} jingles. The limit is ${PLAYLIST_LIMIT}.`,
-      });
-      audioFiles = audioFiles.slice(0, slotsAvailable);
-    }
-    
-    if (audioFiles.length === 0) return;
-
-    toast({ title: `Processing ${audioFiles.length} file(s)...` });
-
-    const newTracks: Track[] = [];
-    for (const file of audioFiles) {
-        const url = URL.createObjectURL(file);
-        const metadata: TrackMetadata = await new Promise((resolve) => {
-            jsmediatags.read(file, {
-                onSuccess: (tag: TagType) => {
-                    const { title, artist, picture } = tag.tags;
-                    let albumArt = defaultMetadata.albumArt;
-                    if (picture) {
-                        const base64String = btoa(String.fromCharCode.apply(null, picture.data as any));
-                        albumArt = `data:${picture.format};base64,${base64String}`;
-                    }
-                    resolve({
-                        title: title || file.name.replace(/\.[^/.]+$/, "") || 'Unknown Title',
-                        artist: artist || 'Unknown Artist',
-                        albumArt,
-                    });
-                },
-                onError: (error) => {
-                    console.log('Could not read metadata for', file.name, error);
-                    resolve({
-                        title: file.name.replace(/\.[^/.]+$/, "") || 'Unknown Title',
-                        artist: 'Unknown Artist',
-                        albumArt: defaultMetadata.albumArt,
-                    });
-                }
-            });
-        });
-        
-        newTracks.push({
-            id: `${file.name}-${file.lastModified}`,
-            url,
-            name: file.name,
-            metadata,
-        });
-    }
-
-    setPlaylist(prev => {
-        const updatedPlaylist = [...prev, ...newTracks];
-        if (prev.length === 0 && updatedPlaylist.length > 0) {
-            setCurrentTrackIndex(0);
-            setIsPlaying(true);
-        }
-        return updatedPlaylist;
-    });
-
-    toast({ title: "Jingles added to playlist!" });
-  }, [playlist, toast]);
 
   const handlePlayPause = () => {
     if (currentTrackIndex === null && playlist.length > 0) {
@@ -177,18 +173,29 @@ export function JinglePlayer() {
     }
     setIsPlaying(!isPlaying);
   };
-
-  const playNextTrack = useCallback(() => {
+  
+  const playNextTrack = useCallback((forceWrap = false) => {
     if (playlist.length === 0 || currentTrackIndex === null) return;
+    
     let nextIndex;
     if (isShuffle) {
-        nextIndex = Math.floor(Math.random() * playlist.length);
+      nextIndex = Math.floor(Math.random() * playlist.length);
     } else {
-        nextIndex = (currentTrackIndex + 1) % playlist.length;
+      nextIndex = currentTrackIndex + 1;
     }
+
+    if (nextIndex >= playlist.length) {
+      if (repeatMode === 'all' || forceWrap) {
+        nextIndex = 0; // Wrap around
+      } else {
+        setIsPlaying(false); // Stop at the end of the playlist
+        return;
+      }
+    }
+    
     setCurrentTrackIndex(nextIndex);
     setIsPlaying(true);
-  }, [playlist.length, currentTrackIndex, isShuffle]);
+  }, [playlist.length, currentTrackIndex, isShuffle, repeatMode]);
 
   const playPrevTrack = () => {
     if (playlist.length === 0 || currentTrackIndex === null) return;
@@ -202,28 +209,6 @@ export function JinglePlayer() {
     setIsPlaying(true);
   };
   
-  const deleteTrack = (trackId: string) => {
-    const trackIndexToDelete = playlist.findIndex(t => t.id === trackId);
-    if(trackIndexToDelete === -1) return;
-
-    URL.revokeObjectURL(playlist[trackIndexToDelete].url);
-
-    const newPlaylist = playlist.filter(t => t.id !== trackId);
-    setPlaylist(newPlaylist);
-
-    if (currentTrackIndex === null) return;
-
-    if (trackIndexToDelete === currentTrackIndex) {
-        if (newPlaylist.length === 0) {
-            setCurrentTrackIndex(null);
-        } else {
-            setCurrentTrackIndex(trackIndexToDelete % newPlaylist.length);
-        }
-    } else if (trackIndexToDelete < currentTrackIndex) {
-        setCurrentTrackIndex(prev => prev! - 1);
-    }
-  };
-
   const handleTimeUpdate = () => {
     if (audioRef.current) setCurrentTime(audioRef.current.currentTime);
   };
@@ -246,38 +231,21 @@ export function JinglePlayer() {
       setVolume(newVolume);
     }
   }
-
+  
   const handleTrackEnd = () => {
-    if(isRepeat && audioRef.current){
+    if (repeatMode === 'one' && audioRef.current){
         audioRef.current.currentTime = 0;
         audioRef.current.play();
     } else {
         playNextTrack();
     }
   }
-
-  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    setIsDragging(true);
-  };
   
-  const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    setIsDragging(false);
-  };
-
-  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    setIsDragging(false);
-    if (e.dataTransfer.files) {
-      handleFiles(e.dataTransfer.files);
-    }
-  };
-
-  const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      handleFiles(e.target.files);
-    }
+  const toggleRepeatMode = () => {
+    const modes: typeof repeatMode[] = ['all', 'one', 'off'];
+    const currentIndex = modes.indexOf(repeatMode);
+    const nextIndex = (currentIndex + 1) % modes.length;
+    setRepeatMode(modes[nextIndex]);
   };
 
   const formatTime = (time: number) => {
@@ -287,23 +255,14 @@ export function JinglePlayer() {
     return `${minutes}:${seconds.toString().padStart(2, '0')}`;
   };
 
+  const RepeatIcon = repeatMode === 'one' ? Repeat1 : Repeat;
+
   return (
     <div
-      onDragOver={handleDragOver}
-      onDragLeave={handleDragLeave}
-      onDrop={handleDrop}
       className={cn(
-        "fixed bottom-0 left-0 right-0 z-50 h-20 bg-card/95 backdrop-blur-sm border-t border-border/40 p-2 text-card-foreground shadow-[0_-2px_10px_rgba(0,0,0,0.5)] transition-colors",
-        isDragging && "bg-primary/20"
+        "fixed bottom-0 left-0 right-0 z-50 h-20 bg-card/95 backdrop-blur-sm border-t border-border/40 p-2 text-card-foreground shadow-[0_-2px_10px_rgba(0,0,0,0.5)]"
       )}
     >
-      <input type="file" ref={fileInputRef} onChange={handleFileInputChange} accept="audio/*" multiple className="hidden" />
-      {isDragging && (
-          <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center border-2 border-dashed border-primary text-primary">
-              <UploadCloud className="h-8 w-8" />
-              <p className="font-semibold">Drop your jingles here</p>
-          </div>
-      )}
         <audio 
             ref={audioRef} 
             preload="metadata" 
@@ -343,11 +302,11 @@ export function JinglePlayer() {
                     <Button variant="default" size="icon" className="h-10 w-10 rounded-full" onClick={handlePlayPause} disabled={playlist.length === 0}>
                         {isPlaying ? <Pause className="h-5 w-5" /> : <Play className="h-5 w-5 fill-current" />}
                     </Button>
-                    <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground" onClick={playNextTrack} disabled={playlist.length < 2}>
+                    <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground" onClick={() => playNextTrack(true)} disabled={playlist.length < 2}>
                         <SkipForward className="h-5 w-5" />
                     </Button>
-                    <Button variant="ghost" size="icon" className={cn("text-muted-foreground hover:text-foreground hidden sm:inline-flex", isRepeat && "text-primary")} onClick={() => setIsRepeat(!isRepeat)}>
-                        <Repeat className="h-4 w-4" />
+                    <Button variant="ghost" size="icon" className={cn("text-muted-foreground hover:text-foreground hidden sm:inline-flex", repeatMode !== 'off' && "text-primary")} onClick={toggleRepeatMode}>
+                        <RepeatIcon className="h-4 w-4" />
                     </Button>
                 </div>
                 <div className="flex items-center gap-2 w-full max-w-xl">
@@ -376,37 +335,31 @@ export function JinglePlayer() {
                     </SheetTrigger>
                     <SheetContent>
                       <SheetHeader>
-                        <SheetTitle>Playlist ({playlist.length}/{PLAYLIST_LIMIT})</SheetTitle>
+                        <SheetTitle>Playlist ({playlist.length})</SheetTitle>
                       </SheetHeader>
-                      <div className='py-4'>
-                        <Button className="w-full" variant="outline" onClick={() => fileInputRef.current?.click()} disabled={playlist.length >= PLAYLIST_LIMIT}>
-                          <UploadCloud className='mr-2 h-4 w-4'/> Add Jingles
-                        </Button>
-                      </div>
-                      <ScrollArea className="h-[calc(100vh-150px)]">
+                      <ScrollArea className="h-[calc(100vh-100px)] mt-4">
                         {playlist.length > 0 ? (
                            <div className="flex flex-col gap-2 pr-4">
                             {playlist.map((track, index) => (
                               <div key={track.id} className={cn(
-                                "flex items-center gap-3 p-2 rounded-md transition-colors",
+                                "flex items-center gap-3 p-2 rounded-md transition-colors cursor-pointer",
                                 currentTrackIndex === index ? "bg-accent text-accent-foreground" : "hover:bg-accent/50"
-                              )}>
+                              )}
+                              onClick={() => setCurrentTrackIndex(index)}
+                              >
                                 <Image src={track.metadata.albumArt} alt={track.metadata.title} width={40} height={40} className="rounded-md" />
                                 <div className='flex-grow min-w-0'>
                                   <p className='font-semibold truncate'>{track.metadata.title}</p>
                                   <p className='text-sm text-muted-foreground truncate'>{track.metadata.artist}</p>
                                 </div>
-                                <Button variant="ghost" size="icon" className="shrink-0" onClick={() => deleteTrack(track.id)}>
-                                  <Trash2 className="h-4 w-4" />
-                                </Button>
                               </div>
                             ))}
                            </div>
                         ) : (
                           <div className='text-center text-muted-foreground pt-10 space-y-2'>
-                            <ListMusic className="h-10 w-10 mx-auto opacity-50" />
-                            <p className='font-semibold'>Your playlist is empty.</p>
-                            <p className="text-sm">Drag & drop MP3 files onto the player to add them.</p>
+                            <Music2 className="h-10 w-10 mx-auto opacity-50" />
+                            <p className='font-semibold'>The playlist is empty.</p>
+                            <p className="text-sm">Audio files can be added to the `public/audio` folder.</p>
                           </div>
                         )}
                       </ScrollArea>
