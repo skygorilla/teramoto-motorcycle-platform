@@ -28,7 +28,7 @@ To run this project locally, you'll need to set up your environment variables.
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/skygorilla/teramoto-motorcycle-platform.git
+    git clone git@github.com:skygorilla/teramoto-motorcycle-platform.git
     cd teramoto-motorcycle-platform
     ```
 2.  **Create an environment file:**
