@@ -103,37 +103,55 @@ Your local `.env` file is not pushed to GitHub for security. You must configure 
 
 ## Troubleshooting Common Git Issues
 
-If you encounter issues pushing to the repository, especially after adding new media files, here are some common solutions.
+### Issue 1: Push Fails (File > 100MB)
 
-### Issue: Push Fails (Timeout or `remote end hung up`)
+If you see an error like `File X is 256.00 MB; this exceeds GitHub's file size limit of 100.00 MB`, it means a large file was committed.
 
-This often happens if the push size is too large (e.g., >100MB) for GitHub's default HTTP connection. This can be caused by committing large files like images, audio, or build artifacts (`.next/` folder).
+**Solution: Move the File to Git LFS**
 
-**Solution: Use Git LFS and SSH**
+This repository is configured to handle large files using Git LFS. If you've already accidentally committed a large file, you need to remove it from your Git history and re-add it correctly.
 
-This repository is now configured to use **Git LFS (Large File Storage)** for images and audio files, and `.gitignore` to exclude build artifacts. This is the best way to handle large repositories.
-
-1.  **Install Git LFS on Your Machine (One-Time Setup):**
-    If you don't have it, you need to install it. You can download it from [git-lfs.github.com](https://git-lfs.github.com). After installing, run this command once to activate Git LFS for your user account:
+1.  **Install Git LFS (if you haven't already):**
     ```bash
     git lfs install
     ```
-    The `.gitattributes` file in this project will then automatically handle tracking the correct files.
-
-2.  **Switch Your Git Remote to SSH (More Reliable):**
-    An SSH connection is more stable for large pushes. Check your current remote URL:
+2.  **Remove the large file from Git's cache (but keep the file):**
+    Let's say the large file is `teramoto-complete.tar.gz`. Run:
     ```bash
-    git remote -v
+    git rm --cached teramoto-complete.tar.gz
     ```
-    If it shows an `https://` URL, switch it to SSH:
+3.  **Re-add the file:**
+    Git will now see that `.tar.gz` files should be handled by LFS (thanks to the `.gitattributes` file).
     ```bash
-    git remote set-url origin git@github.com:skygorilla/teramoto-motorcycle-platform.git
+    git add teramoto-complete.tar.gz
+    ```
+4.  **Commit and push:**
+    ```bash
+    git commit -m "Move large .tar.gz file to Git LFS"
+    git push origin main
     ```
 
-### Issue: Branch Configuration Error ("no such ref was fetched")
+### Issue 2: Push Fails (Timeout or `remote end hung up`)
 
-If you see an error like `no such ref was fetched` or your local branch doesn't know what to track on the remote repository, you can fix it with these commands:
+This often happens if the total push size is too large for GitHub's default HTTP connection.
 
+**Solution: Use SSH**
+
+An SSH connection is more stable for large pushes. Check your current remote URL:
+```bash
+git remote -v
+```
+If it shows an `https://` URL, switch it to SSH:
+```bash
+git remote set-url origin git@github.com:skygorilla/teramoto-motorcycle-platform.git
+```
+Then try your push again.
+
+### Issue 3: Branch Configuration Error ("no such ref was fetched")
+
+If you see this error, it means your local branch isn't tracking the remote branch correctly.
+
+**Solution: Reset your branch tracking**
 ```bash
 # Tell git to update its knowledge of remote branches
 git remote set-head origin -a
@@ -141,5 +159,4 @@ git remote set-head origin -a
 # Link your local 'main' branch to the remote 'origin/main'
 git branch --set-upstream-to=origin/main main
 ```
-
 After applying these fixes, your `git pull` and `git push origin main` commands should work reliably.

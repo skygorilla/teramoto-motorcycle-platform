@@ -8,13 +8,18 @@ npm-debug.log*
 yarn-error.log*
 .vscode/
 .idea/
+
+# OS generated
 .DS_Store
-*.local
+Thumbs.db
+ehthumbs.db
 
 # Logs
 logs/
 *.log
 
-# OS generated
-Thumbs.db
-ehthumbs.db
+# Archives - Should not be in source control
+*.tar.gz
+
+# Local files
+*.local
