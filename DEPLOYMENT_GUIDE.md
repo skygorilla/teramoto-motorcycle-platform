@@ -62,8 +62,10 @@ Name: www
 Value: [Firebase IP addresses provided]
 ```
 
-**Step 3: Link Hosting to App (CRITICAL)**
-To prevent a "Site Not Found" error, you must tell Firebase Hosting to show your App Hosting application. This is done via a `rewrite` rule in `firebase.json`. This has been automatically configured for you.
+**Step 3: Link Hosting to App (CRITICAL FOR FIXING "SITE NOT FOUND")**
+To prevent a **"Site Not Found"** error, you must tell Firebase Hosting to show your App Hosting application. This is done via a `rewrite` rule in `firebase.json`.
+
+**This configuration is now correctly set up in your `firebase.json` file. A fresh deployment will apply this fix.**
 
 ### 4. Authentication Troubleshooting
 

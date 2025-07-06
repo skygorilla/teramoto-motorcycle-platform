@@ -42,7 +42,10 @@ GOOGLE_API_KEY=AIz...
 2. **Domain:** `tera-moto.hr`
 3. **DNS Records:** Add provided A records to your domain registrar
 
-**Link Hosting to App:** To avoid a "Site Not Found" error, you must link your domain to your app via a rewrite rule in `firebase.json`. This has been automatically configured.
+**Link Hosting to App (Fix for "Site Not Found"):**
+The "Site Not Found" error means Firebase Hosting is not linked to your App Hosting backend. You must link them with a `rewrite` rule.
+
+**This rule has been correctly configured in `firebase.json`. Deploying the latest code will resolve this issue.**
 
 ### 4. Authentication Fix
 
