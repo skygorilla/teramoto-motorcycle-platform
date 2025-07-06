@@ -77,7 +77,7 @@ export default function HomePage() {
   return (
     <div className="container mx-auto py-8 md:py-12 px-4 md:px-6">
       <section className="text-center mb-16">
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-headline mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-amber-400 animate-in fade-in-0 slide-in-from-top-8 duration-500 drop-shadow-primary-glow-md">
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-headline mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent animate-in fade-in-0 slide-in-from-top-8 duration-500 drop-shadow-primary-glow-md">
           {t("title")}
         </h1>
         <p className="text-lg md:text-xl text-muted-foreground mb-8 animate-in fade-in-0 slide-in-from-top-12 duration-500 delay-200">
