@@ -100,7 +100,6 @@ export default function HomePage() {
       <section className="w-full mb-16">
         <div className="aspect-[3/1] overflow-hidden rounded-lg shadow-xl animate-in fade-in-0 scale-95 duration-700 delay-500">
           <EditableImage 
-            imageKey="heroBanner"
             src={siteImages.heroBanner}
             alt="Motorcycle banner" 
             width={1200} 

@@ -33,7 +33,6 @@ export default function TransportRoadsidePage() {
           <div className="md:w-1/2 mb-6 md:mb-0">
             <div className="aspect-[3/2] overflow-hidden rounded-lg shadow-xl">
               <EditableImage
-                imageKey="transportVan"
                 src={siteImages.transportVan}
                 alt="Motorcycle transport"
                 width={600}

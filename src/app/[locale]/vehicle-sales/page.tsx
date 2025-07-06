@@ -30,7 +30,6 @@ export default function VehicleSalesPage() {
           <CardContent>
             <div className="aspect-[3/2] overflow-hidden rounded-lg shadow-md mb-6">
               <EditableImage
-                imageKey="sellVehicle"
                 src={siteImages.sellVehicle}
                 alt="Motorcycle for sale"
                 width={600}
@@ -54,7 +53,6 @@ export default function VehicleSalesPage() {
           <CardContent>
             <div className="aspect-[3/2] overflow-hidden rounded-lg shadow-md mb-6">
               <EditableImage
-                imageKey="buyVehicle"
                 src={siteImages.buyVehicle}
                 alt="Person looking at motorcycles"
                 width={600}

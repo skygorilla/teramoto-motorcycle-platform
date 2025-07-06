@@ -48,7 +48,6 @@ export default function AppointmentsPage() {
         <div className="animate-in fade-in-0 slide-in-from-right-10 duration-500 delay-400">
           <div className="aspect-[3/2] overflow-hidden rounded-lg shadow-xl">
             <EditableImage 
-              imageKey="workshop"
               src={siteImages.workshop}
               alt={t("workshopImageAlt")} 
               width={600} 
