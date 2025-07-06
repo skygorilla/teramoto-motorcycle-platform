@@ -34,13 +34,13 @@ const iconMap: { [key: string]: LucideIcon | undefined } = {
 export function SidebarNav() {
   const t = useTranslations();
   const pathname = usePathname();
-  const { user } = useAuth();
+  const { isAdmin } = useAuth();
 
   return (
     <nav className="flex flex-col gap-2 p-4">
       {siteConfig.mainNav.map((item) => {
-        // For developer convenience, show the admin link to any logged-in user.
-        if (item.href === '/admin' && !user) {
+        // Only show the admin link if the user is an admin.
+        if (item.href === '/admin' && !isAdmin) {
           return null;
         }
         

@@ -18,12 +18,9 @@ export function AudioManager() {
   const [audioFiles, setAudioFiles] = useState<AudioFile[]>([]);
   const [isDragOver, setIsDragOver] = useState(false);
   const [uploading, setUploading] = useState(false);
-  const { user } = useAuth();
+  const { isAdmin } = useAuth();
   const { toast } = useToast();
   const fileInputRef = useRef<HTMLInputElement>(null);
-
-  // For developer convenience, any logged-in user is an admin.
-  const isAdmin = !!user;
 
   const fetchPlaylist = async () => {
     try {

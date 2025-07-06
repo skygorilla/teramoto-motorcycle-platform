@@ -1,3 +1,4 @@
+
 "use client";
 
 import type { User } from "firebase/auth";
@@ -10,18 +11,21 @@ import { Loader2 } from "lucide-react";
 interface AuthContextType {
   user: User | null;
   loading: boolean;
+  isAdmin: boolean;
   firebaseConfigError: string | null;
 }
 
 export const AuthContext = createContext<AuthContextType>({
   user: null,
   loading: true,
+  isAdmin: false,
   firebaseConfigError: null,
 });
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [firebaseConfigError, setFirebaseConfigError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -29,6 +33,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (auth) {
       const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
         setUser(currentUser);
+        // Check if the current user is the admin
+        const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+        if (adminEmail && currentUser?.email === adminEmail) {
+          setIsAdmin(true);
+        } else {
+          setIsAdmin(false);
+        }
         setLoading(false);
         setFirebaseConfigError(null); // Clear any previous errors
       });
@@ -41,6 +52,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         "Firebase is not configured. Please check your .env file and restart the server."
       );
       setUser(null);
+      setIsAdmin(false);
       setLoading(false);
     }
   }, []);
@@ -55,7 +67,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, loading, firebaseConfigError }}>
+    <AuthContext.Provider value={{ user, loading, isAdmin, firebaseConfigError }}>
       {children}
     </AuthContext.Provider>
   );

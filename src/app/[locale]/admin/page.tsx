@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useTranslations } from "next-intl";
@@ -10,7 +11,7 @@ import { Loader2 } from "lucide-react";
 
 export default function AdminPage() {
   const t = useTranslations("AdminPage");
-  const { user, loading } = useAuth();
+  const { isAdmin, loading } = useAuth();
 
   if (loading) {
     return (
@@ -20,9 +21,8 @@ export default function AdminPage() {
     );
   }
 
-  // For developer convenience, any logged-in user can access this page.
-  // In a production app, you would have a more robust role-based access control system.
-  if (!user) {
+  // This page is now protected and only accessible to the designated admin.
+  if (!isAdmin) {
     return (
       <div className="container mx-auto flex min-h-[calc(100vh-200px)] items-center justify-center py-12 px-4">
         <Alert variant="destructive" className="max-w-lg">
