@@ -29,7 +29,8 @@ if (
 } else {
   // A clear error for developers if the config is incomplete.
   console.error(
-    "CRITICAL ERROR: Firebase configuration is incomplete. "
+    "CRITICAL ERROR: Firebase configuration is incomplete. " +
+    "Ensure all NEXT_PUBLIC_FIREBASE_* environment variables are set in your environment."
   );
 }
 

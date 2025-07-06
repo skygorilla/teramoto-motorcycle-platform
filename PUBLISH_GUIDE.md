@@ -17,16 +17,22 @@
 
 ### 2. Environment Variables (CRITICAL)
 
-**In Firebase App Hosting backend settings, add:**
+**In Firebase App Hosting backend settings, add ALL of the following:**
 ```
+# Firebase Client Config
 NEXT_PUBLIC_FIREBASE_API_KEY=AIzaSyAEz9SG9MJSIgC0nXGATbrVs5M9xp5tyY4
 NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=teramoto-yd0q5.firebaseapp.com
 NEXT_PUBLIC_FIREBASE_PROJECT_ID=teramoto-yd0q5
 NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=teramoto-yd0q5.firebasestorage.app
 NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=163038206054
 NEXT_PUBLIC_FIREBASE_APP_ID=1:163038206054:web:cec06c9e480e1982bcf5a7
+
+# Application Config
 NEXT_PUBLIC_ADMIN_EMAIL=info.teramoto@gmail.com
 NEXT_PUBLIC_RECAPTCHA_SITE_KEY=6LdpgHcrAAAAACxK1VEg3HtmhQmuRguFkgZcJdfS
+
+# Google AI & reCAPTCHA Server-side Key
+GOOGLE_API_KEY=AIz...
 ```
 
 ### 3. Custom Domain (tera-moto.hr)

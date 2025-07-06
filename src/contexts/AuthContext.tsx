@@ -49,7 +49,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       // If auth object is null, it means Firebase is not configured.
       // Set an error message and stop loading.
       setFirebaseConfigError(
-        "Firebase is not configured. Please check your .env file and restart the server."
+        "Firebase is not configured. Please ensure environment variables are set and restart the server."
       );
       setUser(null);
       setIsAdmin(false);
