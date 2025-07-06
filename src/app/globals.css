@@ -17,7 +17,7 @@ body {
     --popover: 0 0% 10%;
     --popover-foreground: 0 0% 93%;
 
-    --primary: 25 90% 54%; /* #F38020 - Cloudflare Orange */
+    --primary: 25 90% 58%; /* #f58e39 - Lighter Orange */
     --primary-foreground: 0 0% 7%; /* Dark text on primary */
 
     --secondary: 0 0% 15%;
@@ -26,7 +26,7 @@ body {
     --muted: 0 0% 15%;
     --muted-foreground: 0 0% 60%; /* Dimmer foreground */
 
-    --accent: 25 90% 54%; /* #F38020 */
+    --accent: 25 90% 58%; /* #f58e39 */
     --accent-foreground: 0 0% 7%; /* Dark text on accent */
 
     --destructive: 0 84.2% 60.2%;
@@ -34,7 +34,7 @@ body {
 
     --border: 0 0% 20%;
     --input: 0 0% 12%; /* Slightly different from border for input fields */
-    --ring: 25 90% 54%; /* Accent color for focus rings */
+    --ring: 25 90% 58%; /* Accent color for focus rings */
 
     --radius: 0.5rem;
 
@@ -42,14 +42,14 @@ body {
     --sidebar-background: 0 0% 8%; /* Slightly darker or same as background */
     --sidebar-foreground: 0 0% 80%; /* Text in sidebar */
     
-    --sidebar-primary: 25 90% 54%; /* Active/Highlight color */
+    --sidebar-primary: 25 90% 58%; /* Active/Highlight color */
     --sidebar-primary-foreground: 0 0% 7%; /* Text on sidebar primary */
     
     --sidebar-accent: 0 0% 12%; /* Hover background */
-    --sidebar-accent-foreground: 25 90% 54%; /* Text on hover, making it orange */
+    --sidebar-accent-foreground: 25 90% 58%; /* Text on hover, making it orange */
     
     --sidebar-border: 0 0% 15%;
-    --sidebar-ring: 25 90% 54%;
+    --sidebar-ring: 25 90% 58%;
 
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
