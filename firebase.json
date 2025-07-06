@@ -1,7 +1,7 @@
 {
   "hosting": {
     "site": "teramoto-yd0q5",
-    "public": "public",
+    "public": "out",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -10,11 +10,20 @@
     "rewrites": [
       {
         "source": "**",
-        "apphosting": {
-          "backendId": "teramoto-yd0q5",
-          "region": "us-central1"
-        }
+        "destination": "/index.html"
       }
     ]
+  },
+  "apphosting": {
+    "source": {
+      "projectId": "teramoto-yd0q5",
+      "location": "us-central1"
+    },
+    "build": {
+      "commands": [
+        "npm ci",
+        "npm run build"
+      ]
+    }
   }
 }
