@@ -55,9 +55,15 @@ Value: 151.101.65.195
 
 ### 4. Authentication Fix
 
-**Firebase Console → Authentication → Settings:**
-- **Authorized domains:** Add `tera-moto.hr`
-- **Sign-in method:** Enable Google & Email/Password
+**Firebase Console → Authentication → Settings → Authorized domains:**
+It is critical to add all domains your app is served from. A missing domain will cause an `auth/requests-from-referer...are-blocked` error.
+
+Make sure this list includes:
+- `localhost`
+- `tera-moto.hr`
+- `teramoto-yd0q5.firebaseapp.com`
+- `teramoto-yd0q5.web.app`
+- `studio--teramoto-yd0q5.us-central1.hosted.app` (and other preview URLs)
 
 ### 5. API Key Security
 

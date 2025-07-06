@@ -6,11 +6,15 @@
 Go to [Firebase Console](https://console.firebase.google.com) → `teramoto-yd0q5` project:
 
 **Authentication → Settings → Authorized domains:**
+You **MUST** add all of the domains your app is served from. The error `auth/requests-from-referer...are-blocked` means a domain is missing from this list.
+
 Add these domains:
-- `localhost` (for development)
+- `localhost` (for local development)
 - `tera-moto.hr` (your custom domain)
 - `teramoto-yd0q5.firebaseapp.com` (Firebase default)
-- Any Firebase App Hosting URLs
+- `teramoto-yd0q5.web.app` (Firebase default)
+- `studio--teramoto-yd0q5.us-central1.hosted.app` (The App Hosting preview URL from the error)
+- Any other Firebase App Hosting URLs you use.
 
 ### 2. Firebase App Hosting Deployment
 
