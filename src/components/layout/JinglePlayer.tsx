@@ -3,7 +3,7 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react';
 import Image from 'next/image';
-import jsmediatags, { type TagType } from 'jsmediatags';
+import jsmediatags from 'jsmediatags';
 import {
   Shuffle,
   SkipBack,
@@ -51,7 +51,7 @@ const urlToTrack = (url: string): Promise<Track> => {
   return new Promise<Track>(resolve => {
     const name = url.split('/').pop()?.replace(/%20/g, " ") || 'Unknown Track';
     jsmediatags.read(url, {
-        onSuccess: (tag: TagType) => {
+        onSuccess: (tag: jsmediatags.TagType) => {
             const { title, artist, picture } = tag.tags;
             let albumArt = defaultMetadata.albumArt;
             if (picture) {
