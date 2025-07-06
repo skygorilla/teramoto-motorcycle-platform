@@ -35,13 +35,12 @@ export function SidebarNav() {
   const t = useTranslations();
   const pathname = usePathname();
   const { user } = useAuth();
-  const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
 
   return (
     <nav className="flex flex-col gap-2 p-4">
       {siteConfig.mainNav.map((item) => {
-        // Conditionally render the admin link
-        if (item.href === '/admin' && (!user || user.email !== adminEmail)) {
+        // For developer convenience, show the admin link to any logged-in user.
+        if (item.href === '/admin' && !user) {
           return null;
         }
         

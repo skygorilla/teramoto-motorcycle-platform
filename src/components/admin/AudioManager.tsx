@@ -21,9 +21,9 @@ export function AudioManager() {
   const { user } = useAuth();
   const { toast } = useToast();
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
 
-  const isAdmin = user?.email === adminEmail;
+  // For developer convenience, any logged-in user is an admin.
+  const isAdmin = !!user;
 
   const fetchPlaylist = async () => {
     try {

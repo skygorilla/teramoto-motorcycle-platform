@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useTranslations } from "next-intl";
@@ -12,7 +11,6 @@ import { Loader2 } from "lucide-react";
 export default function AdminPage() {
   const t = useTranslations("AdminPage");
   const { user, loading } = useAuth();
-  const adminEmail = "info.skygorilla@gmail.com";
 
   if (loading) {
     return (
@@ -22,8 +20,9 @@ export default function AdminPage() {
     );
   }
 
-  // Use a case-insensitive comparison for the email check to make it more robust.
-  if (!user || user.email?.toLowerCase() !== adminEmail.toLowerCase()) {
+  // For developer convenience, any logged-in user can access this page.
+  // In a production app, you would have a more robust role-based access control system.
+  if (!user) {
     return (
       <div className="container mx-auto flex min-h-[calc(100vh-200px)] items-center justify-center py-12 px-4">
         <Alert variant="destructive" className="max-w-lg">
