@@ -1,23 +1,19 @@
 # 🚀 TERAMOTO Publishing Guide
 
-## Current Issues & Solutions
+This guide covers the essential steps for configuring and deploying the TERAMOTO application.
 
 ### 1. Firebase App Hosting Setup
 
-**Go to Firebase Console:**
-1. **App Hosting** → Create new backend
-2. **Connect GitHub:** `skygorilla/teramoto-motorcycle-platform`
-3. **Branch:** `main`
-4. **Build settings:**
-   ```
-   Build command: npm run build
-   Output directory: .next
-   Install command: npm ci
-   ```
+**Go to the Firebase Console for your project (`teramoto-yd0q5`):**
+1.  **App Hosting** → Create a new backend.
+2.  **Connect to GitHub:** Select the `skygorilla/teramoto-motorcycle-platform` repository.
+3.  **Deployment Branch:** Set to `main`.
+4.  Pushes to the `main` branch will now trigger automatic builds and deployments.
 
 ### 2. Environment Variables (CRITICAL)
 
-**In Firebase App Hosting backend settings, add ALL of the following:**
+For the application to function correctly, you **MUST** set the following environment variables in your Firebase App Hosting backend settings:
+
 ```
 # Firebase Client Config
 NEXT_PUBLIC_FIREBASE_API_KEY=AIzaSyAEz9SG9MJSIgC0nXGATbrVs5M9xp5tyY4
@@ -35,78 +31,46 @@ NEXT_PUBLIC_RECAPTCHA_SITE_KEY=6LdpgHcrAAAAACxK1VEg3HtmhQmuRguFkgZcJdfS
 GOOGLE_API_KEY=AIz...
 ```
 
-### 3. Custom Domain (tera-moto.hr)
+### 3. Custom Domain Setup (`tera-moto.hr`)
 
-**Firebase Hosting:**
-1. **Hosting** → Add custom domain
-2. **Domain:** `tera-moto.hr`
-3. **DNS Records:** Add provided A records to your domain registrar
+To connect your custom domain, you will use **Firebase Hosting** to serve your **App Hosting** backend. This is the recommended setup.
 
-**Link Hosting to App (Fix for "Site Not Found"):**
-The "Site Not Found" error means Firebase Hosting is not linked to your App Hosting backend. You must link them with a `rewrite` rule.
+**IMPORTANT:** You will add your custom domain in the **HOSTING** section of the Firebase console, **NOT** the App Hosting section. If you have already added `tera-moto.hr` to the App Hosting domains list, please remove it to avoid conflicts.
 
-**This rule has been correctly configured in `firebase.json`. Deploying the latest code will resolve this issue.**
+**Step 1: Go to the Firebase Hosting Section**
+1.  In the Firebase Console, navigate to the **Hosting** section from the side menu.
+2.  Click **"Add custom domain"**.
+3.  Enter `tera-moto.hr` and follow the setup wizard.
 
-### 4. Authentication Fix
+**Step 2: Get DNS Records**
+1.  Firebase will provide you with DNS records (usually two `A` records). Copy these values.
+
+**Step 3: Configure DNS at Your Registrar**
+1.  Go to the website where you purchased `tera-moto.hr`.
+2.  Find the DNS management panel.
+3.  Add the `A` records provided by Firebase. This points your domain to Firebase's servers.
+
+**Step 4: Link Hosting to Your App (Fix for "Site Not Found" error)**
+The `firebase.json` file in this project contains a critical `rewrite` rule that tells Firebase Hosting to serve your application from App Hosting. This is already configured. A fresh deployment will ensure this rule is active and prevent the "Site Not Found" error.
+
+### 4. Authentication Fix (Authorize Domains)
+
+For users to be able to sign in, you must authorize your domains. A missing domain will cause an `auth/requests-from-referer...are-blocked` error.
 
 **Firebase Console → Authentication → Settings → Authorized domains:**
-It is critical to add all domains your app is served from. A missing domain will cause an `auth/requests-from-referer...are-blocked` error.
-
 Make sure this list includes:
-- `localhost`
-- `tera-moto.hr`
-- `teramoto-yd0q5.firebaseapp.com`
-- `teramoto-yd0q5.web.app`
-- `studio--teramoto-yd0q5.us-central1.hosted.app` (and other preview URLs)
+-   `localhost` (for local development)
+-   `tera-moto.hr` (your custom domain)
+-   `teramoto-yd0q5.firebaseapp.com`
+-   `teramoto-yd0q5.web.app`
+-   `studio--teramoto-yd0q5.us-central1.hosted.app` (and other preview URLs)
 
-### 5. API Key Security
+### 5. Final Checklist
 
-**Google Cloud Console → Credentials:**
-- **TERAMOTO Firebase Web Key** is properly restricted
-- **Websites:** `https://tera-moto.hr`, `https://*.firebaseapp.com`
-- **APIs:** Identity Toolkit, Firebase Hosting, Cloud Storage
-
-## 🔧 Deployment Steps
-
-1. **Push latest code:**
-   ```bash
-   git add .
-   git commit -m "Ready for production"
-   git push origin main
-   ```
-
-2. **Firebase App Hosting will auto-deploy**
-
-3. **Test authentication on live site**
-
-4. **Configure custom domain DNS**
-
-## 🚨 Common Issues
-
-**Authentication not working:**
-- Missing environment variables in Firebase App Hosting
-- Domain not in authorized list
-- Wrong API key being used
-
-**Build failures:**
-- Missing dependencies
-- Environment variables not set
-- Next.js configuration issues
-
-**Domain not working:**
-- DNS records not propagated (takes 24-48 hours)
-- SSL certificate pending
-- Firebase Hosting not connected to App Hosting backend (fixed by the rewrite rule in `firebase.json`)
-
-## ✅ Success Checklist
-
-- [ ] GitHub repository updated
-- [ ] Firebase App Hosting connected
-- [ ] Environment variables configured
-- [ ] Custom domain added
-- [ ] DNS records configured
-- [ ] Authentication domains authorized
-- [ ] API key properly restricted
-- [ ] `firebase.json` has correct rewrite rule
-- [ ] Site accessible at tera-moto.hr
-- [ ] Login/signup working
+- [ ] GitHub repository is connected to App Hosting.
+- [ ] All environment variables are configured in the App Hosting backend.
+- [ ] Custom domain (`tera-moto.hr`) is added and verified in the **Firebase Hosting** section.
+- [ ] DNS records from Firebase Hosting are correctly set at your domain registrar.
+- [ ] All necessary domains are added to the "Authorized domains" list in Firebase Authentication.
+- [ ] `firebase.json` has the correct rewrite rule (this is already done for you).
+- [ ] A fresh push to `main` has been successfully deployed.

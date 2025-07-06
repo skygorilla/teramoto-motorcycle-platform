@@ -43,38 +43,36 @@ NEXT_PUBLIC_RECAPTCHA_SITE_KEY=6LdpgHcrAAAAACxK1VEg3HtmhQmuRguFkgZcJdfS
 GOOGLE_API_KEY=AIz...
 ```
 
-### 3. Custom Domain Setup (tera-moto.hr)
+### 3. Custom Domain Setup (`tera-moto.hr`)
 
-**Step 1: Firebase Hosting**
-1. Firebase Console → Hosting
-2. Add custom domain: `tera-moto.hr`
-3. Get DNS records (A records or CNAME)
+To connect your custom domain, you will use **Firebase Hosting** to serve your **App Hosting** backend. This is the recommended setup.
 
-**Step 2: DNS Configuration**
-Add these records to your domain registrar:
-```
-Type: A
-Name: @
-Value: [Firebase IP addresses provided]
+**IMPORTANT:** You will add your custom domain in the **HOSTING** section of the Firebase console, **NOT** the App Hosting section. If you have already added `tera-moto.hr` to the App Hosting domains list (where it shows "Needs setup"), please remove it from there first to avoid conflicts.
 
-Type: A  
-Name: www
-Value: [Firebase IP addresses provided]
-```
+**Step 1: Go to the Firebase Hosting Section**
+1. In the Firebase Console, navigate to the **Hosting** section from the side menu.
+2. Click **"Add custom domain"**.
+3. Enter `tera-moto.hr` and follow the setup wizard.
 
-**Step 3: Link Hosting to App (CRITICAL FOR FIXING "SITE NOT FOUND")**
-To prevent a **"Site Not Found"** error, you must tell Firebase Hosting to show your App Hosting application. This is done via a `rewrite` rule in `firebase.json`.
+**Step 2: Get DNS Records**
+1. Firebase will provide you with DNS records (usually two `A` records). Copy these values.
 
-**This configuration is now correctly set up in your `firebase.json` file. A fresh deployment will apply this fix.**
+**Step 3: Configure DNS at Your Registrar**
+1. Go to the website where you purchased `tera-moto.hr`.
+2. Find the DNS management panel.
+3. Add the `A` records provided by Firebase. This points your domain to Firebase's servers. It may take some time to propagate.
+
+**Step 4: Linking Hosting to Your App (CRITICAL)**
+The `firebase.json` file in this project is already configured to link Firebase Hosting to your app. The `rewrite` rule inside it tells Hosting to show your dynamic application instead of looking for a static `index.html` file. This prevents the "Site Not Found" error. A fresh deployment will ensure this rule is active.
 
 ### 4. Authentication Troubleshooting
 
 **If users can't sign in/up:**
 
-1. **Check authorized domains** in Firebase Console
-2. **Verify environment variables** are set in deployment
+1. **Check authorized domains** in Firebase Console.
+2. **Verify environment variables** are set in deployment.
 3. **Test locally first:** `npm run dev`
-4. **Check browser console** for specific errors
+4. **Check browser console** for specific errors.
 
 **Common Issues:**
 - Domain not in authorized list
@@ -87,22 +85,5 @@ To prevent a **"Site Not Found"** error, you must tell Firebase Hosting to show 
 ✅ Local development works: `npm run dev`
 ✅ Firebase Console has all domains authorized
 ✅ Environment variables set in Firebase App Hosting
-✅ Custom domain DNS configured
+✅ Custom domain DNS configured in **Hosting** section
 ✅ Authentication works on production domain
-
-## 🔧 Quick Fix Commands
-
-**Test locally:**
-```bash
-npm run dev
-```
-
-**Deploy to Firebase:**
-```bash
-firebase deploy
-```
-
-**Check environment:**
-```bash
-echo $NEXT_PUBLIC_FIREBASE_API_KEY
-```
