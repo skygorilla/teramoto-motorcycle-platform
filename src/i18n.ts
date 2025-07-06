@@ -1,11 +1,13 @@
 
+import {notFound} from 'next/navigation';
 import {getRequestConfig} from 'next-intl/server';
+import { locales } from './navigation';
  
 export default getRequestConfig(async ({locale}) => {
-  // The middleware is responsible for validating the locale.
-  // We can assume that a valid locale is provided here.
+  // Validate that the incoming `locale` parameter is valid.
+  if (!locales.includes(locale as any)) notFound();
+ 
   return {
-    locale,
     messages: (await import(`./messages/${locale}.json`)).default
   };
 });
