@@ -51,7 +51,7 @@ const urlToTrack = (url: string): Promise<Track> => {
   return new Promise<Track>(resolve => {
     const name = url.split('/').pop()?.replace(/%20/g, " ") || 'Unknown Track';
     jsmediatags.read(url, {
-        onSuccess: (tag: jsmediatags.TagType) => {
+        onSuccess: (tag: any) => {
             const { title, artist, picture } = tag.tags;
             let albumArt = defaultMetadata.albumArt;
             if (picture) {
