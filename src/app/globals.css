@@ -26,7 +26,7 @@ body {
     --muted: 0 0% 15%;
     --muted-foreground: 0 0% 60%; /* Dimmer foreground */
 
-    --accent: 35 100% 60%; /* #FFA64D - Lighter orange for accents/gradients */
+    --accent: 30 100% 50%; /* Unified orange for accents/gradients */
     --accent-foreground: 0 0% 7%; /* Dark text on accent */
 
     --destructive: 0 84.2% 60.2%;
@@ -46,7 +46,7 @@ body {
     --sidebar-primary-foreground: 0 0% 7%; /* Text on active item */
     
     --sidebar-accent: 0 0% 12%; /* Hover background (subtle gray) */
-    --sidebar-accent-foreground: 35 100% 60%; /* Hover text */
+    --sidebar-accent-foreground: 30 100% 50%; /* Hover text (unified orange) */
     
     --sidebar-border: 0 0% 15%;
     --sidebar-ring: 30 100% 50%;

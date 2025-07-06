@@ -55,7 +55,7 @@ export function SidebarNav() {
             className={cn(
               "w-full justify-start font-nav tracking-wider text-base",
               isActive
-                ? "bg-sidebar-primary text-sidebar-primary-foreground hover:bg-sidebar-primary/90 hover:text-sidebar-primary-foreground"
+                ? "bg-sidebar-accent text-sidebar-accent-foreground"
                 : "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
             )}
             asChild
