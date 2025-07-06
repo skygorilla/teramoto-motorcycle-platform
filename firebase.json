@@ -1,4 +1,14 @@
 {
+  "hosting": {
+    "rewrites": [
+      {
+        "source": "**",
+        "apphosting": {
+          "backendId": "studio"
+        }
+      }
+    ]
+  },
   "apphosting": {
     "source": {
       "projectId": "teramoto-yd0q5",

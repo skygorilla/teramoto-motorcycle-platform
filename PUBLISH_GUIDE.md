@@ -42,16 +42,7 @@ GOOGLE_API_KEY=AIz...
 2. **Domain:** `tera-moto.hr`
 3. **DNS Records:** Add provided A records to your domain registrar
 
-**Typical DNS setup:**
-```
-Type: A
-Name: @
-Value: 151.101.1.195
-
-Type: A  
-Name: @
-Value: 151.101.65.195
-```
+**Link Hosting to App:** To avoid a "Site Not Found" error, you must link your domain to your app via a rewrite rule in `firebase.json`. This has been automatically configured.
 
 ### 4. Authentication Fix
 
@@ -102,7 +93,7 @@ Make sure this list includes:
 **Domain not working:**
 - DNS records not propagated (takes 24-48 hours)
 - SSL certificate pending
-- Firebase Hosting not connected
+- Firebase Hosting not connected to App Hosting backend (fixed by the rewrite rule in `firebase.json`)
 
 ## ✅ Success Checklist
 
@@ -113,5 +104,6 @@ Make sure this list includes:
 - [ ] DNS records configured
 - [ ] Authentication domains authorized
 - [ ] API key properly restricted
+- [ ] `firebase.json` has correct rewrite rule
 - [ ] Site accessible at tera-moto.hr
 - [ ] Login/signup working
