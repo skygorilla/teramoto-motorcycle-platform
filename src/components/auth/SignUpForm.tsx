@@ -81,6 +81,8 @@ export function SignUpForm() {
         errorMessage = "Password is too weak. Please choose a stronger password.";
       } else if (error.code === 'auth/invalid-email') {
         errorMessage = "Invalid email address.";
+      } else if (error.code === 'auth/unauthorized-domain') {
+        errorMessage = "This domain is not authorized. Please add it to the 'Authorized domains' list in your Firebase Authentication settings.";
       } else if (error.message) {
         errorMessage = error.message;
       }
