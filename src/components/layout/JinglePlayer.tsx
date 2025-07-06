@@ -220,12 +220,20 @@ export function JinglePlayer() {
             </div>
 
             <div className="flex flex-col items-center gap-1 flex-grow">
-                <div className="flex items-center gap-2 sm:gap-4">
-                    <Button variant="ghost" size="icon" className={cn("text-muted-foreground hover:text-foreground hidden sm:inline-flex", isShuffle && "text-primary")} onClick={() => setIsShuffle(!isShuffle)} disabled={playlist.length < 2}> <Shuffle className="h-4 w-4" /> </Button>
-                    <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground" onClick={playPrevTrack} disabled={playlist.length < 2}> <SkipBack className="h-5 w-5" /> </Button>
-                    <Button variant="default" size="icon" className="h-10 w-10 rounded-full" onClick={handlePlayPause} disabled={playlist.length === 0}> {isPlaying ? <Pause className="h-5 w-5" /> : <Play className="h-5 w-5 fill-current" />} </Button>
-                    <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground" onClick={playNextTrack} disabled={playlist.length < 2}> <SkipForward className="h-5 w-5" /> </Button>
-                    <Button variant="ghost" size="icon" className={cn("text-muted-foreground hover:text-foreground hidden sm:inline-flex", repeatMode !== 'off' && "text-primary")} onClick={toggleRepeatMode} disabled={playlist.length === 0}> <RepeatIcon className="h-4 w-4" /> </Button>
+                <div className="flex items-center gap-1 sm:gap-2">
+                    <Button variant="ghost" size="sm" className={cn("text-muted-foreground hover:text-foreground hidden sm:inline-flex", isShuffle && "text-primary")} onClick={() => setIsShuffle(!isShuffle)} disabled={playlist.length < 2}> <Shuffle className="h-4 w-4" /> </Button>
+                    <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground" onClick={playPrevTrack} disabled={playlist.length < 2}> <SkipBack className="h-4 w-4" /> </Button>
+                    <Button 
+                      variant="default" 
+                      size="icon" 
+                      className="h-12 w-12 rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/30 hover:bg-primary/90 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-primary/50" 
+                      onClick={handlePlayPause} 
+                      disabled={playlist.length === 0}
+                    > 
+                      {isPlaying ? <Pause className="h-6 w-6" /> : <Play className="h-6 w-6 fill-current" />} 
+                    </Button>
+                    <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground" onClick={playNextTrack} disabled={playlist.length < 2}> <SkipForward className="h-4 w-4" /> </Button>
+                    <Button variant="ghost" size="sm" className={cn("text-muted-foreground hover:text-foreground hidden sm:inline-flex", repeatMode !== 'off' && "text-primary")} onClick={toggleRepeatMode} disabled={playlist.length === 0}> <RepeatIcon className="h-4 w-4" /> </Button>
                 </div>
                 <div className="flex items-center gap-2 w-full max-w-xl">
                     <span className="text-xs text-muted-foreground w-10 text-center">{formatTime(currentTime)}</span>
