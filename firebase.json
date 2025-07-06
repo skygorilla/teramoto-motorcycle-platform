@@ -1,19 +1,4 @@
 {
-  "hosting": {
-    "site": "teramoto-yd0q5",
-    "public": "out",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
-  },
   "apphosting": {
     "source": {
       "projectId": "teramoto-yd0q5",
