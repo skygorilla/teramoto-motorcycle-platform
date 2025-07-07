@@ -24,3 +24,4 @@ logs/
 # Local files
 *.local
 src/lib/firebase/service-account.json
+*.json

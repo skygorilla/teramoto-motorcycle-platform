@@ -9,9 +9,11 @@ if (getApps().length === 0) {
     // In production, use service account from environment
     const serviceAccount = process.env.FIREBASE_SERVICE_ACCOUNT 
       ? JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT)
+      : process.env.FIREBASE_SERVICE_ACCOUNT_PATH
+      ? require(process.env.FIREBASE_SERVICE_ACCOUNT_PATH)
       : {
-          projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-          clientEmail: `firebase-adminsdk-fbsvc@${process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID}.iam.gserviceaccount.com`,
+          projectId: 'moto-program',
+          clientEmail: 'moto-858@moto-program.iam.gserviceaccount.com',
           privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
         };
 
