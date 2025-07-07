@@ -1,3 +1,4 @@
+
 "use client";
 
 import { signInWithRedirect, GoogleAuthProvider, getRedirectResult } from "firebase/auth";
