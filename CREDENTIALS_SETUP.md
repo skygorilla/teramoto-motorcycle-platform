@@ -34,13 +34,18 @@ https://moto-program.firebaseapp.com/__/auth/handler
 http://localhost:9002/__/auth/handler
 ```
 
-### 3. Service Account Permissions
-**firebase-adminsdk-fbsvc@moto-program.iam.gserviceaccount.com**
+### 3. Service Account Configuration
 
-Required roles:
+**Primary Service Accounts:**
+- `firebase-adminsdk-fbsvc@moto-program.iam.gserviceaccount.com` - Firebase Admin SDK
+- `firebase-app-hosting-compute@moto-program.iam.gserviceaccount.com` - App Hosting
+- `moto-858@moto-program.iam.gserviceaccount.com` - Custom service account
+
+**Required roles for firebase-adminsdk:**
 - Firebase Admin SDK Administrator Service Agent
 - Cloud Datastore User
 - Storage Admin
+- Authentication Admin
 
 ### 4. Environment Variables to Set
 
