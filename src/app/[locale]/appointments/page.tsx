@@ -4,7 +4,7 @@
 import { useTranslations } from "next-intl";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
-import { BookingForm } from "@/components/appointments/BookingForm";
+import { SmartBookingSystem } from "@/components/appointments/SmartBookingSystem";
 import { siteImages } from "@/config/images";
 import { EditableImage } from "@/components/shared/EditableImage";
 
@@ -58,7 +58,7 @@ export default function AppointmentsPage() {
         </div>
       </div>
       
-      <BookingForm />
+      <SmartBookingSystem />
 
     </div>
   );

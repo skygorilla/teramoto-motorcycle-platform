@@ -6,6 +6,11 @@ export interface Product {
   imageUrl: string;
   category?: string;
   dataAiHint?: string;
+  brand?: string;
+  model?: string;
+  inStock?: boolean;
+  rating?: number;
+  reviewCount?: number;
 }
 
 export type GearRecommendation = {
