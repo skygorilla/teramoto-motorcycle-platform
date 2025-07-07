@@ -1,24 +1,20 @@
+
 {
   "hosting": {
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
     "rewrites": [
       {
         "source": "**",
         "apphosting": {
-          "backendId": "studio"
+          "backendId": "studio",
+          "region": "us-central1"
         }
       }
     ]
-  },
-  "apphosting": {
-    "source": {
-      "projectId": "teramoto-yd0q5",
-      "location": "us-central1"
-    },
-    "build": {
-      "commands": [
-        "npm ci",
-        "npm run build"
-      ]
-    }
   }
 }
