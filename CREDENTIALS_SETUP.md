@@ -16,7 +16,7 @@ HTTP referrers:
 ```
 
 ### 2. OAuth 2.0 Client Setup
-**Current**: `tera moto` (638858662134-e165...)
+**Current**: `tera moto` (638858662134-e165tphaf92b9n43o12arlfn1qreg6am.apps.googleusercontent.com)
 **Action**: Update authorized domains
 
 **Authorized JavaScript origins**:
@@ -46,7 +46,7 @@ Required roles:
 
 #### In Firebase App Hosting:
 ```bash
-NEXT_PUBLIC_FIREBASE_API_KEY=AIzaSyAEz9SG9MJSIgC0nXGATbrVs5M9xp5tyY4
+NEXT_PUBLIC_FIREBASE_API_KEY=AIzaSyBDrQpXuIlGvB0pzTceohCFq0Cl5zOiB9k
 NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=moto-program.firebaseapp.com
 NEXT_PUBLIC_FIREBASE_PROJECT_ID=moto-program
 NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=moto-program.firebasestorage.app
@@ -59,7 +59,7 @@ GOOGLE_API_KEY=YOUR_GOOGLE_AI_API_KEY
 #### In GitHub Secrets:
 ```bash
 FIREBASE_SERVICE_ACCOUNT={"type":"service_account",...}
-NEXT_PUBLIC_FIREBASE_API_KEY=AIzaSyAEz9SG9MJSIgC0nXGATbrVs5M9xp5tyY4
+NEXT_PUBLIC_FIREBASE_API_KEY=AIzaSyBDrQpXuIlGvB0pzTceohCFq0Cl5zOiB9k
 # ... (all other env vars)
 ```
 
