@@ -16,7 +16,7 @@ import {
   Bell,
   CreditCard,
   Settings,
-  Motorcycle
+  Bike
 } from 'lucide-react';
 import { UserProfile, ServiceBooking } from '@/types/enhanced';
 import { useAuth } from '@/hooks/useAuth';
@@ -105,7 +105,7 @@ export function UserDashboard() {
                 <p className="text-sm text-muted-foreground">Motorcycles</p>
                 <p className="text-2xl font-bold">{userProfile.motorcycles.length}</p>
               </div>
-              <Motorcycle className="h-8 w-8 text-blue-500" />
+              <Bike className="h-8 w-8 text-blue-500" />
             </div>
           </CardContent>
         </Card>

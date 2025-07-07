@@ -1,4 +1,10 @@
-export interface EnhancedProduct extends Product {
+export interface EnhancedProduct {
+  id: string;
+  name: string;
+  price: number;
+  description: string;
+  imageUrl: string;
+  category?: string;
   brand: string;
   model: string;
   year?: number;
