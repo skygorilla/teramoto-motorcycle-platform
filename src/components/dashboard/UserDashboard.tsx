@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { CompactLayout } from '@/components/layout/CompactLayout';
+import { CompactCard, CompactGrid } from '@/components/ui/compact-card';
 import { 
   Calendar, 
   Package, 
@@ -73,7 +75,7 @@ export function UserDashboard() {
   if (!userProfile) return <div>Loading...</div>;
 
   return (
-    <div className="container mx-auto py-8 px-4 space-y-6">
+    <CompactLayout maxWidth="xl" className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold">Welcome back, {userProfile.name}!</h1>
@@ -85,55 +87,47 @@ export function UserDashboard() {
         </Badge>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-muted-foreground">Loyalty Points</p>
-                <p className="text-2xl font-bold">{userProfile.loyaltyPoints}</p>
-              </div>
-              <Star className="h-8 w-8 text-yellow-500" />
+      <CompactGrid cols={4} gap="md">
+        <CompactCard padding="md">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-muted-foreground">Loyalty Points</p>
+              <p className="text-2xl font-bold">{userProfile.loyaltyPoints}</p>
             </div>
-          </CardContent>
-        </Card>
+            <Star className="h-8 w-8 text-yellow-500" />
+          </div>
+        </CompactCard>
 
-        <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-muted-foreground">Motorcycles</p>
-                <p className="text-2xl font-bold">{userProfile.motorcycles.length}</p>
-              </div>
-              <Bike className="h-8 w-8 text-blue-500" />
+        <CompactCard padding="md">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-muted-foreground">Motorcycles</p>
+              <p className="text-2xl font-bold">{userProfile.motorcycles.length}</p>
             </div>
-          </CardContent>
-        </Card>
+            <Bike className="h-8 w-8 text-blue-500" />
+          </div>
+        </CompactCard>
 
-        <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-muted-foreground">Services This Year</p>
-                <p className="text-2xl font-bold">8</p>
-              </div>
-              <Wrench className="h-8 w-8 text-green-500" />
+        <CompactCard padding="md">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-muted-foreground">Services This Year</p>
+              <p className="text-2xl font-bold">8</p>
             </div>
-          </CardContent>
-        </Card>
+            <Wrench className="h-8 w-8 text-green-500" />
+          </div>
+        </CompactCard>
 
-        <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-muted-foreground">Total Saved</p>
-                <p className="text-2xl font-bold">$340</p>
-              </div>
-              <TrendingUp className="h-8 w-8 text-purple-500" />
+        <CompactCard padding="md">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-muted-foreground">Total Saved</p>
+              <p className="text-2xl font-bold">$340</p>
             </div>
-          </CardContent>
-        </Card>
-      </div>
+            <TrendingUp className="h-8 w-8 text-purple-500" />
+          </div>
+        </CompactCard>
+      </CompactGrid>
 
       <Tabs defaultValue="motorcycles" className="space-y-4">
         <TabsList className="grid w-full grid-cols-3">
@@ -216,6 +210,6 @@ export function UserDashboard() {
           </Card>
         </TabsContent>
       </Tabs>
-    </div>
+    </CompactLayout>
   );
 }
