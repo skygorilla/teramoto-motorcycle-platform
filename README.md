@@ -62,7 +62,7 @@ cp .env.example .env
 npm run dev
 ```
 
-Visit `http://localhost:3000` to see the application.
+Visit `http://localhost:9002` to see the application.
 
 ---
 
@@ -163,7 +163,7 @@ Language switching is automatic based on browser settings or manual selection.
 ## 🔧 Available Scripts
 
 ```bash
-npm run dev          # Start development server
+npm run dev          # Start development server (port 9002)
 npm run build        # Build for production
 npm run start        # Start production server
 npm run lint         # Run ESLint
