@@ -18,7 +18,7 @@
  */
 export const siteImages = {
   // Homepage Images
-  heroBanner: 'https://placehold.co/1200x400/0066cc/ffffff?text=TERAMOTO+Hero',
+  heroBanner: '/images/hero-placeholder.jpg',
   
   // Appointments Page Images
   workshop: 'https://placehold.co/600x400/0066cc/ffffff?text=Workshop',
