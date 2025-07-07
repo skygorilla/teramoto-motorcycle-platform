@@ -1,5 +1,6 @@
 import { initializeApp, getApps, type FirebaseApp } from "firebase/app";
 import { getAuth, type Auth } from "firebase/auth";
+import { checkFirebaseConfig } from './init-check';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -13,8 +14,9 @@ const firebaseConfig = {
 let app: FirebaseApp | null = null;
 let auth: Auth | null = null;
 
-// This check ensures that all necessary Firebase environment variables are available.
-// If they are, Firebase is initialized.
+// Check Firebase configuration
+checkFirebaseConfig();
+
 if (
   firebaseConfig.apiKey &&
   firebaseConfig.authDomain &&
@@ -27,10 +29,11 @@ if (
   }
   auth = getAuth(app);
 } else {
-  // A clear error for developers if the config is incomplete.
   console.error(
-    "CRITICAL ERROR: Firebase configuration is incomplete. " +
-    "Ensure all NEXT_PUBLIC_FIREBASE_* environment variables are set in your environment."
+    "🚨 FIREBASE ERROR: Configuration incomplete or services not enabled.\n" +
+    "1. Enable Authentication in Firebase Console\n" +
+    "2. Enable Firestore Database\n" +
+    "3. Check API key restrictions in Google Cloud Console"
   );
 }
 
