@@ -18,15 +18,15 @@
  */
 export const siteImages = {
   // Homepage Images
-  heroBanner: '/images/hero-banner.jpg', // Main image on the home page
+  heroBanner: 'https://placehold.co/1200x400/0066cc/ffffff?text=TERAMOTO+Hero',
   
   // Appointments Page Images
-  workshop: '/images/workshop.jpg', // Image on the booking page
+  workshop: 'https://placehold.co/600x400/0066cc/ffffff?text=Workshop',
   
   // Transport & Roadside Page Images
-  transportVan: '/images/transport-van.jpg', // Image for the transport service
+  transportVan: 'https://placehold.co/600x400/0066cc/ffffff?text=Transport',
   
   // Vehicle Sales Page Images
-  sellVehicle: '/images/sell-vehicle.jpg', // Image for the "Sell Your Vehicle" card
-  buyVehicle: '/images/buy-vehicle.jpg',   // Image for the "Looking to Buy" card
+  sellVehicle: 'https://placehold.co/600x400/0066cc/ffffff?text=Sell+Vehicle',
+  buyVehicle: 'https://placehold.co/600x400/0066cc/ffffff?text=Buy+Vehicle',
 };
