@@ -5,28 +5,22 @@
  *
  * HOW TO USE:
  * 1. Make sure your images are in the `public/images/` folder.
- * 2. Replace the placeholder filenames below (e.g., 'hero.jpg') 
- *    with the ACTUAL filenames of your uploaded images.
- *
- * Example:
- * If your hero image is named `main-banner.png`, change:
- *   heroBanner: '/images/hero.jpg',
- * to:
- *   heroBanner: '/images/main-banner.png',
+ * 2. Replace the placeholder URLs below with either a relative path 
+ *    (e.g., '/images/hero-banner.png') or a full URL to your image.
  *
  * The site will automatically update to show your images.
  */
 export const siteImages = {
   // Homepage Images
-  heroBanner: '/images/hero-placeholder.jpg',
+  heroBanner: 'https://placehold.co/1200x400.png',
   
   // Appointments Page Images
-  workshop: 'https://placehold.co/600x400/0066cc/ffffff?text=Workshop',
+  workshop: 'https://placehold.co/600x400.png',
   
   // Transport & Roadside Page Images
-  transportVan: 'https://placehold.co/600x400/0066cc/ffffff?text=Transport',
+  transportVan: 'https://placehold.co/600x400.png',
   
   // Vehicle Sales Page Images
-  sellVehicle: 'https://placehold.co/600x400/0066cc/ffffff?text=Sell+Vehicle',
-  buyVehicle: 'https://placehold.co/600x400/0066cc/ffffff?text=Buy+Vehicle',
+  sellVehicle: 'https://placehold.co/600x400.png',
+  buyVehicle: 'https://placehold.co/600x400.png',
 };

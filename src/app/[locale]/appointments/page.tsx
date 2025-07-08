@@ -53,6 +53,7 @@ export default function AppointmentsPage() {
               width={600} 
               height={400} 
               className="w-full h-full object-cover"
+              data-ai-hint="motorcycle workshop"
             />
           </div>
         </div>

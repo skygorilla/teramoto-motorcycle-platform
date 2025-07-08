@@ -1,30 +1,40 @@
-import { initializeApp, getApps, cert } from 'firebase-admin/app';
-import { getAuth } from 'firebase-admin/auth';
-import { getFirestore } from 'firebase-admin/firestore';
+import { initializeApp, getApps, cert, type App } from 'firebase-admin/app';
+import { getAuth, type Auth } from 'firebase-admin/auth';
+import { getFirestore, type Firestore } from 'firebase-admin/firestore';
 
-let adminApp: any = null;
+let adminApp: App | null = null;
+let adminAuth: Auth | null = null;
+let adminDb: Firestore | null = null;
 
-if (getApps().length === 0) {
-  try {
-    // In production, use service account from environment
-    const serviceAccount = process.env.FIREBASE_SERVICE_ACCOUNT 
-      ? JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT)
-      : process.env.FIREBASE_SERVICE_ACCOUNT_PATH
-      ? require(process.env.FIREBASE_SERVICE_ACCOUNT_PATH)
-      : {
-          projectId: 'moto-program',
-          clientEmail: 'moto-858@moto-program.iam.gserviceaccount.com',
-          privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
-        };
+// This logic runs only on the server, where environment variables are secure.
+// It will only initialize if the full service account is provided.
+if (process.env.FIREBASE_SERVICE_ACCOUNT) {
+  if (getApps().length === 0) {
+    try {
+      const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+      adminApp = initializeApp({
+        credential: cert(serviceAccount),
+        projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+      });
 
-    adminApp = initializeApp({
-      credential: cert(serviceAccount),
-      projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-    });
-  } catch (error) {
-    console.error('Firebase Admin initialization error:', error);
+      adminAuth = getAuth(adminApp);
+      adminDb = getFirestore(adminApp);
+      
+      console.log("Firebase Admin SDK initialized successfully.");
+
+    } catch (error) {
+      console.error("Firebase Admin initialization error:", error);
+    }
+  } else {
+    adminApp = getApps()[0];
+    adminAuth = getAuth(adminApp);
+    adminDb = getFirestore(adminApp);
   }
+} else {
+    console.warn(
+        "FIREBASE_SERVICE_ACCOUNT environment variable is not set. " +
+        "Firebase Admin features will be unavailable in this environment."
+    );
 }
 
-export const adminAuth = adminApp ? getAuth(adminApp) : null;
-export const adminDb = adminApp ? getFirestore(adminApp) : null;
+export { adminAuth, adminDb };

@@ -35,6 +35,7 @@ export default function VehicleSalesPage() {
                 width={600}
                 height={400}
                 className="w-full h-full object-cover"
+                data-ai-hint="motorcycle sale"
               />
             </div>
             <p className="text-muted-foreground mb-4">{t("sellYourVehicleDescription")}</p>
@@ -58,6 +59,7 @@ export default function VehicleSalesPage() {
                 width={600}
                 height={400}
                 className="w-full h-full object-cover"
+                data-ai-hint="motorcycle shop"
               />
             </div>
             <p className="text-muted-foreground mb-4">{t("lookingToBuyDescription")}</p>

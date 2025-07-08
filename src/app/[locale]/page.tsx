@@ -106,6 +106,7 @@ export default function HomePage() {
             height={400} 
             className="w-full h-full object-cover"
             priority
+            data-ai-hint="motorcycle banner"
           />
         </div>
       </section>
