@@ -1,27 +1,32 @@
-# Node.js
+# Dependencies
 node_modules/
+
+# Build outputs
 .next/
 dist/
 out/
+
+# Environment variables
 .env*
+!.env.example
+
+# Logs
+*.log
 npm-debug.log*
 yarn-error.log*
-.vscode/
-.idea/
 
 # OS generated
 .DS_Store
 Thumbs.db
-ehthumbs.db
 
-# Logs
-logs/
-*.log
+# IDE
+.vscode/
+.idea/
 
-# Archives - Should not be in source control
-*.tar.gz
+# Firebase
+.firebase/
+src/lib/firebase/service-account.json
 
 # Local files
 *.local
-src/lib/firebase/service-account.json
-*.json
+*.bundle

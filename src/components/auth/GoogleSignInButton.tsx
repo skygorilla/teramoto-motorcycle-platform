@@ -1,4 +1,3 @@
-
 "use client";
 
 import { signInWithRedirect, GoogleAuthProvider, getRedirectResult } from "firebase/auth";
@@ -26,7 +25,7 @@ export function GoogleSignInButton() {
             title: "Signed In",
             description: "Successfully signed in with Google.",
           });
-          router.push("/");
+          router.push("/dashboard");
         }
       } catch (error: any) {
         console.error("Google redirect error:", error);
