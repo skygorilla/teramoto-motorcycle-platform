@@ -20,6 +20,7 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { Link, useRouter } from "@/navigation";
 import { GoogleSignInButton } from "./GoogleSignInButton";
+import { FacebookSignInButton } from "./FacebookSignInButton";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
 import { verifyRecaptcha } from "@/lib/actions/auth";
@@ -105,6 +106,7 @@ export function SignUpForm() {
   return (
     <div className="space-y-6 w-full max-w-sm">
       <GoogleSignInButton />
+      <FacebookSignInButton />
       
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
