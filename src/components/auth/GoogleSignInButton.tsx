@@ -1,3 +1,4 @@
+
 "use client";
 
 import { signInWithRedirect, GoogleAuthProvider, getRedirectResult } from "firebase/auth";
@@ -62,7 +63,8 @@ export function GoogleSignInButton() {
       if (error.code === 'auth/configuration-not-found') {
         errorMessage = "Google Sign-In not configured in Firebase Console.";
       } else if (error.code === 'auth/unauthorized-domain') {
-        errorMessage = "Domain not authorized. Add your domain to Firebase Console.";
+        const studioDomain = `studio--${process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID}.us-central1.hosted.app`;
+        errorMessage = `This domain is not authorized for sign-in. Please add "${studioDomain}" to the 'Authorized domains' list in your Firebase Authentication settings.`;
       } else if (error.message) {
         errorMessage = error.message;
       }

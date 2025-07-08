@@ -82,7 +82,8 @@ export function SignUpForm() {
       } else if (error.code === 'auth/invalid-email') {
         errorMessage = "Invalid email address.";
       } else if (error.code === 'auth/unauthorized-domain') {
-        errorMessage = "This domain is not authorized. Please add it to the 'Authorized domains' list in your Firebase Authentication settings.";
+        const studioDomain = `studio--${process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID}.us-central1.hosted.app`;
+        errorMessage = `This domain is not authorized. Please add "${studioDomain}" to the 'Authorized domains' list in your Firebase Authentication settings.`;
       } else if (error.message) {
         errorMessage = error.message;
       }

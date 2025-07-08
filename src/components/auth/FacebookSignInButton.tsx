@@ -1,3 +1,4 @@
+
 "use client";
 
 import { signInWithRedirect, FacebookAuthProvider, getRedirectResult } from "firebase/auth";
@@ -29,10 +30,19 @@ export function FacebookSignInButton() {
       await signInWithRedirect(auth, provider);
     } catch (error: any) {
       console.error("Facebook sign-in error:", error);
+      let errorMessage = "Failed to sign in with Facebook.";
+      
+      if (error.code === 'auth/unauthorized-domain') {
+        const studioDomain = `studio--${process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID}.us-central1.hosted.app`;
+        errorMessage = `This domain is not authorized. Please add "${studioDomain}" to the 'Authorized domains' list in your Firebase Authentication settings.`;
+      } else if (error.message) {
+         errorMessage = error.message;
+      }
+
       toast({
         variant: "destructive",
         title: "Sign In Failed",
-        description: error.message || "Failed to sign in with Facebook.",
+        description: errorMessage,
       });
       setIsLoading(false);
     }
