@@ -57,6 +57,34 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
+  // Display a clear error message if Firebase configuration is missing.
+  if (firebaseConfigError) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-background p-4">
+        <div className="w-full max-w-2xl rounded-lg border border-destructive bg-card p-6 text-center shadow-2xl">
+          <h1 className="text-2xl font-bold font-headline text-destructive">
+            Firebase Configuration Error
+          </h1>
+          <p className="mt-2 text-muted-foreground">
+            The application cannot connect to Firebase because the required environment variables are missing.
+          </p>
+          <div className="mt-4 rounded-md bg-muted p-4 text-left text-sm font-code">
+            <p className="font-headline text-base font-semibold">Action Required:</p>
+            <ol className="mt-2 list-inside list-decimal space-y-1">
+              <li>Create a file named <code>.env</code> in the root of your project.</li>
+              <li>Copy the contents from <code>.env.example</code> into the new <code>.env</code> file.</li>
+              <li>Fill in the required values from your Firebase project settings.</li>
+              <li>Restart the development server.</li>
+            </ol>
+          </div>
+          <p className="mt-4 text-xs text-muted-foreground">
+            Detailed Error: {firebaseConfigError}
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   // Show a global loading spinner while we check for the user's auth state.
   if (loading) {
     return (
