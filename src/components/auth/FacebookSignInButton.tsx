@@ -14,6 +14,41 @@ export function FacebookSignInButton() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
+  useEffect(() => {
+    // This effect handles the result from the redirect
+    const handleRedirectResult = async () => {
+      if (!auth) return;
+      try {
+        const result = await getRedirectResult(auth);
+        if (result?.user) {
+          // User is signed in.
+          toast({
+            title: "Signed In",
+            description: "Successfully signed in with Facebook.",
+          });
+          router.push("/dashboard");
+        }
+      } catch (error: any) {
+        // Handle specific errors from the redirect result.
+        if (error.code === 'auth/account-exists-with-different-credential') {
+          toast({
+            variant: "destructive",
+            title: "Sign In Failed",
+            description: "An account already exists with the same email address but different sign-in credentials. Please sign in using the original method.",
+          });
+        } else {
+          toast({
+            variant: "destructive",
+            title: "Sign In Failed",
+            description: error.message || "Failed to complete Facebook sign-in.",
+          });
+        }
+      }
+    };
+
+    handleRedirectResult();
+  }, [router, toast]);
+
   const signInWithFacebook = async () => {
     if (!auth) {
       toast({
@@ -27,6 +62,7 @@ export function FacebookSignInButton() {
     setIsLoading(true);
     try {
       const provider = new FacebookAuthProvider();
+      // Start the redirect flow
       await signInWithRedirect(auth, provider);
     } catch (error: any) {
       console.error("Facebook sign-in error:", error);
