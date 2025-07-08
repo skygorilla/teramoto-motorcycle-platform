@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { Trash2, Upload, Music, Volume2 } from "lucide-react";
-import { useAuth } from "@/hooks/useAuth";
+// import { useAuth } from "@/hooks/useAuth"; // Removed auth dependency
 import { cn } from "@/lib/utils";
 
 interface AudioFile {
@@ -18,7 +18,8 @@ export function AudioManager() {
   const [audioFiles, setAudioFiles] = useState<AudioFile[]>([]);
   const [isDragOver, setIsDragOver] = useState(false);
   const [uploading, setUploading] = useState(false);
-  const { isAdmin } = useAuth();
+  // const { isAdmin } = useAuth(); // Removed auth dependency
+  const isAdmin = false; // Default to false
   const { toast } = useToast();
   const fileInputRef = useRef<HTMLInputElement>(null);
 

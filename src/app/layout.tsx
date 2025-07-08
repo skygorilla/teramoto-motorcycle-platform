@@ -2,7 +2,7 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import { Toaster } from "@/components/ui/toaster";
-import { AuthProvider } from '@/contexts/AuthContext';
+
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -30,10 +30,8 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased" suppressHydrationWarning={true}>
-        <AuthProvider>
-          {children}
-          <Toaster />
-        </AuthProvider>
+        {children}
+        <Toaster />
         {recaptchaSiteKey && (
           <Script
             src={`https://www.google.com/recaptcha/enterprise.js?render=${recaptchaSiteKey}`}

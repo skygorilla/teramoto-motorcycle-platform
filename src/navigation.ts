@@ -16,8 +16,8 @@ export const pathnames = {
   '/appointments': '/appointments',
   '/marketplace': '/marketplace',
   '/ai-assistant': '/ai-assistant',
-  '/signin': '/signin',
-  '/signup': '/signup',
+  // '/signin': '/signin', // Removed auth routes
+  // '/signup': '/signup', // Removed auth routes
   '/account': '/account',
   '/vehicle-sales': '/vehicle-sales',
   '/transport-roadside': '/transport-roadside',

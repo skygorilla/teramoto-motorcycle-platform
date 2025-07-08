@@ -3,7 +3,7 @@
 
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { LanguageSwitcher } from "./LanguageSwitcher";
-import { AuthButton } from "@/components/auth/AuthButton";
+
 import { Logo } from "@/components/shared/Logo";
 
 export function Header() {
@@ -18,7 +18,7 @@ export function Header() {
         </div>
         <div className="flex items-center gap-3">
           <LanguageSwitcher />
-          <AuthButton />
+
         </div>
       </div>
     </header>

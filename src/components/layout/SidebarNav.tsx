@@ -6,7 +6,6 @@ import { usePathname, Link } from "@/navigation";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/hooks/useAuth";
 import { 
   Home, 
   CalendarCheck,
@@ -34,13 +33,14 @@ const iconMap: { [key: string]: LucideIcon | undefined } = {
 export function SidebarNav() {
   const t = useTranslations();
   const pathname = usePathname();
-  const { isAdmin } = useAuth();
+  // const { isAdmin } = useAuth(); // Removed auth dependency
+  const isAdmin = false; // Default to false
 
   return (
     <nav className="flex flex-col gap-2 p-4">
       {siteConfig.mainNav.map((item) => {
-        // Only show the admin link if the user is an admin.
-        if (item.href === '/admin' && !isAdmin) {
+        // Hide admin link for now
+        if (item.href === '/admin') {
           return null;
         }
         

@@ -21,18 +21,16 @@ import {
   Bike
 } from 'lucide-react';
 import { UserProfile, ServiceBooking } from '@/types/enhanced';
-import { useAuth } from '@/hooks/useAuth';
-
 export function UserDashboard() {
-  const { user } = useAuth();
+  // const { user } = useAuth(); // Removed auth dependency
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [loyaltyProgress, setLoyaltyProgress] = useState(0);
 
   useEffect(() => {
     const mockProfile: UserProfile = {
-      id: user?.uid || '1',
-      email: user?.email || 'user@example.com',
-      name: user?.displayName || 'John Doe',
+      id: '1',
+      email: 'user@example.com',
+      name: 'John Doe',
       phone: '+1 (555) 123-4567',
       motorcycles: [
         {

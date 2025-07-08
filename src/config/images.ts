@@ -12,15 +12,15 @@
  */
 export const siteImages = {
   // Homepage Images
-  heroBanner: 'https://placehold.co/1200x400.png',
+  heroBanner: '/images/hero-banner.jpg',
   
   // Appointments Page Images
-  workshop: 'https://placehold.co/600x400.png',
+  workshop: '/images/20240824_154148.jpg',
   
   // Transport & Roadside Page Images
-  transportVan: 'https://placehold.co/600x400.png',
+  transportVan: '/images/20240826_202503.jpg',
   
   // Vehicle Sales Page Images
-  sellVehicle: 'https://placehold.co/600x400.png',
-  buyVehicle: 'https://placehold.co/600x400.png',
+  sellVehicle: '/images/20241125_151443.jpg',
+  buyVehicle: '/images/20250106_212209.jpg',
 };
