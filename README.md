@@ -22,12 +22,9 @@ The most advanced digital ecosystem for motorcycle enthusiasts, workshops, and d
     ```
 
 2.  **Set up Environment Variables**
-    This is a critical step for connecting to Firebase and other services.
-    ```bash
-    # Copy the example environment file
-    cp .env.example .env
-    ```
-    Now, open the newly created `.env` file and fill in the values. You can find your Firebase credentials in your Firebase project settings.
+    This is a **critical step** for the application to function. All secret keys and API credentials are managed in an environment file that you must create.
+
+    ➡️ **Please follow the detailed guide here: [./docs/security.md](./docs/security.md)**
 
 3.  **Install dependencies**
     ```bash
@@ -43,34 +40,6 @@ Visit `http://localhost:9002` to see the application.
 
 ---
 
-## ⚙️ Environment Variables (`.env` file)
-
-Your `.env` file should look like this, with your actual credentials filled in:
-
-```env
-# Firebase Configuration
-# Found in: Firebase Console > Project Settings > General > Your apps > Web app
-NEXT_PUBLIC_FIREBASE_API_KEY=your_firebase_api_key
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=teramoto-yd0q5.firebaseapp.com
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=teramoto-yd0q5
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=teramoto-yd0q5.appspot.com
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
-
-# Admin Configuration
-NEXT_PUBLIC_ADMIN_EMAIL=info.teramoto@gmail.com
-
-# Google AI (Genkit)
-# Found in: Google AI Studio
-GOOGLE_API_KEY=your_google_ai_key
-
-# reCAPTCHA (Optional)
-# Found in: Google Cloud Console > reCAPTCHA Enterprise
-NEXT_PUBLIC_RECAPTCHA_SITE_KEY=your_recaptcha_key
-```
-
----
-
 ## 🌐 Live Deployment
 
 **Production Site**: [tera-moto.hr](https://tera-moto.hr)
@@ -79,7 +48,7 @@ NEXT_PUBLIC_RECAPTCHA_SITE_KEY=your_recaptcha_key
 
 This project uses a GitHub Actions workflow for Continuous Deployment. Any push to the `main` branch will automatically build and deploy the application to Firebase App Hosting.
 
-See `docs/deployment.md` for details on setting up the required GitHub secrets.
+➡️ **See `docs/deployment.md` for details on setting up the required GitHub secrets.**
 
 ---
 
@@ -118,14 +87,12 @@ teramoto-motorcycle-platform/
 
 ---
 
-## 🔐 Authentication
+## 🔐 Authentication & Security
 
-The platform supports multiple authentication methods:
+This application uses Firebase Authentication with Email/Password and Google/Facebook sign-in. All forms are protected by Google reCAPTCHA Enterprise to prevent abuse.
 
-- **Email/Password** - Traditional registration
-- **Google Sign-In** - OAuth integration
-- **Facebook Sign-In** - OAuth integration
-- **Admin Panel** - Special admin access at `/admin`
+➡️ **For details on setting up API keys and security credentials, see [./docs/security.md](./docs/security.md).**
+
 
 ### Admin Features
 - Audio playlist management
